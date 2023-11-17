@@ -1,0 +1,454 @@
+body{
+    margin:0;
+    font-family: 'PT Sans', sans-serif;
+}
+h1{
+    color:aliceblue;
+    font-size: 100px;
+    margin-top: 160px;
+    margin-bottom: 0;
+    font-family: 'Viga', sans-serif;
+    text-align: center;
+}
+.atf{
+    background-image: url("./img/header.png");
+    min-height: 100vh;
+    max-height: fit-content;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color:aliceblue;
+}
+.main-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 40px ;
+}
+.logohead{
+    background-image: url("./img/logo.png");
+    background-size: cover;
+    background-position: center;
+    width: 128px;
+    height: 92px;
+}
+.main-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu{
+    text-decoration: none;
+    font-size: 24px;
+    color: aliceblue;
+    padding: 16px;
+}
+.menu:hover{
+    text-decoration: none;
+    color: rgb(174, 134, 68);
+    padding: 16px;
+}
+.facebook{
+    margin-left: 24px;
+    padding: 8px;
+    background-image: url("./img/facebook_white.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+.facebook:hover{
+    margin-left: 24px;
+    padding: 8px;
+    background-image: url("./img/facebook_gold.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow( 0px 0px 4px #ae8644);
+}
+.insta{
+    margin-left: 32px;
+    padding: 16px;
+    background-image: url("./img/instagram_white.png");
+    background-position:center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.insta:hover{
+    margin-left: 32px;
+    padding :16px;
+    background-image: url("./img/instagram_gold.png");
+    background-position:center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow( 0px 0px 4px #ae8644);
+}
+.twitter{
+    margin-left: 32px;
+    padding :16px;
+    background-image: url("./img/twitter_white.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+.twitter:hover{
+    margin-left: 32px;
+    padding :16px;
+    background-image: url("./img/twitter_gold.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow( 0px 0px 4px #ae8644);
+}
+.headline{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}  
+.discover{
+    margin-bottom: 60px;
+}
+.button{
+    text-align: center;
+    text-decoration: none;
+    color: aliceblue;
+    background-color: #ae8644;
+    box-sizing: content-box;
+    border: solid;
+    border-color: #ae8644;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+.button:hover{
+    text-align: center;
+    text-decoration: none;
+    color: aliceblue;
+    background-color: #ae8644;
+    box-sizing: content-box;
+    border: solid;
+    border-color: #ffffff;
+    filter: drop-shadow( 0px 0px 4px #ffffff);
+    padding: 16px;
+}
+.categorys{
+    display: flex;
+    background-color: black;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.sections{
+    padding: 5%;
+    text-decoration: none;
+    color: #ae8644;
+    font-weight: bold;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+}
+.sections1{
+    aspect-ratio: 1/1;
+}
+.sections:hover{
+    filter: drop-shadow( 0px 0px 4px #ae8644);
+}
+.tickets{
+    color: aliceblue;
+    background-color: #272727;
+    display: flex;
+    align-items:center;
+    height: 456px;
+    justify-content: space-between;
+}
+
+.buybutton{
+    text-align: center;
+    text-decoration: none;
+    color: aliceblue;
+    background-color: #ae8644;
+    box-sizing: content-box;
+    border: solid;
+    border-color: #ae8644;
+    padding: 16px;
+    padding-left: 36px;
+    padding-right: 36px;
+    margin-right: 20px;
+    margin-left: 40px;
+
+}
+.buybutton:hover{
+    text-align: center;
+    text-decoration: none;
+    color: aliceblue;
+    background-color: #ae8644;
+    box-sizing: content-box;
+    border: solid;
+    border-color: #ffffff;
+    filter: drop-shadow( 0px 0px 4px #ffffff);
+    padding: 16px;
+    padding-left: 36px;
+    padding-right: 36px;
+    margin-right: 20px;
+    margin-left: 40px;
+}
+.ticketspecs{
+    margin-left: 40px;
+    font-size: 16px;
+    overflow-inline:scroll;
+}
+.seperator{
+    width: 1px;
+    height: 300px;
+    background-color: #ffffff;
+}
+
+h2{
+    margin-top: 0;
+    font-weight: normal;
+}
+h3{
+    color: #ae8644;
+    margin: 120px;
+    text-align: center;
+    font-size: 36px;
+}
+.follow{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+.followpic{
+    width: 100%;
+    background-color: black;
+}
+.footer{
+    right: 0;
+    left:0;
+    padding-top: 120px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.footer-container{
+    display:flex;
+    justify-content: space-between;
+}
+.footer-info{
+    text-decoration: none;
+    color: #ffffff;
+}
+.footer-desc{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    align-content: center;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 80px;
+}
+.footer-contact{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-right: 40px;
+}
+.footer-mail{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 120px;
+    margin-right: 40px;
+}
+.footer-pic{
+    height: 32px;
+    width: 32px;
+}
+input{
+    height: 36px;
+    background-color: #ffffff;
+    padding: 8px; 
+    border: solid;
+    border-color: #ae8644;
+    color:rgb(2, 2, 2);
+
+}
+input::placeholder{
+    color:rgb(0, 0, 0,0.4) ;
+
+}
+input:hover{
+    filter: drop-shadow( 0px 0px 4px #ffffff);
+}
+.submitbutton{
+    text-align: center;
+    text-decoration: none;
+    color: aliceblue;
+    background-color: #ae8644;
+    box-sizing: content-box;
+    border: solid;
+    border-color: #ae8644;
+    padding: 16px;
+    padding-left: 36px;
+    padding-right: 36px;
+
+}
+.submitbutton:hover{
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ae8644;
+    box-sizing: content-box;
+    border: solid;
+    border-color: #ffffff;
+    filter: drop-shadow( 0px 0px 4px #ffffff);
+    padding: 16px;
+    padding-left: 36px;
+    padding-right: 36px;
+}
+.facebookfooter{
+    
+    padding: 24px;
+    background-image: url("./img/Facebook.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+.facebookfooter:hover{
+
+    padding: 24px;
+    background-image: url("./img/Facebook.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow( 0px 0px 4px #ae8644);
+}
+.instafooter{
+    margin-left: 32px;
+    margin-right: 32px;
+    padding: 24px;
+    background-image: url("./img/ins.png");
+    background-position:center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.instafooter:hover{
+    margin-left: 32px;
+    margin-right: 32px;
+    padding :24px;
+    background-image: url("./img/ins.png");
+    background-position:center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow( 0px 0px 4px #ae8644);
+}
+.twitterfooter{ 
+    padding :24px;
+    background-image: url("./img/twitter.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+.twitterfooter:hover{
+    padding :24px;
+    background-image: url("./img/twitter.png");
+    background-position:center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow( 0px 0px 4px #ae8644);
+}
+
+@media(max-width:950px){
+    .tickets{
+        color: aliceblue;
+        background-color: #272727;
+        flex-direction: column;
+        align-items:center;
+        margin-bottom: 100px;
+        height: fit-content;
+    }
+    .seperator{
+        width: 300px;
+        height: 1px;
+        background-color: #ffffff;
+        margin-top: 20px;
+    }
+    .buybutton{
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .tickets-left{
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+
+@media(max-width:885px){
+
+    .logohead{
+    width: 64px;
+    height: 44px;
+    }
+    .smaller-h1{
+        font-size: 18px ;
+    }
+}
+@media(max-width:770px){
+    .footer-container{
+        display: block;
+    }
+    .footer-desc{
+        justify-content: center;
+        text-align:center;
+    }
+    .footer-mail{
+        margin-right: 0px;
+        flex-direction: column;
+    }
+    .footer-contact{
+        margin-right: 0px;
+    }
+}
+
+@media(max-width:710px){
+    .hide-mobile{
+        display: none
+    }
+
+    .smaller-h1{
+        font-size: 18px ;
+    }
+}
+
+@media(max-width:520px){
+    .hide-mobile{
+        display: none
+    }
+
+    .smaller-h1{
+        font-size: 18px ;
+    }
+    h1{
+        font-size: 50px;
+    }
+    .headline{
+        font-size: unset;
+    }
+    .categorys{
+        display: block;
+    }
+    .sections{
+        width: 60%;
+        padding: 20%;
+    }
+    
+}

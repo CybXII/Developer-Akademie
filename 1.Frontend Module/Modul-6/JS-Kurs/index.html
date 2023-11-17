@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witz</title>
+    <script src="./scripts/joke.js"></script>
+    <script src="./scripts/input.js"></script>
+    <script src="./scripts/recipe.js"></script>
+    <script src="./scripts/calculator.js"></script>
+    <script src="./scripts/translate.js"></script>
+    <script src="./scripts/addrecipe.js"></script>
+    <script src="./scripts/changepic.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <a href="#" id="eng_tr" onclick="translate_en()">Englisch</a> |<a id="ger_tr" href="#" onclick="translate_de()"> German</a>
+    <h1 id="witz-headline">Programmier-Witze</h1>
+    
+    <button id="joke1" onclick="joke1()">Witz 1</button>
+    <button id="joke2" onclick="joke2()">Witz 2</button>
+    <button id="joke3" onclick="joke3()">Witz 3</button>
+
+    <p id="joke">
+        Die Selbsthilfegruppe HTML-Sonderzeichen-Probleme trifft sich heute im gr&szlig ;en Saal.
+    </p>
+
+    <h1 id="greet">Grüßung</h1>
+    <input id="namefield" type="text" placeholder="Name">
+    <button onclick="greetFromTextField()">Grüße</button>
+
+    <p id="greeting">
+        Test
+    </p>
+    
+    <h1 id="recipe">Rezepte für Pfannkuchen</h1>
+    <button onclick="loadrecip()">Zutaten laden</button>
+        <table id="table">
+            <tr >
+                <td>Menge</td>
+                <td>Name</td>
+            </tr>
+        </table>
+    
+    <h1 id="calculator">Rechner</h1>
+        <input id="number1" type="number" placeholder="Zahl1">
+        <input id="number2" type="number"  placeholder="Zahl2">
+        <button onclick="add()">Addieren</button>
+        <p id="result"></p>   
+
+    <h1>Rezept Erstellen</h1>
+
+    <div>
+        <h2>Rezeptsammlung</h2>
+    </div>
+
+    <div>
+        <h2>Neues Rezept erstellen</h2>
+        <input type="text" name="" id="recipenew" placeholder="Rezeptbezeichnung eingeben">
+        <br><br>
+
+        <input type="text" name="" id="ingredients_new" placeholder="Zutaten Name">
+        <input type="number" name="" id="ingredients_amount" placeholder="Menge">
+        <input type="text" name="" id="ingredients_unit" placeholder="g/kg/ml...?">
+    
+        <button onclick="addIngredient()">Zutaten anlegen</button>
+        <table id="newtable">
+            <tr >
+                <td>Menge</td>
+                <td>Name</td>
+            </tr>
+        </table>
+        <br><br>
+        <button id="notice_recipe">Rezept notieren</button>
+    </div>
+
+    <h1>Bild ändern</h1>
+
+    <button onclick="image1()">Bild1</button>
+    <button onclick="image2()">Bild2</button>
+    <button onclick="image3()">Bild3</button>
+
+    <img id="image" src="./img/pork.png" height="100px" width="100px">
+
+    <button onclick="start_img_run()">Start Bild lauf</button>
+    <br>
+
+    <input type="number" name="" id="set_timer" placeholder="Sekunden angeben">
+    <button onclick="start_algo()">Timer setzen</button>
+
+
+
+
+</body>
+</html>

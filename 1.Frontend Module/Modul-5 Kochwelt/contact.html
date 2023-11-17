@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kochwelt</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo_small.png">
+    <link href="style.css">
+    <script src="script.js"></script>
+</head>
+<body onload="includeHTML()">
+    <div class="header" w3-include-html="./templates/header.html"></div>
+    <div onclick="hidemenu()" class="main_image"></div>
+    <div onclick="hidemenu()" class="text_box_contact">
+        <div class="container_headline">
+            <h1>Kontakt</h1>
+            <h2>Du möchtest uns eine Nachricht senden?</h2>
+        </div>
+        <div>
+            <form class="contactbox"contact onsubmit="sendMail(event)">
+                <div>
+                <label class="contact" for="vorname"> Vorname
+                    <input required id="vorname" name="Vorname" class="width_textarea widht_200px" type="text"> 
+                </label>
+                <label class="contact" for="name">Name
+                    <input required id="name" autocomplete="additional-name" name="Name" class="width_textarea widht_200px" type="text"></label>
+    
+                <label class="contact" for="E-Mail">
+                    E-Mail
+                    <input required autocomplete="email" class="width_textarea widht_200px" id="E-Mail" type="email" name="email">
+                </label>
+            </div>
+            <div>
+                <label class="contact">
+                    Nachricht
+                    <textarea required class="textbox width_textarea" name="message" id="info_box" cols="30" rows="10">    
+                    </textarea>
+                </label>
+                <!-- your other form fields go here -->
+                <div class="container_button_contact" >
+                    <button type="submit">Absenden</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        
+
+
+    </div>
+    <div class="footer" w3-include-html="./templates/footer.html"></div>
+</body>
+</html>

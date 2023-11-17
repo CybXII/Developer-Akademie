@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+</head>
+<body onload="render('notice')">
+    <div class="menu"> 
+
+    <div onclick="showmenu()" class="burgericon_main">
+        <div class="burgericon">
+            <div class="burgerico_div"></div>
+            <div class="burgerico_div"></div>
+            <div class="burgerico_div"></div>
+        </div>
+    </div>
+    <div> <h1>Meine Notizen</h1></div>
+   
+
+</div>
+<div id="seperator_top" class="main_menu_show_top"></div>
+    <div class="main_container">
+        <div id="main_menu" class="main_menu">
+            <div class="menu_left">           
+                <div onclick="render('notice')" id="button_container" class="button_container"><div id="menu_buttons" class="menu_buttons notice_button"></div><p id="archiv" class="trash d-none"><b>Notizen</b></p></div>
+                <div onclick="render('archiv')" id="button_container1" class="button_container"><div id="menu_buttons1" class="menu_buttons archiv_button"></div><p id="idea" class="trash d-none"><b>Archiv</b></p></div>
+                <div onclick="render('trash')" id="button_container2" class="button_container"><div id="menu_buttons2" class="menu_buttons  trash_button"></div><p id="trash" class="trash d-none"><b>Papierkorb</b></p></div> 
+                <div id="button_container3" class="button_container d-none" onclick="closemenu()"><div  id="menu_buttons" class="menu_buttons close_button"></div></div>
+            </div>
+            
+        </div>
+        <div id="seperator" class="seperator"></div>
+        <div class="content" id="content"></div>
+    </div>
+
+
+
+</body>
+</html>

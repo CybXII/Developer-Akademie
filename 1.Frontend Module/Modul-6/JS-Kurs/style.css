@@ -1,0 +1,16 @@
+tr{
+    display: flex;
+
+}
+
+td{
+    border: solid;
+    width: 100px
+}
+
+.recips{
+    display: flex;
+    justify-content: space-between;
+    text-align: start;
+    flex-direction: column;
+}

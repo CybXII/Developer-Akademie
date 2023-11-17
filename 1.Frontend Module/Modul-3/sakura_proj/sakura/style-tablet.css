@@ -1,0 +1,157 @@
+@media(max-width:320px){
+    .menu{
+        flex-direction: column;
+        gap: 5px; 
+    }
+}
+@media(min-width:580px){
+
+    .logo-footer-mobile{
+        display:none;
+    }
+}
+@media(max-width:580px){
+    .order-sub{
+        display: block;
+    }
+    .logo2{
+        display:none;
+    }
+}
+@media(max-width:650px){
+    .ramen1{
+        display: block;
+    }
+    .ramen2{
+        display: block;
+    }
+    .ramen3{
+        display: block;
+    }
+}
+
+@media(max-width:910px){
+    .orderimg{
+        max-width: 112px;
+        max-height: 112px;
+
+    }
+    .menu{
+        height: 112px;
+    }
+
+    .ramen1{
+        margin-top: 48px;
+    }
+    .ramen2{
+        margin-top: 32px;
+    }
+    .ramen3{
+        margin-top: 32px;
+        margin-bottom: 96px;
+    }
+    .ourmenu{
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .td-price{
+        padding-left: 0;
+    }
+    .ramen_menu1{
+        margin-left: 24px;
+    }
+    .ramen_menu2{
+        margin-right: 24px;
+    }
+    .ramen_menu3{
+        margin-left: 24px;
+    }
+    h2{
+        margin-top: 96px;
+        text-align: center;
+    }
+    h3{
+        font-size: 32px;
+    }
+    .ramen_table{
+        font-size: 24px;
+    }
+    .hide-mobile{
+        display: none;
+    }
+    h1{
+        text-align: center;
+        font-size: 72px;
+    }
+    .headline{
+        font-size: 20px;
+    }
+    .infoline{
+        font-size: 20px;
+        margin-bottom: 48px;
+    }
+    .menu_inner{
+        font-size: 20px;
+    }
+    .footer{
+        padding: 24px;
+    }
+}
+@media(max-width:650){
+    .ramen1{
+        flex-direction: column;
+    }
+    .footer{
+        padding: 16px;
+    }
+    
+
+}
+@media(max-width:375px){
+
+    .orderimg{
+        margin-top: 32px;
+        margin-bottom: 8px;
+    }
+    .menu{
+        margin:16px;
+        font-size: 16px;
+    }
+    .menu_inner{
+        font-size: 16px;
+    }
+    h1{
+        text-align: center;
+        font-size: 44px;
+    }
+    .headline{
+        font-size: 16px;
+        margin-left: 16px;
+        margin-right: 16px;
+        text-align: center;
+    }
+    .infoline{
+        font-size: 16px;
+    }
+    .table{
+        text-align: center;
+    }
+    .ramen1{
+        text-align: center;
+    }
+    .td-price{
+        text-align: start;
+    }
+    h2{
+        font-size: 40px;
+        margin-top: 72px;
+    }
+    h3{
+        text-align: center;
+        font-size: 32px;
+    }
+    .ourmenu{   
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}

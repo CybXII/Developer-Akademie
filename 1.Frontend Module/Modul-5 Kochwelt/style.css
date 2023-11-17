@@ -1,0 +1,762 @@
+/*Standart styles für alle Seiten*/
+
+body{
+    overflow-x: none;
+    margin:0;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+footer span{
+    cursor: default;
+}
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-underline-offset: 8px;
+    color: #068000;
+    cursor: pointer;
+}
+
+/* Burgermenu */
+
+.burgericon_main {
+    position: absolute;
+    width: 90%;
+    height: 0px;
+    display: flex;
+    justify-content: end;
+}
+
+.burgericon {
+    display: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+.burgerico_div {
+    display: none;
+    width: 90%;
+    margin: 7px 5%;
+    height: 3px;
+    background-color: #068000;
+}
+
+.responsiv_menu {
+    position: absolute;
+    justify-content: start;
+    margin-left: 50%;
+    width:50%;
+    display: flex;
+    flex-direction: column;   
+    height: auto; 
+    font-size: 16px;
+    background-color: rgb(64,59,59,0.8);
+    color: #068000;
+    padding-left: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+    gap: 16px;
+    transform: translateY(-200px);
+    transition: all 125ms ease-in-out;
+}
+
+.responsiv_menu_show {
+    transform: translateY(0)!important;
+}
+
+button {
+    cursor: pointer;
+    color: white;
+    background-color: #068000;
+    padding: 12px 32px;
+    text-decoration: none;
+    border-width: 0px;
+    width: 200px;
+    transition: all 125ms ease-in-out;
+}
+button:hover {
+    background-color: #068000d4;
+}
+.grey-background {
+    background-color: #EFEFEF;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/*Tobias index style */
+
+.recept-of-the-day {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-recept {
+    display: flex;
+    padding-left: 10%;
+    padding-right: 10%;
+    min-height: 20vh;
+    gap: 32px;
+    padding-top: 32px;
+    /* Allgemein als Padding-Top für Inhalt? */
+    padding-bottom: 32px;
+    /* Allgemein als Padding-Bottom für Inhalt? */
+}
+
+.example {
+    width: 100%;
+    align-items: center;
+    border-radius: 10px;
+    /* Für alle Fotos übernehmen? */
+}
+
+.example-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.example-text h2 {
+    margin-block-start: 0;
+    /*In die allgemeine Css übernehmen?*/
+}
+
+.receptview {
+   justify-content: end;
+}
+
+/* Section Two */
+.new-recepts {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    min-height: 25vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 32px;
+    /* Allgemein als Abstand? */
+    padding-bottom: 48px;
+    /* Allgemein als Abstand? */
+    background-color: #EFEFEF;
+}
+
+.new-selection {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.new-selection-img {
+    /* Standard für (kleine Kachel) Fotos? */
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 240px;
+    height: 240px;
+}
+
+.new-tiles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    max-width: 24%;
+}
+
+/* Section Three */
+.news {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    min-height: 25vh;
+}
+
+.news h2 {
+    text-align: center;
+}
+
+.news-text-img {
+    display: flex;
+    justify-content: space-between;
+    gap: 64px;
+}
+
+.news-img {
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 240px;
+    height: 240px;
+}
+
+.recipe{
+    margin-top: 24px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+.text_box{
+    background-color:rgb(239,239,239);
+    border: solid;
+    text-align: start;
+    border-radius: 8px;  
+    overflow-wrap: anywhere;
+}
+.text_box_contact{
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    background-color:#EFEFEF;
+    border: none; 
+}
+input{ 
+    height: 41px;
+    margin: 8px 0 8px 0px;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: #EFEFEF;
+    border-style: solid;
+    font-size: 16px;
+    font-weight: 100;
+}
+.contact{
+    display:flex;
+    flex-direction: column;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    overflow-wrap: anywhere;
+    margin: 0 4px 4px 0
+}
+.contact_message{
+    height: 200px;
+    display: flex;
+    text-align: start;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+textarea{
+    background-color: #EFEFEF;
+    border:solid;  
+    border-radius: 3px; 
+    width: 100%; 
+    resize: none; 
+}
+
+
+.widht_200px{
+    width: 300px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+/*Contact*/
+
+.main_image {
+    background-image: url(./img/contact_image3.jpg);
+    height: 50vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 0 0 48px 0;
+}
+
+.contactbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.textbox {
+    height: 210px;
+    width: 500px;
+    background-color: white;
+    margin: 8px 0 8px 0px;
+    border-width: 1px;
+    border-color: #EFEFEF;
+    border-style: solid;
+    font-size: 16px;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+}
+
+.container_headline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container_button_contact {
+    margin-top: 24px;
+    display: flex;
+    justify-content: end;
+}
+
+
+
+/*Impressum/Datenschutz*/
+
+.main_image_impressum {
+    background-image: url(./img/impressum.jpg);
+    height: 50vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 0 0 48px 0;
+}
+
+.container_headline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container_impressum {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 16px;
+    text-align: center;
+}
+
+.main_image_datenschutz {
+    background-image: url(./img/datenschutz.jpg);
+    height: 50vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 0 0 48px 0;
+}
+.container_datenschutz {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 16px;
+    padding-left: 10%;
+    padding-right: 10%;
+    overflow-wrap: anywhere;
+}
+/*Header*/
+.menu {
+    font-family: "Raleway";
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 8px;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(150, 150, 150);
+}
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-underline-offset: 8px;
+    color: #068000;
+    cursor: pointer;
+}
+
+header {
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 4px;
+    height: 112px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: white;
+    box-shadow: 0px 3px 3px rgba(150, 150, 150, 0.2);
+}
+
+.logo_img {
+    height: 112px;
+    width: 200px;
+    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bar {
+    width: 25px;
+    height: 3px;
+    margin: 5px;
+}
+
+/*Footer*/
+footer {
+    background-color: rgb(64,59,59,0.8);
+    color: white;
+    font-size: 18px;
+    font-family: "Raleway";
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.footer_left {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer_right {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link_footer {
+    text-decoration: none;
+    color: white;
+    margin-left: 30px;
+}
+
+/*Rezeptseite*/
+
+.recip_change {
+    display: flex;
+    justify-content: space-between;
+}
+
+.specifications {
+    display: flex;
+    margin: 0px 0 48px 0;
+    gap:8px;
+    height: fit-content;
+}
+
+.spec-container {
+    padding: 6px 12px;
+    display: flex;
+    border-radius: 12px;
+}
+
+.ingredient {
+    display: flex;
+    gap: 8px;
+    padding: 18px 0 18px 18px;
+    border-radius: 8px;
+}
+.ingredient-table{
+    width: 100%;
+}
+
+
+.specifications img {
+    height: 14px;
+    padding-right: 12px;
+}
+
+.calculator {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+}
+
+/* Titelbilder der Rezepte */
+
+#recipe-image {
+    height: 200px;
+    width:100%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 0 24px 0;
+}
+
+/* Profilbilder der Rezept-Autoren */
+.author {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+#avatar {
+    border-radius: 100%;
+    height: 88px;
+    width: 88px;
+    margin: 24px;
+}
+
+.ingredients-amount { /* umbenannt von Input auf ingredients-amount  */
+    height: 38px; 
+    margin: 8px 0 8px 16px;
+    border-width: 1px;
+    border-color: #EFEFEF;
+    border-style: solid;
+    font-size: 16px;
+    font-weight: 100;
+    width: 100px;
+    text-align: end;
+}
+
+.seperator {
+    margin-top: 10px;
+    height: 1px;
+    width: 100%;
+    background-color: #EFEFEF;
+}
+
+/*Responsiv styles*/
+@media(max-width:840px){
+    .new-selection{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+.example-recept {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.example {
+    align-items: center;
+    border-radius: 10px;
+    /* Für alle Fotos übernehmen? */
+}
+
+}
+
+@media (max-width: 940px) {
+    .menu {
+        display: none;
+        
+    }
+
+    .burgerico_main {
+        display:flex;
+
+    }
+
+    .responsiv_menu {
+        display: flex;
+        position: absolute;
+        justify-content: start;
+        margin-top: -8px;
+        margin-left: 50%;
+        width:50%;
+        flex-direction: column;   
+        height: auto; 
+        font-size: 16px;
+        background-color: rgb(64,59,59,0.8);
+        color: #068000;
+        padding-left: 16px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        border-radius: 8px;
+        gap: 16px;
+        transform: translateY(-800px);
+        transition: all 125ms ease-in-out;
+    }
+    
+
+    
+    .responsiv_menu a{
+        color: #ffffff;
+    }
+    a:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 4px;
+        text-underline-offset: 8px;
+        color: #068000;
+        cursor: pointer;
+    }
+    
+    .burgericon {
+        display:block;
+    }
+    .burgerico_div {
+        display: flex;
+    }
+
+    .container_button_contact {
+        display: flex;
+        justify-content: center;
+    }
+    .contactbox{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+    .contact{
+       align-items: center;
+       margin: 0;
+    }
+
+}
+@media(max-width:680px) {
+    .example-recept {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .example {
+     width: 60%;
+     min-width: 240px;
+    }
+    .example-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .example-recept {
+        padding-left: 5vb;
+        padding-right: 5vb;
+        gap: 16px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    .new-recepts {
+        padding-left: 5vb;
+        padding-right: 5vb;
+        padding-top: 16px;
+        padding-bottom: 24px;
+
+    }
+
+    .news-text-img{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .link_footer {
+        text-decoration: none;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+        margin-right: 0px;
+    }
+
+    footer {
+        font-size: 13px;
+    }
+
+    .textbox{
+        width: 320px;
+    }
+    .container_headline{
+        text-align: center;
+    }
+
+} 
+
+@media(max-width:570px){
+    
+    .recip_change {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .text_box{
+        font-size: 55%;
+    }
+    .specifications{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .calculator{
+        flex-direction: column;
+    }
+    .ingredient {
+        border-radius: 3px;
+    }
+}
+@media(max-width:400px) {
+    .textbox{
+        width: 240px;
+    }
+    .widht_200px{
+        width: 240px;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 60px;
+    }
+
+    .footer_right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .link_footer{
+        margin-left: 0;
+    }
+    
+    .specifications{
+        flex-direction: column;
+        gap:5px;
+        font-size: 14px;
+    }
+    .recipe{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+}

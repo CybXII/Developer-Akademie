@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+</head>
+<body>
+    <div id="dialog" class="dailog_bg d_none">
+        <div class="dialog">
+            <div class='dialog_header'>
+                <a class="close" onclick="closeDialog()">X</a>
+            </div>
+            <div class="dialog_info">
+                <h1>Dialog</h1>
+                <div>Informationen
+                    <section class="dialog_message" id="dialog_message"></section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <h1>Überschrift</h1>
+    
+        
+    </section>
+    <textarea name="" id="text" cols="30" rows="10"></textarea>
+    <button onclick="sendMessage()">Nachricht senden</button>
+    <button onclick="openDialog('Hallo das ist ein Test')">Dialog öffnen</button>
+</body>
+</html>

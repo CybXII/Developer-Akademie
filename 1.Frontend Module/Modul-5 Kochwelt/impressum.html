@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kochwelt</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo_small.png">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="./script.js"></script>
+</head>
+
+<body onload="includeHTML()">
+    <div class="header" w3-include-html="./templates/header.html"></div>
+    <div onclick="hidemenu()" class="main_image_impressum"></div>
+    <div onclick="hidemenu()" class="text_box_contact">
+        <div class="container_impressum">
+            <h1>Impressum</h1>
+            <hr>
+            <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+            <p>Alexander Luft<br />
+                Arnold-Sch&ouml;nbergstr. 14<br />
+                66955 Pirmasens</p>
+            <hr>
+            <h2>Kontakt</h2>
+            <p>Telefon: <a class="link" href="tel:0176 54564534">0176 54564534</a>
+                <br>
+                <br>
+                E-Mail: <a class="link" href="mailto:luft.luft86@googlemail">luft.luft86@googlemail.com</a>
+            </p>
+            <br>
+            <br>
+            <p class="text_align_center">
+                Quelle: <a class="link" href="https://www.e-recht24.de">https://www.e-recht24.de</a>
+                <br>
+                <br>
+                Created my free logo at <a class="link" href="https://logomakr.com" target="_blank">LogoMakr.com</a>
+                <br>
+                <br>
+                The icons are provided by
+                <a class="link" href="https://fontawesome.com/" rel="nofollow" target="_blank">FontAwesome</a> under the
+                <a class="link" href="https://fontawesome.com/license" target="_blank" rel="nofollow">Creative Commons
+                    Attribution 4.0
+                    International license</a>.
+            </p>
+        </div>
+    </div>
+    <div class="footer" w3-include-html="./templates/footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" media="all">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="./script.js"></script>
+<!--    <script src="./recipe.js"></script>-->
+    <title>Kochwelt</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo_small.png">
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="330bb593-83a5-457c-b5d1-f6612561e13d" data-blockingmode="auto" type="text/javascript"></script>
+
+</head>
+<body class="recept-of-the-day"  onload="[includeHTML(), clearstorage()]">
+    <div class="header" w3-include-html="./templates/header.html"></div><!--Header einfügen-->
+    <section onclick="hidemenu()" class="example-recept" id="example-recept">
+
+        <a onclick="setrecip_number_x(4)" id="example" ><img class="example" src="./img/risotto.jpg"  alt="Risotto"></a><!--Foto vom Rezept des Tages-->
+        <div class="example-text">
+            <div>
+                <h2>Pilzrisotto</h2><!-- Rezeptname -->
+                <span>Wenn im Herbst die Pilzsaison beginnt, gehört ein Pilzrisotto Rezept zu unseren Favoriten auf der Herdplatte.
+                     Das Risotto mit Pilzen schmeckt cremig, würzig-aromatisch. Es ist ein richtiges Wohlfühlessen, wenn die Tage kürzer werden.</span> <!--Rezeptbeschreibung-->
+    
+            </div>
+            <label class="receptview" for="receptview">
+                <button class="receptview-button" id="receptview" onclick="setrecip_number_x(4)" >Rezept öffnen</button>
+            </label>
+        </div>
+
+    </section>
+
+    <section onclick="hidemenu()" class="new-recepts" id="new-recepts">
+        <h2>Lust auf was Neues?</h2>
+        <div class="new-selection" id="new-selection">
+            <div class="new-tiles">
+                <a onclick="setrecip_number_x(1)" href="javascript:;"><img class="new-selection-img" value="1" src="./img/salad.jpg" alt="Griechischer Salat"><!--Rezeptfoto--></a>
+                <span>Griechischer Salat</span><!--Rezeptname-->
+            </div>
+            <div class="new-tiles">
+                <a onclick="setrecip_number_x(2)" href="javascript:;"><img class="new-selection-img" value="1" src="./img/tomatosoup.jpg" alt="Tomatensuppe"><!--Rezeptfoto--></a>
+                <span>Tomatensuppe</span><!--Rezeptname-->
+            </div>
+            <div class="new-tiles">
+                <a onclick="setrecip_number_x(3)"  href="javascript:;"><img class="new-selection-img" value="1" src="./img/fieldsalad.jpg" alt="Feldsalat"><!--Rezeptfoto--></a>
+                <span>Feldsalat</span><!--Rezeptname-->
+            </div>
+        </div>
+    </section>
+
+    <section onclick="hidemenu()" class="news" id="news">
+        <h2>Pfanne vs. Wok - Was ist besser?</h2><!--Thema-->
+        <div class="news-text-img">
+            <span>Der Hauptunterschied zwischen ihnen ist die Geometrie. Woks haben steil abfallende Seiten und einen abgerundeten Boden, 
+                während Bratpfannen leicht abgewinkelte Seiten und flache Böden haben. Woks ermöglichen es den Speisen, sich in der Mitte zu sammeln, 
+                wo die Hitze konzentriert wird, wodurch sie sich perfekt zum Braten unter Rühren eignen.
+                Darüber hinaus erleichtern Ihnen die schrägen Seiten das Werfen. Bratpfannen hingegen ermöglichen eine gleichmäßige Verteilung 
+                von Saucen, Ölen und anderen Flüssigkeiten auf dem flachen Boden. Es bietet die richtige Oberfläche zum Anbraten von 
+                Fleisch oder zum Garen von Steaks.</span>
+            <!--Rezeptbeschreibung-->
+            <img class="news-img" src="./img/wok.jpg" alt="Wok"><!--Foto von news/Ernährungsthema-->
+        </div>
+    </section>
+
+    <div class="footer" w3-include-html="./templates/footer.html"></div>
+
+</body>
+</html>

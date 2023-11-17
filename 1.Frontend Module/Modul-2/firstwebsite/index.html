@@ -1,0 +1,366 @@
+<html>
+
+<head>
+    <title>Stolperkiste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&family=Tilt+Prism&family=Tourney:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .myBody {
+            background-image: url(https://cdn.pixabay.com/photo/2022/10/17/01/19/room-7526427_1280.jpg);
+            background-position: center;
+            height: 100vh;
+            width: 100%;
+            max-width: 1440px;
+        }
+
+        .site {
+            text-align: center;
+        }
+
+        .main-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .headline {
+            font-family: 'Tourney', cursive;
+            color: crimson;
+            font-size: 50px;
+            width: 100%;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.5))
+        }
+
+        .button a {
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            background-color: rgb(255, 0, 0);
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .button a:hover {
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            background-color: rgb(88, 26, 26);
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 50%;
+            margin-top: 10px;
+        }
+
+        .menü {
+            font-family: 'Tourney', cursive;
+            color: rgb(0, 0, 0);
+            background-color: rgba(250, 0, 0);
+            font-size: 30px;
+            height: fit-content;
+            width: 400px;
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .menü:hover {
+            font-family: 'Tourney', cursive;
+            color: rgb(0, 0, 0);
+            background-color: rgb(113, 9, 9);
+            font-size: 30px;
+            height: fit-content;
+            width: 400px;
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .menü1 {
+            font-family: 'Tourney', cursive;
+            color: rgb(0, 0, 0);
+            background-color: rgba(250, 0, 0);
+            font-size: 30px;
+            border: solid;
+            border-color: black;
+            height: fit-content;
+            width: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .menü1:hover {
+            font-family: 'Tourney', cursive;
+            color: rgb(0, 0, 0);
+            background-color: rgb(113, 9, 9);
+            font-size: 30px;
+            border: solid;
+            border-color: black;
+            height: fit-content;
+            width: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .table {
+            background-color: rgba(255, 0, 0, 0.6);
+            width: fit-content;
+            height: fit-content;
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .headline1 {
+            font-family: 'Pixelify Sans', cursive;
+            color: crimson;
+        }
+
+        .contact {
+            background-color: rgba(255, 0, 0, 0.2);
+            height: fit-content;
+            width: 400px;
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .opening {
+            background-color: rgba(255, 0, 0, 0.2);
+            height: fit-content;
+            width: 400px;
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+        }
+
+        .knowledge {
+            border: solid;
+            border-color: rgb(255, 0, 0);
+            width: 405px;
+            height: fit-content;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0);
+        }
+
+        .maps {
+            border: solid;
+            border-color: black;
+            width: fit-content;
+            ;
+            height: fit-content;
+            border-radius: 10px;
+        }
+
+        footer {
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            width: 100%;
+            margin-left: 5px;
+            text-align: center;
+            background-color: rgba(250, 0, 0, 0.3);
+            padding-bottom: 0;
+        }
+
+        .test {
+            font-family: 'Tourney', cursive;
+            color: rgb(0, 0, 0);
+            background-color: rgba(250, 0, 0, 0.3);
+            text-align: center;
+            height: fit-content;
+            width: 200px;
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+        }
+
+        .footer {
+            padding-top: 20px;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+
+        }
+
+        .footer:hover {
+            color: rgb(255, 0, 0);
+        }
+
+        footer {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .videos {
+            border: solid;
+            border-color: black;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0);
+        }
+
+        .link {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .link:hover {
+            color: rgb(255, 0, 0);
+        }
+    </style>
+    <meta charset="utf-8">
+
+
+    </script>
+</head>
+
+<body class="myBody">
+    <div class="site">
+        <div class="main-container">
+            <div>
+                <h1 class="headline">Alex ersten Developerschritten</h1>
+            </div>
+            <div class="buttons">
+                <div class="button">
+                    <a href="#kontakt">Produkte</a>
+                </div>
+                <div class="button">
+                    <a href=#kontakt>Preisliste</a>
+                </div>
+                <div class="button">
+                    <a href="#kontakt">Skill kaufen</a>
+                </div>
+                <div class="button">
+                    <a href=#kontakt>Kontakt</a>
+                </div>
+            </div>
+            <div class="menü">
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=jijhF3uypBnhKXdj&t=43" class="link">Hier finden sie unsere
+                    Skills!</a><br>
+            </div>
+            <div>
+                <table class="table">
+                    <tr>
+                        <td><img src="./img/disziplin.png"></td>
+                        <td>Disziplin</td>
+                        <td>9,99€</td>
+                        <td>Eine Ordentliche Portion selbst Diszplin.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="./img/focus.png"></td>
+                        <td>Focus </td>
+                        <td> 9,99€</td>
+                        <td> Mit einem guten Focus lässt es sich besser Arbeiten.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="./img/finger.png"></td>
+                        <td>Finger Yoga</td>
+                        <td>5,99€</td>
+                        <td>Mit Finger Yoga versprechen wir ihnen brechen sie sich keine Finger mehr beim Coden.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="./img/struktur.png"></td>
+                        <td>Struktur</td>
+                        <td>3,99€</td>
+                        <td>Verleiht ihnen die Fähigkeit alles strukturiert zu Gestalten.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="./img/pork.png"></td>
+                        <td>Schnitzel</td>
+                        <td>9,99€</td>
+                        <td>Mit dem Schnitzel besiegt selbst Oma den inneren Schweine Hund.</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="menü1">
+                <a href="./downloads/Skillpreisliste.pdf" class="link" target="_blank">
+                    Skillpreisliste<br>herunterladen!</a><br>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="headline1">Kontakt</h2>
+            <div class="contact" id="kontakt">
+                So kannst du uns kontaktieren:<br>
+                Telefonnummer : <a href="tel:+49 176 00000000" class="link">+49 176 00000000</a><br>
+                Email : <a href="mailto:info@skillkademie.com" class="link">info@skillkademie.com</a>
+            </div>
+            <h2 class="headline1">Unsere Öffnungszeiten</h2>
+            <table class="opening">
+                <tr>
+                    <td>Mo -Fr:</td>
+                    <td>12:00 - 23:00</td>
+                </tr>
+                <tr>
+                    <td>Sa:</td>
+                    <td>11:00 - 24:00</td>
+                </tr>
+                <tr>
+                    <td>So:</td>
+                    <td>11:00 - 24:00</td>
+                </tr>
+            </table>
+            <h2 class="headline1">Hier finden sie uns</h2>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2663.268171449806!2d11.599273876031821!3d48.1243515520824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479ddfefb7017bdb%3A0x149a4d4c6eeb0778!2sDeveloper%20Akademie!5e0!3m2!1sde!2sde!4v1695990554153!5m2!1sde!2sde"
+                class="videos" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <h2 class="headline1">Wissenswertes</h2>
+
+            <iframe width="400" height="200" class="videos"
+                src="https://www.youtube-nocookie.com/embed/_0Hy54nDmBA?si=-aLdl8AJku-ys5vU"
+                title="YouTube video player" frameborder=""
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            <iframe width="400" height="200" class="videos" src="https://developerakademie.com/"
+                title="developerakademie" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            <h2 class="headline1">Heute schon Hausaufgaben gemacht?</h2>
+            <div class="button">
+                <a href=./downloads/hausaufgaben_selbstkontrolle.pdf>Hausgaben</a>
+            </div>
+            <h2 class="headline1">Zum Skillkochbuch gehts hier unten ;P</h2>
+            <a class="test" href="https://wiki.selfhtml.org/wiki/HTML"><img src="./img/logo.png"></a>
+            <footer>
+                <div>
+                    (c) Copyright 2023 Alex Stolperkiste GmbH
+                </div>
+                <div>
+                    <a href="impressum.html" class="footer">Impressum</a> | <a href="datenschutz.html"
+                        class="footer">Datenschutz</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>

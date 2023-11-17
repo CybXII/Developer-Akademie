@@ -1,0 +1,6 @@
+#Verbieten aller rechtlichen dateien
+User-agent: *
+
+Disallow: /impressum.html
+Disallow: /datenschutz.html
+Disallow: /contact.html

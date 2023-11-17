@@ -1,0 +1,250 @@
+html {
+    scroll-behavior: smooth;
+}
+body{
+    margin:0;
+    max-width: 1440px;
+}
+.main-container{
+    background-image: url("./img_1/Hero.jpg"); 
+    font-size: 24px;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Raleway', sans-serif;
+    font-weight: normal;
+}
+.menu{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+.menu_container{
+    max-height: 24px;
+    display:flex;
+    justify-content: space-between;
+    margin-left: 20%;
+    margin-right: 10%;
+}
+.menu_inner{
+    display:flex;
+    justify-content: center ;
+    color: white;
+    align-items: center;
+    margin-left:12px;
+    margin-right:12px;
+    text-decoration: none;
+}
+.menu_inner:hover{
+    display:flex;
+    justify-content: center ;
+    color: rgb(118, 118, 118);
+    align-items: center;
+    margin-left:12px;
+    margin-right:12px;
+    text-decoration: none;
+}
+.menu_phone{
+    display:flex;
+    border: solid;
+    border-color: white;
+    border-radius: 12px;
+    background-color: red;
+    margin-left: 12px;
+    padding-left:8px;
+    padding-right: 8px;
+    color: white;
+    text-decoration: none;
+}        
+.menu_phone:hover{
+    display:flex;
+    border: solid;
+    border-color: white;
+    border-radius: 12px;
+    background-color: rgb(111, 0, 0);
+    margin-left: 12px;
+    padding-left:8px;
+    padding-right: 8px;
+    color: rgb(118, 118, 118);
+    text-decoration: none;
+}
+
+.menu_inner3{
+    padding-right: 4px;
+}
+.logo1{
+    max-width: 64px;
+    max-height: 64px;
+}
+.logo2{
+    height: 44px;
+}
+.headline{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 24px;
+    color: white;
+    max-width: 1440px;
+}
+h1{
+    font-size: 96px;
+    font-family: 'Raleway', sans-serif;
+    margin-block-end: 0;
+}
+/*How To Order Style below.*/
+.order-main{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+.order-sub{
+    display:flex;
+    justify-content: space-evenly;
+    margin-top: 64px;
+}
+.order-pics{
+    display:flex;
+    justify-content: space-around;
+    flex-direction: column;
+    font-size: 56px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+    font-family: 'Economica', sans-serif;
+}
+.orderimg{
+    width: 128px;
+    height: 128px;
+    margin-bottom: 8px;
+}
+h2{     
+    display:flex;
+    justify-content: center;       
+    margin-top: 120px;
+    margin-bottom: 0;
+    font-size: 80px;
+    font-weight: bold;
+    color:#9F0908;
+    font-family: 'Raleway', sans-serif;
+}
+h3{
+    font-size: 56px;
+    font-family: 'Economica', sans-serif;
+    font-weight: bold;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-bottom: 16px;
+}
+/*OUR MENU Style below.*/
+.ourmenu
+{
+    margin-top: 120px;
+    max-width: 1440px;
+    background-image: url("./img_3/1.\ Desktop@3x.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display:flex;       
+    flex-direction: column;
+    align-items: center;
+}
+.ourmenuimg
+{
+    height: 352px;
+    width: 352px;
+}
+.ramen1{
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+}
+.ramen2{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.ramen3{
+    display: flex;
+    align-items: center;
+    margin-bottom: 120px;
+}
+.ramen_table{
+    color:#675E54;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    font-size: 32px;
+}
+.ramen_menu1{
+    margin-left:80px;
+    display:flex;       
+    flex-direction: column;
+}
+.ramen_menu2{
+    display:flex;       
+    flex-direction: column;
+    margin-right: 80px;
+}
+.ramen_menu3{
+    margin-left:80px;
+    display:flex;       
+    flex-direction: column;
+}
+.td-price{
+    padding-left: 200px; 
+    text-align: end;
+}
+/*Locator & Footer Style below.*/
+.locator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.infoline{
+    margin-top: 8px;
+    margin-bottom: 64px ;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+.info-pic{
+    width: 24px;
+    height: 24px;
+}
+span{
+    margin-left: 8px;
+}
+.footer{
+    background-color: #0A141E;
+    height: 144px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 160px;
+    padding-right: 160px;
+}
+.footer-container{
+    height: 44px;
+    display: flex;
+}
+.footerimg{
+    display:flex;
+    width: 152px;
+    justify-content: space-between;
+}
+.footer_contact{
+    height: 40px;
+    width: 40px;
+}
+iframe{
+    height: 400px;
+    width: 100%
+}
+.logo-footer-mobile{
+    width: 40px;
+}

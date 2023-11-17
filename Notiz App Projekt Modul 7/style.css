@@ -1,0 +1,323 @@
+body{
+    margin: 0;
+}
+
+h1{
+    font-size: xx-large;
+    margin-left: 40px;
+}
+
+.content{
+    margin-bottom: 12px;
+}
+
+.card_board{
+    margin-top: 24px;
+    gap:16px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main_container{
+    display: flex;
+}
+
+.menu{
+    background-color: rgba(54, 0, 48, 0.95);
+    color: rgb(42 142 255);
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 1px 2px 2px rgba(87, 11, 251, 1);
+}
+.main_menu_show_top{
+    box-shadow: 0px 2px 2px 4px rgba(87, 11, 251, 0.832);
+    width: auto;
+    height: 1px;
+    position: sticky;
+}
+
+
+.menu_left{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: space-between;
+
+}
+
+.main_menu{
+    display: flex;
+    flex-direction: column;
+    width: 130px;
+    min-height: 100vh;
+    padding: 24px;
+    gap: 8px;
+    cursor: pointer;
+    background-color: rgba(75, 19, 69, 0.95);
+}
+
+.seperator{
+    width: 0px;
+    height: 0;
+    margin-right: 16px;
+    transition: 1000ms;
+}
+
+
+.main_menu_show{
+    margin-top: 2px ;
+    box-shadow: 1px 2px 2px 2px rgba(87, 11, 251, 0.832);
+    height: auto;
+}
+
+
+.menu_buttons{
+    background-color: rgb(67, 35, 156);
+    border-radius: 8px;
+}
+
+.archiv_button{
+    width: 60px;
+    height: 60px;
+    background-image: url("./img/archiv.png"); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.notice_button{
+    width: 60px;
+    height: 60px;
+    background-image: url("./img/notice.png"); 
+    background-size: cover;
+    background-position: center;
+}
+
+.trash_button{
+    width: 60px;
+    height: 60px;
+    background-image: url("./img/trash.png"); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.close_button{
+    width: 60px;
+    height: 60px;
+    background-image: url("./img/close.png"); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.menu_buttons_show{
+    transform: translateX(104px);
+    transition: 300ms;
+}
+
+
+.button_container{
+    transform: translateX(-20px);
+    transition: 300ms;
+    border-radius: 10px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    color: rgb(42 142 255);
+    height: 60px;
+}
+
+.trash{
+    display: flex;
+    margin-left:  4px;
+    transform: translateX(-50px);
+}
+
+.button_container_show{
+    background-color: rgba(141, 41, 41, 0.4);
+}
+.card_red {
+    margin-top: 8px;
+    max-width: 200px;
+    min-width: 140px;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    background-color: rgba(141, 41, 41, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card_purple {
+    margin-top: 8px;
+    min-width: 140px;
+    height: 200px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);
+    padding: 8px;
+    background-color: rgba(108, 73, 163, 0.517);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card_red:hover{
+    box-shadow: 2px 2px 4px 4px rgb(0 0 0 / 50%);
+}
+.card_purple:hover{
+    box-shadow: 2px 2px 4px 4px rgb(0 0 0 / 50%);
+}
+
+.input{
+    display: flex;
+    gap: 4px;
+
+}
+
+
+.inputTitel{
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    resize: none;
+    gap:4px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 2px 2px rgb(0 0 0 / 20%);
+    padding: 4px;
+    width: 400px;
+}
+
+.titel{
+    border-radius: 4px 4px 0 0 ;
+    border: none;
+    height: 24px;
+}
+
+.notice{
+    height: 50px;
+    resize: none;
+    border: none;
+}
+
+.notice_footer img{
+    height: 28px;
+    width: 28px;
+}
+
+.notice_footer{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(54, 0, 48, 0.95);
+    border-radius: 4px;
+}
+
+.notice_header{
+    display: flex;
+    justify-content: space-between;
+    height: 1px;
+
+}
+.trash{
+    height: 28px;
+    width: 28px;
+}
+.burgericon_main {
+    display: flex;
+    width: 140px;
+    justify-content: center;
+    align-items: center;
+}
+
+.burgericon {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+.burgerico_div {
+    margin: 4px;
+    height: 2px;
+    background-color:rgb(42 142 255);
+}
+
+.d-none{
+    display: none;
+}
+
+
+.pin{
+    transition: 500ms;
+    width: 30px;
+    height: 40px;
+    transform: translate3d(60px,-30px,0px) !important ;
+}
+
+.pin_end{ 
+    transition: 500ms; 
+    width: 30px;
+    height: 40px;  
+    transform: translate3d(60px,-20px,0px) ;
+}
+
+.delete_notice{
+    background-image: url("./img/trash.png");
+    background-size: contain;
+    background-color: rgba(54, 0, 48, 0.95);
+    border-radius: 4px;
+    height: 24px;
+    width: 24px;
+}
+
+
+@media (max-width: 640px) {
+    .inputTitel{
+    width: 80%;
+    }
+}
+
+@media (max-width:400px){
+    .archiv_button{
+        width: 40px;
+        height: 40px;
+
+    }
+    
+    .notice_button{
+        width: 40px;
+        height: 40px;
+
+    }
+    
+    .trash_button{
+        width: 40px;
+        height: 40px;
+
+    }
+    .close_button {
+        width: 40px;
+        height: 40px;
+    }
+    .main_menu{
+        width: 90px;
+    }
+
+    .button_container {
+        transform: translateX(-20px);
+        width: 120px;
+        height: 40px;
+    }    
+    .menu_buttons_show {
+        transform: translateX(84px);
+    }
+    .trash {
+        transform: translateX(-40px);
+    }
+    .seperator {
+
+        margin-right: 8px;
+
+    }
+    h1{
+        margin-left: 0;
+    }
+}
