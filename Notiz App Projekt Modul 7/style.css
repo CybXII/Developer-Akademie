@@ -73,6 +73,7 @@ h1{
 
 .addButton{
     cursor: pointer;
+    font-family: 'Lobster';
 }
 
 .menu_buttons{
@@ -94,6 +95,7 @@ h1{
     margin-top: 12px;
     overflow-y: auto;
     height: 130px;
+    overflow-wrap: anywhere;
 }
 .notice_button{
     width: 60px;
@@ -203,12 +205,14 @@ h1{
     border-radius: 4px 4px 0 0 ;
     border: none;
     height: 24px;
+    font-family: 'Lobster';
 }
 
 .notice{
     height: 50px;
     resize: none;
     border: none;
+    font-family: 'Lobster';
 }
 
 .notice_footer img{
