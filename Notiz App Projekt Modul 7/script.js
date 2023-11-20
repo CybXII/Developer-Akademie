@@ -52,7 +52,7 @@ function cardRender(inputTitels, inputPinned) {
               <div>
                     <div class="notice_header">
                     <div><img id="pin${i}" class="pin_end" src="./img/pin.png" alt=""></div>
-                    <button id="addArchiv${i}" class="delete_notice" onclick="addTrashedFromNotice(${i})">x</button>
+                    <button id="addArchiv${i}" class="delete_notice" onclick="addTrashedFromNotice(${i})"></button>
                 </div>
                 <div><b id="getTitel">${titel}</b><br></div>
                 <div  id="getNotice" class="notice_Card">
