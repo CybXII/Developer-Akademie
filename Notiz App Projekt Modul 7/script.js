@@ -7,7 +7,7 @@ let inputfield = `
 <div class="inputTitel" >
     <input class="titel" id="titel" type="text" placeholder="Titel">
     <textarea class="notice" id="notice" type="text" placeholder="Notiz"></textarea>
-    <button onclick="addNotice('notice')">Hinzufügen</button>
+    <button class="addButton" onclick="addNotice('notice')">Hinzufügen</button>
 </div>
 <div class="card_board" id="card_board"></div>
 `;
@@ -55,7 +55,7 @@ function cardRender(inputTitels, inputPinned) {
                     <button id="addArchiv${i}" class="delete_notice" onclick="addTrashedFromNotice(${i})">x</button>
                 </div>
                 <div><b id="getTitel">${titel}</b><br></div>
-                <div  id="getNotice">
+                <div  id="getNotice" class="notice_Card">
                     ${pinnedNotices}
                 </div>
               </div>
@@ -73,7 +73,7 @@ function cardRender(inputTitels, inputPinned) {
                     <button id="addArchiv${i}" class="delete_notice" onclick="addTrashedFromNotice(${[i]})"></button>
                 </div>
                 <div ><b id="getTitel">${titel}</b><br></div>
-                <div id="getNotice">
+                <div id="getNotice" class="notice_Card">
                     ${pinnedNotices}
                 </div>
               </div>
@@ -131,6 +131,7 @@ function generateNotice(linkdirection,arrayindex){
   if (linkdirection == 'notice'){
     let newTitel = document.getElementById("titel").value;
     let newNotice = document.getElementById("notice").value;
+    newNotice = newNotice.replaceAll("\n", "</br>");
     pinnedNotice.push(newNotice);
     titels.push(newTitel);
   }

@@ -70,6 +70,9 @@ h1{
     height: auto;
 }
 
+.addButton{
+    cursor: pointer;
+}
 
 .menu_buttons{
     background-color: rgb(67, 35, 156);
@@ -77,6 +80,7 @@ h1{
 }
 
 .archiv_button{
+    cursor: pointer;
     width: 60px;
     height: 60px;
     background-image: url("./img/archiv.png"); 
@@ -85,6 +89,11 @@ h1{
     background-repeat: no-repeat;
 }
 
+.notice_Card {
+    margin-top: 12px;
+    overflow-y: auto;
+    height: 130px;
+}
 .notice_button{
     width: 60px;
     height: 60px;
@@ -94,6 +103,7 @@ h1{
 }
 
 .trash_button{
+    cursor: pointer;
     width: 60px;
     height: 60px;
     background-image: url("./img/trash.png"); 
@@ -201,6 +211,7 @@ h1{
 }
 
 .notice_footer img{
+    cursor: pointer;
     height: 28px;
     width: 28px;
 }
@@ -260,6 +271,7 @@ h1{
 }
 
 .delete_notice{
+    cursor: pointer;
     background-image: url("./img/trash.png");
     background-size: contain;
     background-color: rgba(54, 0, 48, 0.95);
