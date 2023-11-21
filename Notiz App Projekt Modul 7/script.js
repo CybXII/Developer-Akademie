@@ -190,8 +190,6 @@ function generateArchivedRed(cards, i) {
   document.getElementById(`toArchived`).setAttribute("onclick", `moveToNotice('archiv*,${i})`);
   document.getElementById(`toArchived`).setAttribute("src", "./img/notice.png");
   document.getElementById(`toArchived`).id = `toNoticed${i}`;
-  let newArchived = document.getElementById(`archiv${i}`).outerHTML;
-  console.log(newArchived);
 }
 
 
@@ -204,8 +202,6 @@ function generateArchivedPurple(cards, i) {
   document.getElementById("toArchived").setAttribute("onclick", `moveToNotice('archiv',${i})`);
   document.getElementById("toArchived").setAttribute("src", "./img/notice.png");
   document.getElementById(`toArchived`).id = `toNoticed${i}`;
-  let newArchived = document.getElementById(`archiv${i}`).outerHTML;
-  console.log(newArchived);
 }
 
 
