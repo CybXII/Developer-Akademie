@@ -3,6 +3,7 @@ let titels = [];
 let newTrash = [];
 let pinnedNotice = [];
 
+
 function render(input) {
   load();
   let render = input;
@@ -19,19 +20,22 @@ function render(input) {
   }
 }
 
+
 function renderCardBoard(content){
   content.innerHTML +=`<div class="card_board" id="card_board"></div>`;
 }
 
+
 function renderInputFiled(content){
   content.innerHTML +=`
 <div class="inputTitel" >
-    <input class="titel" id="titel" type="text"  maxlength="14"  placeholder="Titel">
+    <input class="titel" id="titel" type="text" maxlength="14"  placeholder="Titel" required>
     <textarea class="notice" id="notice" type="text" placeholder="Notiz"></textarea>
     <button class="addButton" onclick="addNotice('notice')">Hinzufügen</button>
 </div>
 `;
 }
+
 
 function loadNotice(content) {
   renderInputFiled(content);
@@ -41,6 +45,7 @@ function loadNotice(content) {
   cardRender(titels, pinnedNotice);
 }
 
+
 function loadArchiv() {
   if (newArchiv == undefined) {
     consol.log("Archiv ist leer");
@@ -49,6 +54,7 @@ function loadArchiv() {
   }
 }
 
+
 function loadTrash() {
   if (newTrash == undefined) {
     consol.log("Papierkorb ist leer");
@@ -56,6 +62,7 @@ function loadTrash() {
     cardRenderTrash();
   }
 }
+
 
 function cardRender(inputTitels, inputPinned) {
   for (let i = 0; i < titels.length; i++) {
@@ -69,6 +76,7 @@ function cardRender(inputTitels, inputPinned) {
     }
   }
 }
+
 
 function redCard(cards, pinnedNotices, titel, i) {
   cards.innerHTML += /*html*/ `
@@ -89,6 +97,7 @@ function redCard(cards, pinnedNotices, titel, i) {
   </div>`;
 }
 
+
 function purpleCard(cards, pinnedNotices, titel, i) {
   cards.innerHTML += /*html*/ `
     <div id="card${i}"  class="card_purple">
@@ -108,6 +117,7 @@ function purpleCard(cards, pinnedNotices, titel, i) {
     </div>`;
 }
 
+
 function cardRenderArchiv() {
   renderCardBoard(content)
   let cards = document.getElementById("card_board");
@@ -126,6 +136,7 @@ function cardRenderArchiv() {
   }
 }
 
+
 function cardRenderTrash() {
   renderCardBoard(content)
   let cards = document.getElementById("card_board");
@@ -143,6 +154,7 @@ function cardRenderTrash() {
     }
   }
 }
+
 
 function generateNotice(linkdirection, arrayindex) {
   if (linkdirection == "notice") {
@@ -168,6 +180,7 @@ function generateNotice(linkdirection, arrayindex) {
   }
 }
 
+
 function generateArchivedRed(cards, i) {
   cards.innerHTML += /*html*/ `${newArchiv[i]}`;
   document.getElementById(`archived`).id = `archiv${i}`;
@@ -180,6 +193,7 @@ function generateArchivedRed(cards, i) {
   let newArchived = document.getElementById(`archiv${i}`).outerHTML;
   console.log(newArchived);
 }
+
 
 function generateArchivedPurple(cards, i) {
   cards.innerHTML += /*html*/ `${newArchiv[i]}`;
@@ -194,6 +208,7 @@ function generateArchivedPurple(cards, i) {
   console.log(newArchived);
 }
 
+
 function generateTrashedRed(cards, i) {
   cards.innerHTML += /*html*/ `${newTrash[i]}`;
   document.getElementById(`trashed`).id = `trash${i}`;
@@ -205,6 +220,7 @@ function generateTrashedRed(cards, i) {
   document.getElementById(`toTrashed`).id = `toNoticed${i}`;
 }
 
+
 function generateTrashedPurple(cards, i) {
   cards.innerHTML += /*html*/ `${newTrash[i]}`;
   document.getElementById(`trashed`).id = `trash${i}`;
@@ -215,6 +231,7 @@ function generateTrashedPurple(cards, i) {
   document.getElementById(`toTrashed`).setAttribute("src", "./img/notice.png");
   document.getElementById(`toTrashed`).id = `toNoticed${i}`;
 }
+
 
 function addNotice(linkdirection) {
   if (linkdirection == "notice") {
@@ -233,6 +250,7 @@ function addNotice(linkdirection) {
   }
 }
 
+
 function addArchiv(i) {
   document.getElementById(`card${i}`).id = `archived`;
   document.getElementById(`addArchiv${i}`).id = `addArchived`;
@@ -243,6 +261,7 @@ function addArchiv(i) {
   save();
   render("notice");
 }
+
 
 function addTrashedFromNotice(i) {
   document.getElementById(`card${i}`).id = `trashed`;
@@ -258,15 +277,12 @@ function addTrashedFromNotice(i) {
   render("notice");
 }
 
+
 function addTrashedFromArchiv(i) {
   document.getElementById(`archiv${i}`).id = `trashed`;
-  document
-    .getElementById(`addArchived${i}`)
-    .setAttribute("onclick", `trashIt(${i})`);
+  document.getElementById(`addArchived${i}`).setAttribute("onclick", `trashIt(${i})`);
   document.getElementById(`addArchived${i}`).id = `trashed`;
-  document
-    .getElementById(`toNoticed${i}`)
-    .setAttribute("onclick", `moveToNotice('trash',${i})`);
+  document.getElementById(`toNoticed${i}`).setAttribute("onclick", `moveToNotice('trash',${i})`);
   document.getElementById(`toNoticed${i}`).id = `toTrashed`;
   let newTrashed = document.getElementById(`trashed`).outerHTML;
   newTrash.push(newTrashed);
@@ -275,11 +291,13 @@ function addTrashedFromArchiv(i) {
   render("archiv");
 }
 
+
 function moveToNotice(linkdirection, i) {
   generateNotice(linkdirection, i);
   save();
   render(linkdirection);
 }
+
 
 function trashIt(arrayindex) {
   let newTrashed = newTrash.splice(arrayindex, 1);
@@ -288,10 +306,12 @@ function trashIt(arrayindex) {
   render("trash");
 }
 
+
 function deleteContact(arrayindex) {
   pinnedNotice.splice(arrayindex, 1);
   titels.splice(arrayindex, 1);
 }
+
 
 function save() {
   let titelsAsText = JSON.stringify(titels);
@@ -303,6 +323,7 @@ function save() {
   localStorage.setItem("archivCard", `${newArchived}`);
   localStorage.setItem("trash", `${newTrashed}`);
 }
+
 
 function load() {
   let newCardsAsText = localStorage.getItem("archivCard");
@@ -322,6 +343,7 @@ function load() {
   }
 }
 
+
 function showMenu() {
   document.getElementById("button_container").classList.add("button_container_show");
   document.getElementById("button_container1").classList.add("button_container_show");
@@ -338,6 +360,7 @@ function showMenu() {
   document.getElementById("seperator").classList.add("main_menu_show");
 }
 
+
 function closeMenu() {
   document.getElementById("button_container").classList.remove("button_container_show");
   document.getElementById("button_container1").classList.remove("button_container_show");
@@ -351,6 +374,7 @@ function closeMenu() {
   document.getElementById("menu_buttons2").classList.remove("menu_buttons_show");
   document.getElementById("seperator").classList.remove("main_menu_show");
 }
+
 
 function pinMove(i) {
   if (i == titels.length - 1) {
