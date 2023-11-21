@@ -208,6 +208,12 @@ h1{
     font-family: 'Lobster';
 }
 
+.card_titel{
+    padding: 2px;
+    max-width: 150px;
+    overflow-wrap: anywhere;
+}
+
 .notice_titel{
     display: flex;
 }
