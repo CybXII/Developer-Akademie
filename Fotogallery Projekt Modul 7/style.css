@@ -1,6 +1,7 @@
 body{
     margin: 0;
     font-family: 'Lobster';
+    width: 100%;
 }
 
 .foto_header{
@@ -19,6 +20,18 @@ h1{
     cursor: default;
 }
 
+.arrow_left{
+    height: 40px;
+    background-color: #6495ed;
+    transform: rotate(180deg);
+}
+
+.arrow_right{
+    height: 40px;
+    background-color: #6495ed;
+}
+
+
 .foto_board {
     background-color: #9e9e9e;
     display:flex;
@@ -26,8 +39,7 @@ h1{
     justify-content: center;
     border-top: solid;
     border-color: azure;
-
-
+    padding-bottom: 40px;
 }
 
 .imgcontainer{
@@ -38,12 +50,75 @@ h1{
     border-style: solid;
 }
 
+.foto_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.foto_full{
+    width: 80vw;
+    height: 95vh;
+    object-fit: contain;
+    overflow: none;
+}
+
 .imgbox{
     object-fit: cover;
     margin: 8px;
     height: 200px;
     cursor: pointer;
     border-radius: 100px 20px 100px 20px;
+}
+
+.footer{
+    background-color: #b3c0d8;
+    border-color: azure;
+    border-style: solid;
+    display: flex;
+    justify-content: space-between;
+}
+
+.full_screen_container{
+    position: absolute;
+    top:0;
+    left:0; 
+    right:0;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+}
+
+.close_button{
+    position: absolute;
+    color: azure;
+    top:0;
+    left:0; 
+    right:0;
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 40px;
+    width: 40px;  
+    cursor: pointer;  
+}
+
+
+@media (max-width: 660px){
+    .foto_container{
+        flex-direction: column;
+        gap:10px;
+    }
+
+    .foto_full{
+        width: 80vw;
+        height: 50vh;
+        object-fit: contain;
+        overflow: none;
+    }
 
 }
 
@@ -55,5 +130,11 @@ h1{
     }
     .imgcontainer img{
        max-width: 280px;
+    }
+    .footer{
+        display: flex;
+        flex-direction: column;
+        text-align:center;
+        gap:4px;
     }
 }
