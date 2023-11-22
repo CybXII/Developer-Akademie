@@ -1,7 +1,59 @@
 body{
     margin: 0;
+    font-family: 'Lobster';
 }
 
 .foto_header{
-    
+    display: flex;
+    justify-content: center;
+    background-color: #b3c0d8 ;
+}
+
+h1{
+    padding: 16px;
+    box-shadow: 7px 5px 19px 6px #5673a7;
+    background-color: #7793c5;
+    border-radius: 40px 8px 40px 8px;    
+    border-color: azure;
+    border-style: solid;
+    cursor: default;
+}
+
+.foto_board {
+    background-color: #9e9e9e;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: solid;
+    border-color: azure;
+
+
+}
+
+.imgcontainer{
+    margin: 8px;
+    background-color: #6495ed;
+    border-radius: 80px 200px 80px 200px;
+    border-color: azure;
+    border-style: solid;
+}
+
+.imgbox{
+    object-fit: cover;
+    margin: 8px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 100px 20px 100px 20px;
+
+}
+
+@media (max-width: 500px){
+    .imgcontainer{
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+    .imgcontainer img{
+       max-width: 280px;
+    }
 }
