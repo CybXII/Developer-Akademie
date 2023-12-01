@@ -1,0 +1,36 @@
+let menus = ['Pizza','Döner','Salat'];
+let prices= [5.99,4.99,3.99];
+let amounts = [2,1,1];
+
+function getValueFromInput(inputId){
+  return document.getElementById(inputId).value;
+}
+function getMenuFromInput(){
+  const newMenu = getValueFromInput('menu');
+  return newMenu.trim()
+}
+
+function getPriceFromInput(){
+   const newPrice = getValueFromInput('price');
+   return parseFloat(newPrice)
+}
+
+function onAddMenu(){
+  let checkMenu=getMenuFromInput()
+  let menuIndex=getMenuIndex(checkMenu);
+  if (menuIndex == -1){  
+   menus.push(getMenuFromInput());
+   prices.push(getPriceFromInput());
+   amounts.push(1);
+   }
+   else 
+   {
+     amounts[menuIndex] += 1;
+   }
+ }
+
+function getMenuIndex(menu){
+  let search = menus;
+ return search.indexOf(menu);
+}
+  
