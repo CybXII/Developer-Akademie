@@ -25,7 +25,7 @@ h2{
 
 .search_field input{
     box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
-
+    border-radius: 3px;
 }
 
 .post{
@@ -49,12 +49,31 @@ h2{
 }
 
 .post_container{
-    height: 100vh;
-    padding: 100px;
+    height: 80%vh;
+    padding-left: 10%;
+    width: 50%;
+    min-height: 76vh;
+}
+
+.content_container{
+    display: flex;
+    padding-top: 80px ;
+}
+
+.contacts{
+    right: 0px;
+    height: 80vhs;
+    width: 40%;
+    background-color: #0e27382f;
 }
 
 footer{
-height: 200px;
-background-color: rgba(0,0,0,0.2);
-
+position: sticky;
+bottom: 0;
+left: 0;
+right: 0;
+height: 100px;
+background-color: #1C6EA4;
+border-top: 2px solid rgba(0,0,0,0.3);
+box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.4);
 }

@@ -10,7 +10,7 @@ let posts = [
         'image': './img/img2.jpg',
         'description': 'Text 3 2 1 ',
         'location': ''
-    }
+    },
 ]
 
 function show(params){
@@ -27,6 +27,6 @@ function show(params){
             <div>${post['location']}</div>
         </div>
         `
-        
     }
 }
+
