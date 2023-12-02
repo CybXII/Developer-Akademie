@@ -20,7 +20,7 @@ function show(params){
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i];
         document.getElementById('postcontainer').innerHTML +=`
-        <div>
+        <div class="post">
             <img src="${post['image']}">
             <div>${post['author']} </div>
             <div>${post['description']}</div>
