@@ -1,0 +1,211 @@
+body{
+    margin: 0;
+}
+
+
+.elementBoxWide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+}
+
+
+
+
+
+.second_nameWrapper{
+    height: 100%;
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.second_nameWrapper div{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: transparent;
+    font-size: 64px;
+    font-weight: bolder;
+    animation: second_textColor 1000ms forwards linear;
+}
+
+.second_nameWrapper div:nth-child(1){
+    animation-delay: 100ms;
+}
+
+.second_nameWrapper div:nth-child(2){
+    animation-delay: 200ms;
+}
+
+.second_nameWrapper div:nth-child(3){
+    animation-delay: 300ms;
+}
+
+.second_nameWrapper div:nth-child(4){
+    animation-delay: 400ms;
+}
+
+.second_nameWrapper div:nth-child(5){
+    animation-delay: 500ms;
+}
+
+.second_nameWrapper div:nth-child(6){
+    animation-delay: 600ms;
+}
+
+.second_nameWrapper div:nth-child(7){
+    animation-delay: 700ms;
+}
+
+.second_logoWrapper{
+    animation: second_mainRotate 1000ms forwards ease-in-out;
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    transform: rotate(45deg);
+}
+
+.second_quarterWrapper{
+    position: relative;
+    height: 50%;
+    width: 50%;
+}
+
+.second_mainLineWrapper{
+    animation: second_mainlineOuterBallToLine 500ms forwards ease-out;
+    animation-delay: 1000ms;
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+    height: 25%;
+    width: 25%;
+}
+
+.second_mainLine{
+    border-radius: 150px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.second_sideLineWrapper{
+    animation: second_sidelineOuterBallToLine 500ms forwards ease-in-out;
+    animation-delay: 1000ms;
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    height: 25%;
+    width: 25%;
+}
+
+.second_sideLine{
+    
+    border-radius: 150px;
+    height: 100%;
+    width: 100%;
+}
+
+.second_bgColorBlue{
+    background-color: #36C5F0;
+}
+
+.second_bgColorRed{
+    background-color: #E01E5A;
+}
+
+.second_bgColorGreen{
+    background-color: #2EB67D;
+}
+
+.second_bgColorYellow{
+    background-color: #ECB22E;
+}
+
+.second_transform90{
+    transform: rotate(90deg);
+}
+
+.second_transform180{
+    transform: rotate(180deg);
+}
+
+.second_transform270{
+    transform: rotate(270deg);
+}
+
+
+@keyframes second_sidelineOuterBallToLine {
+    0% {
+        bottom: 50%;
+        right: 50%;
+        height: 25%;
+    }
+    50% {
+        bottom: 0%;
+        right: 0%;
+        height: 25%;
+    }
+    100% {
+        bottom: 0%;
+        right: 0%;
+        height: 80%;
+    }
+  }
+
+  
+@keyframes second_mainlineOuterBallToLine {
+    0% {
+        bottom: 50%;
+        right: 50%;
+        width: 25%;
+    }
+    50% {
+        bottom: 0%;
+        right: 0%;
+        width: 25%;
+    }
+    100% {
+        bottom: 0%;
+        right: 0%;
+        width: 100%;
+    }
+  }
+
+  
+  
+@keyframes second_mainRotate {
+    0% {
+        transform: rotate(45deg);
+    }
+    100% {
+        transform: rotate(765deg);
+    }
+  }
+
+  @keyframes second_textColor {
+    0% {
+        color:#2EB67D;
+    }
+
+    25% {
+        color:#E01E5A;
+    }
+
+    50% {
+        color:#36C5F0;
+    }
+
+    75% {
+        color:#ECB22E;
+    }
+    100% {
+        color:black;
+    }
+  }

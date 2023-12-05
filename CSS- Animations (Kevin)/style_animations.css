@@ -1,0 +1,110 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1, h2{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+section {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+
+/* NUMMER 1: Transitions */
+
+
+.img_wrapper_1 {
+    cursor: pointer;
+    width: 124px;
+    height: 124px;
+}
+
+.img_wrapper_1>img {
+    width: 100%;
+    height: 100%;
+
+    transform: rotateX(60deg) rotateZ(-30deg) translateY(0px);
+    transition: all 400ms;
+}
+
+.img_wrapper_1:hover>img {
+    transform: rotateX(0deg) rotateZ(0deg) translateY(-40px);
+    transition: all 400ms;
+}
+
+
+/* NUMMER 2: Keyframes in einfach */
+
+
+.img_wrapper_2 {
+    cursor: pointer;
+    width: 124px;
+    height: 124px;
+}
+
+.img_wrapper_2>img {
+    width: 100%;
+    height: 100%;
+    transform: rotateX(60deg) rotateZ(-30deg) translateY(0px);
+}
+
+.img_wrapper_2:hover>img {
+    animation: rollOut 400ms forwards;
+}
+
+@keyframes rollOut {
+    from {
+        transform: rotateX(60deg) rotateZ(-30deg) translateY(0px);
+    }
+  
+    to {
+        transform: rotateX(0deg) rotateZ(0deg) translateY(-40px);
+    }
+  }
+
+
+
+/* NUMMER 3: Keyframes in besser */
+
+
+
+.img_wrapper_3 {
+    cursor: pointer;
+    width: 124px;
+    height: 124px;
+}
+
+.img_wrapper_3>img {
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform: rotateX(60deg) rotateZ(-30deg) translateY(0px);
+}
+
+.img_wrapper_3:hover>img {
+    animation: rollOutEvenCooler 800ms forwards;
+}
+
+
+@keyframes rollOutEvenCooler {
+    0% {
+        transform: rotateX(60deg) rotateZ(-30deg) translateY(0px);
+    }
+    30% {
+        transform: rotateX(0deg) rotateZ(-30deg) translateY(0px);
+    }
+    70% {
+        transform: rotateX(0deg) rotateZ(0deg) translateY(0px);
+    }
+    100% {
+        transform: rotateX(0deg) rotateZ(0deg) translateY(-40px);
+    }
+  }
