@@ -1,6 +1,25 @@
+
+let user = [
+  {
+    name: "Rocket.inc",
+    avatar: "./img/profile.jpg"
+  },
+  {
+    name: "futurexoxo",
+    avatar: "./img/profile.jpg"
+  },
+  {
+    name: "test",
+    avatar: "./img/profile.jpg"
+  },
+
+
+
+]
+
 let posts = [
   {
-    author: "Rocket.inc",
+    author: user[0]['name'],
     image: "./img/launch.jpg",
     description: "Raketen Launch voller erfolg für Rockets",
     location: "Germany",
@@ -8,14 +27,23 @@ let posts = [
     liked: [1]
   },
   {
-    author: "futurexoxo",
+    author: user[1]['name'],
     image: "./img/galaxy.jpg",
     description: "In dieser kosmischen Kulisse zeichnet sich die Zukunft der Menschheit ab. Einzelne Lichtpunkte, vielleicht Raumstationen oder Siedlungen auf fernen Planeten, sind als winzige Markierungen in dieser riesigen Galaxie erkennbar. Sie repräsentieren menschliche Vorposten und die Ausdehnung unserer Zivilisation in den Weltraum. Das Bild trägt die Botschaft, dass die Zukunft der Menschheit nicht nur auf der Erde liegt, sondern dass wir bestrebt sind, unsere Existenz über die Grenzen unseres Heimatplaneten hinaus auszudehnen. Es symbolisiert den menschlichen Drang nach Erkundung, Wissen und Fortschritt, während wir uns auf eine Zukunft vorbereiten, die über die Sterne hinausreicht.",
-    location: "",
+    location: "Somewhere in Space",
+    likes: [0],
+    liked: [0]
+  },
+  {
+    author: user[2]['name'],
+    image: "./img/galaxy.jpg",
+    description: "In dieser kosmischen Kulisse zeichnet sich die Zukunft der Menschheit ab. Einzelne Lichtpunkte, vielleicht Raumstationen oder Siedlungen auf fernen Planeten, sind als winzige Markierungen in dieser riesigen Galaxie erkennbar. Sie repräsentieren menschliche Vorposten und die Ausdehnung unserer Zivilisation in den Weltraum. Das Bild trägt die Botschaft, dass die Zukunft der Menschheit nicht nur auf der Erde liegt, sondern dass wir bestrebt sind, unsere Existenz über die Grenzen unseres Heimatplaneten hinaus auszudehnen. Es symbolisiert den menschlichen Drang nach Erkundung, Wissen und Fortschritt, während wir uns auf eine Zukunft vorbereiten, die über die Sterne hinausreicht.",
+    location: "-",
     likes: [0],
     liked: [0]
   }
 ];
+
 
 function show() {
   document.getElementById("postcontainer").innerHTML = "";
@@ -25,7 +53,7 @@ function show() {
 
     document.getElementById("postcontainer").innerHTML += `
         <div class="post">
-        <img src="${post["image"]}">
+        <img class="postimg"src="${post["image"]}">
         <div class="post_buttons" >
         <div class="likes"><h2>Likes:</h2> ${post["likes"]}</div>
         <div id="post${i}"></div>
@@ -38,6 +66,7 @@ function show() {
         </div>
         `;
     loadLikedButtons(i);
+    loadMenu()
   }
 
   function loadLikedButtons(index) {
@@ -48,6 +77,17 @@ function show() {
       renderBlackHeart(index);
     }
   }
+}
+
+function loadMenu(){
+  document.getElementById(`menuContainer`).innerHTML =`
+  <img src="./img/main.svg" alt="">
+  <img src="./img/rocket.svg" alt="">
+  <img src="./img/navigation.svg" alt="">
+  <img src="./img/heart_red.svg" alt="">
+  <img class="profile" src="${user[0]['avatar']}" alt="">
+  `;
+
 }
 
 function renderRedHeart(index) {
@@ -70,7 +110,6 @@ function removeLike(index)  {
     else if (post['liked'] == 0){
         post['liked'][0]++;
         post['likes'][0]++;
-       
     };
     show()
 }
