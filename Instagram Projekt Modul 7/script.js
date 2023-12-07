@@ -12,10 +12,7 @@ let user = [
     name: "test",
     avatar: "./img/profile.jpg"
   },
-
-
-
-]
+];
 
 let posts = [
   {
@@ -31,7 +28,7 @@ let posts = [
     image: "./img/galaxy.jpg",
     description: "In dieser kosmischen Kulisse zeichnet sich die Zukunft der Menschheit ab. Einzelne Lichtpunkte, vielleicht Raumstationen oder Siedlungen auf fernen Planeten, sind als winzige Markierungen in dieser riesigen Galaxie erkennbar. Sie repräsentieren menschliche Vorposten und die Ausdehnung unserer Zivilisation in den Weltraum. Das Bild trägt die Botschaft, dass die Zukunft der Menschheit nicht nur auf der Erde liegt, sondern dass wir bestrebt sind, unsere Existenz über die Grenzen unseres Heimatplaneten hinaus auszudehnen. Es symbolisiert den menschlichen Drang nach Erkundung, Wissen und Fortschritt, während wir uns auf eine Zukunft vorbereiten, die über die Sterne hinausreicht.",
     location: "Somewhere in Space",
-    likes: [0],
+    likes: [10689],
     liked: false
   },
   {
@@ -46,6 +43,12 @@ let posts = [
 
 
 function show() {
+  renderPosts();
+
+}
+
+
+function renderPosts(){
   document.getElementById("postcontainer").innerHTML = "";
 
   for (let i = 0; i < posts.length; i++) {
@@ -53,7 +56,7 @@ function show() {
 
     document.getElementById("postcontainer").innerHTML += `
         <div class="post">
-        <img class="postimg"src="${post["image"]}">
+        <div class="post_img_container"><img class="postimg"src="${post["image"]}"></div>
         <div class="post_buttons" >
         <div class="likes"><h2>Likes:</h2> ${post["likes"]}</div>
         <div id="post${i}"></div>
@@ -68,14 +71,14 @@ function show() {
     loadLikedButtons(i);
     loadMenu()
   }
+}
 
-  function loadLikedButtons(index) {
-    const post = posts[index];
-    if (post["liked"]== true) {
-      renderRedHeart(index);
-    } else {
-      renderBlackHeart(index);
-    }
+function loadLikedButtons(index) {
+  const post = posts[index];
+  if (post["liked"]== true) {
+    renderRedHeart(index);
+  } else {
+    renderBlackHeart(index);
   }
 }
 
@@ -87,7 +90,6 @@ function loadMenu(){
   <img src="./img/heart_red.svg" alt="">
   <img class="profile" src="${user[0]['avatar']}" alt="">
   `;
-
 }
 
 function renderRedHeart(index) {

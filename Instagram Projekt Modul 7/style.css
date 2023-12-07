@@ -46,11 +46,11 @@ h2{
     margin-top: 14px;
     margin-bottom: 14px;
     box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
-    max-width: 100vh;
 }
 
 .postimg{
 width: 50%;
+border-radius: 4px;
 }
 
 .post_buttons img{
@@ -90,15 +90,22 @@ width: 50%;
 }
 
 .post_container{
-    height: 80%vh;
-    padding-left: 10%;
     width: 50%;
-    min-height: 76vh;
+    padding-left: 10%;
+}
+
+.post_img_container{
+    display: flex;
+    justify-content: center;
+    border-bottom: solid 2px;
+    padding-bottom: 4px;
 }
 
 .content_container{
     display: flex;
     padding-top: 80px ;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 
@@ -109,6 +116,9 @@ width: 50%;
     height:100% ;
     width: 40%;
     background-color: #0e27382f;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
 }
 
 .likes{
@@ -118,9 +128,38 @@ width: 50%;
 }
 
 footer{
-position: sticky;
-height: 100px;
-background-color: #1c6ea4;
-border-top: 2px solid rgba(0,0,0,0.3);
-box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.4);
+    position: sticky;
+    height: 100px;
+    background-color: #1c6ea4;
+    border-top: 2px solid rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 10px 4px rgba(0,0,0,0.4);
+}
+
+.users{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    height: 60px;
+    width: 400px;
+    padding: 10px;
+    margin: 8px;   
+    border: double 6px #1C6EA4;
+    border-radius: 40px ;
+    background-color: rgb(52, 141, 155);
+    box-shadow: 6px 4px 0px 4px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+.users img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.users:hover{
+    background-color: rgb(87, 154, 255);
+    box-shadow: 6px 4px 0px 4px rgba(91, 156, 254, 0.4);
+    transition: 125ms ease-in-out;
 }
