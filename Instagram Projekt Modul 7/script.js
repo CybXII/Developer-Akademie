@@ -41,35 +41,50 @@ let posts = [
   }
 ];
 
-
 function show() {
   renderPosts();
+  renderContacts()
 
 }
 
-
 function renderPosts(){
   document.getElementById("postcontainer").innerHTML = "";
-
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
-
-    document.getElementById("postcontainer").innerHTML += `
-        <div class="post">
-        <div class="post_img_container"><img class="postimg"src="${post["image"]}"></div>
-        <div class="post_buttons" >
-        <div class="likes"><h2>Likes:</h2> ${post["likes"]}</div>
-        <div id="post${i}"></div>
-        </div>
-        <div>
-            <div class="author"><h2>Erstellt von:</h2> ${post["author"]} </div>
-            <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
-            <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
-        </div>
-        </div>
-        `;
+    const newPost = document.getElementById("postcontainer");
+    renderPostContainer(post,newPost,i);
     loadLikedButtons(i);
     loadMenu()
+  }
+}
+
+function renderPostContainer(post,newPost,i){
+  newPost.innerHTML +=`      <div class="post">
+  <div class="post_img_container"><img class="postimg"src="${post["image"]}"></div>
+  <div class="post_buttons" >
+  <div class="likes"><h2>Likes:</h2> ${post["likes"]}</div>
+  <div id="post${i}"></div>
+  </div>
+  <div>
+      <div class="author"><h2>Erstellt von:</h2> ${post["author"]} </div>
+      <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
+      <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
+  </div>
+  </div>`;
+}
+
+function renderContacts(){
+  const contacts = document.getElementById('contacts');
+  for (let i = 0; i < user.length; i++) {
+    const users = user[i];
+    contacts.innerHTML += `
+    <div id="user_menu" class="user_menu">
+      <div class="user_div">
+        <img id="user_avatar" src="${users['avatar']}" alt="">
+        <div>${users['name']}</div>
+      </div>
+    </div>
+    `;
   }
 }
 
@@ -104,7 +119,6 @@ function renderBlackHeart(index) {
 
 function removeLike(index) {
   const post = posts[index];
-  
   if (post['liked'] === true) {
       post['liked'] = false;
       post['likes']--;
@@ -112,6 +126,5 @@ function removeLike(index) {
       post['liked'] = true;
       post['likes']++;
   }
-  
   show();
 }
