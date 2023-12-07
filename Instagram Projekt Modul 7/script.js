@@ -6,11 +6,11 @@ let user = [
   },
   {
     name: "futurexoxo",
-    avatar: "./img/profile.jpg"
+    avatar: "./img/avatar2.jpg"
   },
   {
-    name: "test",
-    avatar: "./img/profile.jpg"
+    name: "dogs_on_stocks",
+    avatar: "./img/avatar1.jpg"
   },
 ];
 
@@ -21,7 +21,8 @@ let posts = [
     description: "Raketen Launch voller erfolg für Rockets",
     location: "Germany",
     likes: [120346],
-    liked: true
+    liked: true,
+    comments:[]
   },
   {
     author: user[1]['name'],
@@ -29,22 +30,23 @@ let posts = [
     description: "In dieser kosmischen Kulisse zeichnet sich die Zukunft der Menschheit ab. Einzelne Lichtpunkte, vielleicht Raumstationen oder Siedlungen auf fernen Planeten, sind als winzige Markierungen in dieser riesigen Galaxie erkennbar. Sie repräsentieren menschliche Vorposten und die Ausdehnung unserer Zivilisation in den Weltraum. Das Bild trägt die Botschaft, dass die Zukunft der Menschheit nicht nur auf der Erde liegt, sondern dass wir bestrebt sind, unsere Existenz über die Grenzen unseres Heimatplaneten hinaus auszudehnen. Es symbolisiert den menschlichen Drang nach Erkundung, Wissen und Fortschritt, während wir uns auf eine Zukunft vorbereiten, die über die Sterne hinausreicht.",
     location: "Somewhere in Space",
     likes: [10689],
-    liked: false
+    liked: false,
+    comments:[]
   },
   {
     author: user[2]['name'],
-    image: "./img/galaxy.jpg",
-    description: "In dieser kosmischen Kulisse zeichnet sich die Zukunft der Menschheit ab. Einzelne Lichtpunkte, vielleicht Raumstationen oder Siedlungen auf fernen Planeten, sind als winzige Markierungen in dieser riesigen Galaxie erkennbar. Sie repräsentieren menschliche Vorposten und die Ausdehnung unserer Zivilisation in den Weltraum. Das Bild trägt die Botschaft, dass die Zukunft der Menschheit nicht nur auf der Erde liegt, sondern dass wir bestrebt sind, unsere Existenz über die Grenzen unseres Heimatplaneten hinaus auszudehnen. Es symbolisiert den menschlichen Drang nach Erkundung, Wissen und Fortschritt, während wir uns auf eine Zukunft vorbereiten, die über die Sterne hinausreicht.",
+    image: "./img/aktien.jpg",
+    description: "Investoren, die in Raumfahrtaktien interessiert sind, beobachten die Entwicklungen in der Branche, innovative Technologien, Vertragsabschlüsse mit Regierungen oder privaten Partnern und den Erfolg von Raumfahrtmissionen. Der Sektor hat in den letzten Jahren verstärktes Interesse auf sich gezogen, insbesondere durch die Bemühungen von privaten Unternehmen wie SpaceX und Blue Origin.",
     location: "-",
     likes: [0],
-    liked: false
+    liked: false,
+    comments:[]
   }
 ];
 
 function show() {
   renderPosts();
   renderContacts()
-
 }
 
 function renderPosts(){
@@ -53,8 +55,8 @@ function renderPosts(){
     const post = posts[i];
     const newPost = document.getElementById("postcontainer");
     renderPostContainer(post,newPost,i);
-    loadLikedButtons(i);
     loadMenu()
+    loadLikedButtons(i);
   }
 }
 
@@ -62,26 +64,33 @@ function renderPostContainer(post,newPost,i){
   newPost.innerHTML +=`      <div class="post">
   <div class="post_img_container"><img class="postimg"src="${post["image"]}"></div>
   <div class="post_buttons" >
-  <div class="likes"><h2>Likes:</h2> ${post["likes"]}</div>
-  <div id="post${i}"></div>
+    <div class="likes">
+    <div class="author">
+      <h2>Author:</h2> ${post["author"]} 
+    </div>
+      <h2>Likes:</h2> ${post["likes"]}
+      <div id="post${i}"></div>
+    </div>
+  
   </div>
   <div>
-      <div class="author"><h2>Erstellt von:</h2> ${post["author"]} </div>
       <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
       <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
   </div>
+  <button onclick="sendNewComment">Kommentieren</button>
   </div>`;
 }
 
 function renderContacts(){
   const contacts = document.getElementById('contacts');
+  contacts.innerHTML =``;
   for (let i = 0; i < user.length; i++) {
     const users = user[i];
     contacts.innerHTML += `
     <div id="user_menu" class="user_menu">
       <div class="user_div">
         <img id="user_avatar" src="${users['avatar']}" alt="">
-        <div>${users['name']}</div>
+        <div class="d_none">${users['name']}</div>
       </div>
     </div>
     `;
@@ -91,9 +100,9 @@ function renderContacts(){
 function loadLikedButtons(index) {
   const post = posts[index];
   if (post["liked"]== true) {
-    renderRedHeart(index);
+    renderHeart(index,'red');
   } else {
-    renderBlackHeart(index);
+    renderHeart(index,'black');
   }
 }
 
@@ -107,14 +116,9 @@ function loadMenu(){
   `;
 }
 
-function renderRedHeart(index) {
+function renderHeart(index,heart) {
     document.getElementById(`post${index}`).innerHTML =``;
-    document.getElementById(`post${index}`).innerHTML +=`<img class="liked" src="./img/heart_red.svg" alt="" onclick="removeLike(${index})">`;
-}
-
-function renderBlackHeart(index) {
-    document.getElementById(`post${index}`).innerHTML =``;
-    document.getElementById(`post${index}`).innerHTML +=`<img class="liked" src="./img/heart_black.svg" alt="" onclick="removeLike(${index})">`;
+    document.getElementById(`post${index}`).innerHTML +=`<img class="liked" src="./img/heart_${heart}.svg" alt="" onclick="removeLike(${index})">`;
 }
 
 function removeLike(index) {
@@ -126,5 +130,5 @@ function removeLike(index) {
       post['liked'] = true;
       post['likes']++;
   }
-  show();
+  show()
 }
