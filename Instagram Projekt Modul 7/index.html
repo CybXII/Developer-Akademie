@@ -7,15 +7,12 @@
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js"></script>
     <link rel="icon" type="" href="./img/rocket.svg">
-
-
 </head>
 <body onload="show()">
     <header class="header">
         <div>
             <h2>Rockets</h2>
         </div>
-        <div id="searchfield" class="search_field"><input type="" placeholder="Suchen"></div>
         <div id="menuContainer" class="menu_container">
         </div>
     </header>
@@ -24,6 +21,15 @@
         <div id="contacts" class="contacts">
         </div>
     </section>
+    <div id="pop_up_comments" class="pop_up_comments hide_popup">
+        <div class="pop_up_input">
+            <h2>Kommentar</h2>
+            <textarea name="text" class="newComment" id="newComment" cols="30" rows="10"></textarea>
+            <button id="sendCommentButton" onclick="sendComment()"> Launch </button>
+            <button onclick="abort()"> Abort </button></div>
+        </div>
+
+    </div>
     <footer>
     </footer>
 </body>

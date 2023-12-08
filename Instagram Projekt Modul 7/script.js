@@ -46,7 +46,7 @@ let posts = [
 
 function show() {
   renderPosts();
-  renderContacts()
+  renderContacts();
 }
 
 function renderPosts(){
@@ -54,32 +54,52 @@ function renderPosts(){
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     const newPost = document.getElementById("postcontainer");
+    load(post,i)
     renderPostContainer(post,newPost,i);
+    renderComments(post,i);
     loadMenu()
     loadLikedButtons(i);
   }
 }
 
 function renderPostContainer(post,newPost,i){
-  newPost.innerHTML +=`      <div class="post">
+  newPost.innerHTML +=`
+  <div id="comments${i}" class="post">
   <div class="post_img_container"><img class="postimg"src="${post["image"]}"></div>
   <div class="post_buttons" >
     <div class="likes">
-    <div class="author">
-      <h2>Author:</h2> ${post["author"]} 
-    </div>
+    <div class="author"><h2>Author:</h2> ${post["author"]}</div>
       <h2>Likes:</h2> ${post["likes"]}
       <div id="post${i}"></div>
     </div>
-  
   </div>
-  <div>
-      <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
-      <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
-  </div>
-  <button onclick="sendNewComment">Kommentieren</button>
-  </div>`;
+  `;
+  renderCommentContainer(post,i)
 }
+
+function renderCommentContainer(post,i){
+  const content = document.getElementById(`comments${i}`);
+  content.innerHTML +=`
+  <div>
+  <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
+  <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
+  <div id="innerContent${i}" class="inner_content"><h2>Kommentare</h2></div>
+</div>
+<button onclick="openNewComment(${i})">Kommentieren</button>
+</div>`;
+;
+}
+
+function renderComments(post,i){
+  const contentDiv = document.getElementById(`innerContent${i}`);
+  for (let y = 0; y < post['comments'].length; y++) {
+    const content = post['comments'][y];
+      contentDiv.innerHTML+=`
+      <div class="user_comments">${content}</div>
+      `;
+    }
+}
+
 
 function renderContacts(){
   const contacts = document.getElementById('contacts');
@@ -131,4 +151,35 @@ function removeLike(index) {
       post['likes']++;
   }
   show()
+}
+
+function sendCommentButton(index){
+  let comment = document.getElementById('newComment').value;
+  let post = posts[index]
+  post['comments'].push(comment);
+  save(post,index);
+  abort();
+}
+
+function openNewComment(index){
+  document.getElementById('pop_up_comments').classList.remove("hide_popup");
+  document.getElementById('sendCommentButton').setAttribute('onclick',`sendCommentButton(${index})`)
+}
+
+function abort(){
+  document.getElementById('pop_up_comments').classList.add("hide_popup");
+}
+
+function save(post,index){
+  let toSavedComments = post['comments']
+  let commentAsText = JSON.stringify(toSavedComments);
+  localStorage.setItem(`comments${index}`, commentAsText);
+  show()
+}
+
+function load(post,index){
+  let commentAsText = localStorage.getItem(`comments${index}`);
+  if (commentAsText) {
+    post['comments'] = JSON.parse(commentAsText);
+  } 
 }
