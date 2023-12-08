@@ -22,7 +22,7 @@ let posts = [
     location: "Germany",
     likes: [120346],
     liked: true,
-    comments:[]
+    coments:[]
   },
   {
     author: user[1]['name'],
@@ -31,7 +31,7 @@ let posts = [
     location: "Somewhere in Space",
     likes: [10689],
     liked: false,
-    comments:[]
+    coments:[]
   },
   {
     author: user[2]['name'],
@@ -40,7 +40,7 @@ let posts = [
     location: "-",
     likes: [0],
     liked: false,
-    comments:[]
+    coments:[]
   }
 ]
 
@@ -58,7 +58,7 @@ function renderPosts(){
     const newPost = document.getElementById("postcontainer");
     load(post,i)
     renderPostContainer(post,newPost,i);
-    renderComments(post,i);
+    renderComents(post,i);
     loadMenu()
     loadLikedButtons(i);
   }
@@ -67,7 +67,7 @@ function renderPosts(){
 
 function renderPostContainer(post,newPost,i){
   newPost.innerHTML +=`
-  <div id="comments${i}" class="post">
+  <div id="coments${i}" class="post">
   <div class="post_img_container"><img class="postimg"src="${post["image"]}"></div>
   <div class="post_buttons" >
     <div class="likes">
@@ -77,29 +77,29 @@ function renderPostContainer(post,newPost,i){
     </div>
   </div>
   `;
-  renderCommentContainer(post,i)
+  renderComentContainer(post,i)
 }
 
 
-function renderCommentContainer(post,i){
-  const content = document.getElementById(`comments${i}`);
+function renderComentContainer(post,i){
+  const content = document.getElementById(`coments${i}`);
   content.innerHTML +=`
   <div>
-  <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
-  <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
-  <div id="innerContent${i}" class="inner_content"><h2>Kommentare</h2></div>
-</div>
-<button onclick="openNewComment(${i})">Kommentieren</button>
-</div>`;
+    <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
+    <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
+    <div id="innerContent${i}" class="inner_content"><h2>Kommentare</h2></div>
+  </div>
+  <button onclick="openNewComent(${i})">Kommentieren</button>
+  </div>`;
 }
 
 
-function renderComments(post,i){
+function renderComents(post,i){
   const contentDiv = document.getElementById(`innerContent${i}`);
-  for (let y = 0; y < post['comments'].length; y++) {
-    const content = post['comments'][y];
+  for (let y = 0; y < post['coments'].length; y++) {
+    const content = post['coments'][y];
     contentDiv.innerHTML+=`
-    <div class="user_comments">${content}</div>
+    <div class="user_coments">${content}</div>
     `;
   }
 }
@@ -162,38 +162,38 @@ function removeLike(index) {
 }
 
 
-function sendCommentButton(index){
-  let comment = document.getElementById('newComment').value;
+function sendComentButton(index){
+  let coment = document.getElementById('newComent').value;
   let post = posts[index]
-  post['comments'].push(comment);
+  post['coments'].push(coment);
   save(post,index);
   abort();
-  document.getElementById('newComment').value = ``;
+  document.getElementById('newComent').value = ``;
 }
 
 
-function openNewComment(index){
-  document.getElementById('pop_up_comments').classList.remove("hide_popup");
-  document.getElementById('sendCommentButton').setAttribute('onclick',`sendCommentButton(${index})`)
+function openNewComent(index){
+  document.getElementById('pop_up_coments').classList.remove("hide_popup");
+  document.getElementById('sendComentButton').setAttribute('onclick',`sendComentButton(${index})`)
 }
 
 
 function abort(){
-  document.getElementById('pop_up_comments').classList.add("hide_popup");
+  document.getElementById('pop_up_coments').classList.add("hide_popup");
 }
 
 
 function save(post,index){
-  let toSavedComments = post['comments']
-  let commentAsText = JSON.stringify(toSavedComments);
-  localStorage.setItem(`comments${index}`, commentAsText);
+  let toSavedComents = post['coments']
+  let comentAsText = JSON.stringify(toSavedComents);
+  localStorage.setItem(`coments${index}`, comentAsText);
   show()
 }
 
 
 function load(post,index){
-  let commentAsText = localStorage.getItem(`comments${index}`);
-  if (commentAsText) {
-    post['comments'] = JSON.parse(commentAsText);
+  let comentAsText = localStorage.getItem(`coments${index}`);
+  if (comentAsText) {
+    post['coments'] = JSON.parse(comentAsText);
   } 
 }
