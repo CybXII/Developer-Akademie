@@ -1,4 +1,3 @@
-
 let user = [
   {
     name: "Rocket.inc",
@@ -12,7 +11,8 @@ let user = [
     name: "dogs_on_stocks",
     avatar: "./img/avatar1.jpg"
   },
-];
+]
+
 
 let posts = [
   {
@@ -42,12 +42,14 @@ let posts = [
     liked: false,
     comments:[]
   }
-];
+]
+
 
 function show() {
   renderPosts();
   renderContacts();
 }
+
 
 function renderPosts(){
   document.getElementById("postcontainer").innerHTML = "";
@@ -61,6 +63,7 @@ function renderPosts(){
     loadLikedButtons(i);
   }
 }
+
 
 function renderPostContainer(post,newPost,i){
   newPost.innerHTML +=`
@@ -77,6 +80,7 @@ function renderPostContainer(post,newPost,i){
   renderCommentContainer(post,i)
 }
 
+
 function renderCommentContainer(post,i){
   const content = document.getElementById(`comments${i}`);
   content.innerHTML +=`
@@ -87,17 +91,17 @@ function renderCommentContainer(post,i){
 </div>
 <button onclick="openNewComment(${i})">Kommentieren</button>
 </div>`;
-;
 }
+
 
 function renderComments(post,i){
   const contentDiv = document.getElementById(`innerContent${i}`);
   for (let y = 0; y < post['comments'].length; y++) {
     const content = post['comments'][y];
-      contentDiv.innerHTML+=`
-      <div class="user_comments">${content}</div>
-      `;
-    }
+    contentDiv.innerHTML+=`
+    <div class="user_comments">${content}</div>
+    `;
+  }
 }
 
 
@@ -117,6 +121,7 @@ function renderContacts(){
   }
 }
 
+
 function loadLikedButtons(index) {
   const post = posts[index];
   if (post["liked"]== true) {
@@ -125,6 +130,7 @@ function loadLikedButtons(index) {
     renderHeart(index,'black');
   }
 }
+
 
 function loadMenu(){
   document.getElementById(`menuContainer`).innerHTML =`
@@ -136,22 +142,25 @@ function loadMenu(){
   `;
 }
 
+
 function renderHeart(index,heart) {
     document.getElementById(`post${index}`).innerHTML =``;
     document.getElementById(`post${index}`).innerHTML +=`<img class="liked" src="./img/heart_${heart}.svg" alt="" onclick="removeLike(${index})">`;
 }
 
+
 function removeLike(index) {
   const post = posts[index];
   if (post['liked'] === true) {
       post['liked'] = false;
-      post['likes']--;
+      post['likes']--
   } else {
       post['liked'] = true;
-      post['likes']++;
+      post['likes']++
   }
   show()
 }
+
 
 function sendCommentButton(index){
   let comment = document.getElementById('newComment').value;
@@ -159,16 +168,20 @@ function sendCommentButton(index){
   post['comments'].push(comment);
   save(post,index);
   abort();
+  document.getElementById('newComment').value = ``;
 }
+
 
 function openNewComment(index){
   document.getElementById('pop_up_comments').classList.remove("hide_popup");
   document.getElementById('sendCommentButton').setAttribute('onclick',`sendCommentButton(${index})`)
 }
 
+
 function abort(){
   document.getElementById('pop_up_comments').classList.add("hide_popup");
 }
+
 
 function save(post,index){
   let toSavedComments = post['comments']
@@ -176,6 +189,7 @@ function save(post,index){
   localStorage.setItem(`comments${index}`, commentAsText);
   show()
 }
+
 
 function load(post,index){
   let commentAsText = localStorage.getItem(`comments${index}`);
