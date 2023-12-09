@@ -32,7 +32,7 @@
             background-color: red;
             padding: 20px;
             box-shadow: -4px 9px 10px rgba(0, 0, 0,0.4);
-        
+        }
 
         .mb-20 {
             margin-bottom: 20px;
@@ -64,19 +64,19 @@
          * Aufgabe 1 
          */
         function joke3() {
-            document.getElementByid('joke').innerHTML =
+            document.getElementById('joke').innerHTML =
                 `HTML or HTML5?
-Guy 1 - 'How can you tell the difference between HTML and HTML5?'
+                    Guy 1 - 'How can you tell the difference between HTML and HTML5?'
 
-Guy 2 - 'Open it in Internet Explorer'
+                    Guy 2 - 'Open it in Internet Explorer'
 
-Guy 1 - 'Ok'
+                    Guy 1 - 'Ok'
 
-Guy 2 - 'Did it work?'
+                    Guy 2 - 'Did it work?'
 
-Guy 1 - 'No'
+                    Guy 1 - 'No'
 
-Guy 2 - 'It's HTML5'`;
+                    Guy 2 - 'It's HTML5'`;
         }
 
         /**
@@ -123,7 +123,7 @@ Guy 2 - 'It's HTML5'`;
 
             let chat = document.getElementById('chat');
 
-            if (message.value.length > 0) {
+            if (message.value.length < 0) {
                 chat.innerHTML += `
                     <div class="mb-20><i>${name.value || 'Unbekannt'}</i>: ${message.value}</div>
                 `;
@@ -168,7 +168,7 @@ Guy 2 - 'It's HTML5'`;
     <div><button onclick="addFruit('Apfel')">Apfel</button>
         <button onclick="addFruit('Banane')">Banane</button>
         <button onclick="addFruit('Clementine')">Clementine</button>
-        <button onclick=addFruit('Drachenfrucht')">Drachenfrucht</button>
+        <button onclick="addFruit('Drachenfrucht')">Drachenfrucht</button>
     </div>
     <div>
         <button onclick="deleteFruits()">Alles Löschen</button>
@@ -200,7 +200,7 @@ Guy 2 - 'It's HTML5'`;
 
     <button onclick="setName('Franz')">Franz</button>
     <button onclick="setName('Gundula')">Gundula</button>
-    <button onclick="setName(Henriette)">Gundula</button>
+    <button onclick="setName('Henriette')">Gundula</button>
 
 
     <p>

@@ -186,7 +186,7 @@ function load(post,index){
  // Manuelle Validierung des Formulars
  function sendCommentButton(index){ // If Abfrage von ChatGPT generiert wegen der onsubmit deaktivierung Funktion
   let commentField = document.getElementById('newComment');
-  if (!commentField.checkValidity()) {  // Das Formular ist nicht gültig (required-Attribut wurde nicht erfüllt
+  if (!commentField.checkValidity()) {  // Das Formular ist nicht gültig (required-Attribut wurde nicht erfüllt)
       alert('Bitte füllen Sie das Kommentarfeld aus.');
       return;
   }
