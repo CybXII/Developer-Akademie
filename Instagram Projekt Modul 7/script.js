@@ -22,7 +22,7 @@ let posts = [
     location: "Germany",
     likes: [120346],
     liked: true,
-    coments:[]
+    comments:[]
   },
   {
     author: user[1]['name'],
@@ -31,7 +31,7 @@ let posts = [
     location: "Somewhere in Space",
     likes: [10689],
     liked: false,
-    coments:[]
+    comments:[]
   },
   {
     author: user[2]['name'],
@@ -40,7 +40,7 @@ let posts = [
     location: "-",
     likes: [0],
     liked: false,
-    coments:[]
+    comments:[]
   }
 ]
 
@@ -58,7 +58,7 @@ function renderPosts(){
     const newPost = document.getElementById("postcontainer");
     load(post,i)
     renderPostContainer(post,newPost,i);
-    renderComents(post,i);
+    renderComments(post,i);
     loadMenu()
     loadLikedButtons(i);
   }
@@ -67,7 +67,7 @@ function renderPosts(){
 
 function renderPostContainer(post,newPost,i){
   newPost.innerHTML +=`
-  <div id="coments${i}" class="post">
+  <div id="comments${i}" class="post">
   <div class="post_img_container"><img class="postimg"src="${post["image"]}"></div>
   <div class="post_buttons" >
     <div class="likes">
@@ -77,29 +77,29 @@ function renderPostContainer(post,newPost,i){
     </div>
   </div>
   `;
-  renderComentContainer(post,i)
+  renderCommentContainer(post,i)
 }
 
 
-function renderComentContainer(post,i){
-  const content = document.getElementById(`coments${i}`);
+function renderCommentContainer(post,i){
+  const content = document.getElementById(`comments${i}`);
   content.innerHTML +=`
   <div>
     <div class="description"><h2>Nachricht:</h2>${post["description"]}</div>
     <div class="location"><h2>Standort:</h2> ${post["location"]}</div>
     <div id="innerContent${i}" class="inner_content"><h2>Kommentare</h2></div>
   </div>
-  <button onclick="openNewComent(${i})">Kommentieren</button>
+  <button onclick="openNewComment(${i})">Kommentieren</button>
   </div>`;
 }
 
 
-function renderComents(post,i){
+function renderComments(post,i){
   const contentDiv = document.getElementById(`innerContent${i}`);
-  for (let y = 0; y < post['coments'].length; y++) {
-    const content = post['coments'][y];
+  for (let y = 0; y < post['comments'].length; y++) {
+    const content = post['comments'][y];
     contentDiv.innerHTML+=`
-    <div class="user_coments">${content}</div>
+    <div class="user_comments">${content}</div>
     `;
   }
 }
@@ -162,38 +162,38 @@ function removeLike(index) {
 }
 
 
-function sendComentButton(index){
-  let coment = document.getElementById('newComent').value;
+function sendCommentButton(index){
+  let comment = document.getElementById('newComment').value;
   let post = posts[index]
-  post['coments'].push(coment);
+  post['comments'].push(comment);
   save(post,index);
   abort();
-  document.getElementById('newComent').value = ``;
+  document.getElementById('newComment').value = ``;
 }
 
 
-function openNewComent(index){
-  document.getElementById('pop_up_coments').classList.remove("hide_popup");
-  document.getElementById('sendComentButton').setAttribute('onclick',`sendComentButton(${index})`)
+function openNewComment(index){
+  document.getElementById('pop_up_comments').classList.remove("hide_popup");
+  document.getElementById('sendCommentButton').setAttribute('onclick',`sendCommentButton(${index})`)
 }
 
 
 function abort(){
-  document.getElementById('pop_up_coments').classList.add("hide_popup");
+  document.getElementById('pop_up_comments').classList.add("hide_popup");
 }
 
 
 function save(post,index){
-  let toSavedComents = post['coments']
-  let comentAsText = JSON.stringify(toSavedComents);
-  localStorage.setItem(`coments${index}`, comentAsText);
+  let toSavedComments = post['comments']
+  let commentAsText = JSON.stringify(toSavedComments);
+  localStorage.setItem(`comments${index}`, commentAsText);
   show()
 }
 
 
 function load(post,index){
-  let comentAsText = localStorage.getItem(`coments${index}`);
-  if (comentAsText) {
-    post['coments'] = JSON.parse(comentAsText);
+  let commentAsText = localStorage.getItem(`comments${index}`);
+  if (commentAsText) {
+    post['comments'] = JSON.parse(commentAsText);
   } 
 }

@@ -178,11 +178,11 @@ footer{
     font-weight:bolder;
 }
 
-.newComent{
+.newComment{
     resize: none;
 }
 
-.pop_up_coments{
+.pop_up_comments{
     position: fixed;
     top: 0;
     right: 0;
@@ -223,7 +223,7 @@ textarea{
     gap: 4px;
 }
 
-.user_coments{
+.user_comments{
     border: solid 1px ;
     border-radius: 4px;
     padding: 4px;
