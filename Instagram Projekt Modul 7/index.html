@@ -23,10 +23,10 @@
     </section>
     <div id="pop_up_comments" class="pop_up_comments hide_popup">
         <div class="pop_up_input">
-            <form name="new" action="" onsubmit="return false"></form>
-                <label for="comment"><h2>Kommentar</h2></label>
-                <textarea name="comment" class="newComment" id="newComment" placeholder="" cols="30" rows="10" required></textarea>
-                <button id="sendCommentButton" onclick="sendComment()">Launch</button>
+            <form name="newComment" action="" onsubmit="return false"></form>
+                <label for="newComment"><h2>Kommentar</h2></label>
+                <textarea name="" class="newComment" id="newComment" placeholder="" cols="30" rows="10" required></textarea>
+                <button id="sendCommentButton" onclick="sendCommentButton(index)">Launch</button>
                 <button onclick="abort()">Abort</button>
             </form>
         </div>

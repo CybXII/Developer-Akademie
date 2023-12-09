@@ -162,23 +162,6 @@ function removeLike(index) {
 }
 
 
-function sendCommentButton(index){
-  let comment = document.getElementById('newComment').value;
-  commentTransormed = comment.replaceAll("\n", "</br>");
-  let post = posts[index]
-  post['comments'].push(commentTransormed);
-  save(post,index);
-  abort();
-  document.getElementById('newComment').value = ``;
-}
-
-
-function openNewComment(index){
-  document.getElementById('pop_up_comments').classList.remove("hide_popup");
-  document.getElementById('sendCommentButton').setAttribute('onclick',`sendCommentButton(${index})`)
-}
-
-
 function abort(){
   document.getElementById('pop_up_comments').classList.add("hide_popup");
 }
@@ -197,4 +180,34 @@ function load(post,index){
   if (commentAsText) {
     post['comments'] = JSON.parse(commentAsText);
   } 
+}
+
+
+ // Manuelle Validierung des Formulars
+ function sendCommentButton(index){ // If Abfrage von ChatGPT generiert wegen der onsubmit deaktivierung Funktion
+  let commentField = document.getElementById('newComment');
+  if (!commentField.checkValidity()) {  // Das Formular ist nicht gültig (required-Attribut wurde nicht erfüllt
+      alert('Bitte füllen Sie das Kommentarfeld aus.');
+      return;
+  }
+  let comment = document.getElementById('newComment').value;
+  commentTransormed = comment.replaceAll("\n", "</br>");
+  let post = posts[index]
+  post['comments'].push(commentTransormed);
+  save(post,index);
+  abort();
+  document.getElementById('newComment').value = ``;
+}
+
+
+function openNewComment(index){
+  document.getElementById('pop_up_comments').classList.remove("hide_popup");
+  document.getElementById('sendCommentButton').setAttribute('onclick',`sendCommentButton(${index})`)
+  
+  document.getElementById('newComment').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      sendCommentButton(index);
+  }
+});
 }
