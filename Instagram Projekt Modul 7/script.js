@@ -164,8 +164,9 @@ function removeLike(index) {
 
 function sendCommentButton(index){
   let comment = document.getElementById('newComment').value;
+  commentTransormed = comment.replaceAll("\n", "</br>");
   let post = posts[index]
-  post['comments'].push(comment);
+  post['comments'].push(commentTransormed);
   save(post,index);
   abort();
   document.getElementById('newComment').value = ``;
