@@ -8,3 +8,9 @@ body{
 .logo{
     object-fit: contain;
 }
+
+.centering_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
