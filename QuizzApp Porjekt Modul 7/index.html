@@ -11,54 +11,51 @@
     <script src="./script.js"></script>
 </head>
 
-<body class="bg-dark">
-    <div class="cardheight card bg-primary mb-3 border border-dark">
+<body class="row bg-dark" onload="renderOnload()">
+    <div class="w-75 cardheight card bg-primary mb-3 border border-dark">
         <div class="row g-0 ">
-
             <div class="row border border-dark col-md-4 d-flex justify-content-center align-middle align-items-center">
                 <img src="./img/logo.png" class="logo img-fluid rounded-start h-25 w-50" alt="...">
                 <div class="centering_box ">
                     <div class=" btn-group-vertical" role="group" aria-label="Vertical button group">
                         <div class="list-group" id="list-tab" role="tablist">
-                          <a class="list-group-item border border-dark list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-html" role="tab" aria-controls="list-home">HTML</a>
-                          <a class="list-group-item border border-dark list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-css" role="tab" aria-controls="list-css">CSS</a>
-                          <a class="list-group-item border border-dark list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-javascript" role="tab" aria-controls="list-messages">Javascript</a>
+                          <a onclick="renderHeadlines(0)" class="list-group-item border border-dark list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-html" role="tab" aria-controls="list-home">HTML</a>
+                          <a onclick="renderHeadlines(1)" class="list-group-item border border-dark list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-css" role="tab" aria-controls="list-css">CSS</a>
+                          <a onclick="renderHeadlines(2)" class="list-group-item border border-dark list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-javascript" role="tab" aria-controls="list-messages">Javascript</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-8 bg-light">
-                <div class="card-body border border-dark">
-                    <h5 class="card-title">Javascript Quizz</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                <div class="card-body h-100 border border-dark">
+                    <h5 id="quizz_headline" class="card-title">Javascript Quizz</h5>
+                    <p id="infoline" class="card-text">This is a wider card with supporting text below as a natural lead-in to
                         additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     <div class="row d-flex justify-content-center align-middle align-items-center">
                         <div class="col-4  w-100">
-                            <div class="list-group" id="list-tab" role="tablist">
-                                <a class="list-group-item list-group-item-action active w-75" id="list-home-list"
-                                    data-bs-toggle="list" href="#list-home" role="tab"
-                                    aria-controls="list-home">Antwort1</a>
-                                <a class="list-group-item list-group-item-action w-75" id="list-profile-list"
-                                    data-bs-toggle="list" href="#list-profile" role="tab"
-                                    aria-controls="list-profile">Antwort2</a>
-                                <a class="list-group-item list-group-item-action w-75" id="list-messages-list"
-                                    data-bs-toggle="list" href="#list-messages" role="tab"
-                                    aria-controls="list-messages">Antwort3</a>
-                                <a class="list-group-item list-group-item-action w-75" id="list-settings-list"
-                                    data-bs-toggle="list" href="#list-settings" role="tab"
-                                    aria-controls="list-settings">Antwort4</a>
+                            <div id="startquizz" class="list-group" id="list-tab" role="tablist">
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
+    <div id="quizz_toaster_div" class="quizz_toaster_div">
+        <div id="quizz_toaster" class="quizz_toaster toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+                Hello, world! This is a toast message.
+                <div class="mt-2 pt-2 border-top">
+                <button type="button" class="btn btn-primary btn-sm">Antwort Bestätigen</button>
+                <button onclick="cancelSelected()" type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Abbrechen</button>
+                </div>
+            </div>
+            </div>
+        </div>
     </div>
-    </div>
+
 </body>
 
 </html>
