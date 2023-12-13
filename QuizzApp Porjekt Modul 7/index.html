@@ -12,11 +12,11 @@
 </head>
 
 <body class="row bg-dark" onload="renderOnload()">
-    <div class="w-75 cardheight card bg-primary mb-3 border border-dark">
-        <div class="row g-0 ">
+    <div class="w-75 h-75 cardheight overflow_y card bg-primary mb-3 border border-dark">
+        <div class="row g-0 h-100">
             <div class="row col-md-4 d-flex justify-content-center align-middle align-items-center">
                 <img src="./img/logo.png" class="logo img-fluid rounded-start h-25 w-50" alt="...">
-                <div class="centering_box ">
+                <div class="centering_box">
                     <div class=" btn-group-vertical" role="group" aria-label="Vertical button group">
                         <div class="list-group" id="list-tab" role="tablist">
                           <a onclick="renderHeadlines(0)" class="list-group-item border border-dark list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-html" role="tab" aria-controls="list-home">HTML</a>
@@ -27,15 +27,13 @@
                 </div>
             </div>
 
-            <div class="col-md-8 border border-dark rounded bg-light">
+            <div class="col-md-8  border border-dark rounded bg-light">
                 <div class="card-body h-100">
-                    <h5 id="quizz_headline" class="card-title">Javascript Quizz</h5>
-                    <p id="infoline" class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <h5 id="quizz_headline" class="card-title"></h5>
+                    <p id="infoline" class="card-text"></p>
                     <div class="row d-flex justify-content-center align-middle align-items-center">
                         <div class="col-4  w-100">
                             <div id="startquizz" class="list-group" id="list-tab" role="tablist">
-
                             </div>
                         </div>
                     </div>
@@ -45,10 +43,10 @@
     </div>
     <div id="quizz_toaster_div" class="quizz_toaster_div">
         <div id="quizz_toaster" class="quizz_toaster toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-body">
-                Hello, world! This is a toast message.
+            <div id=""class="toast-body">
+                <div id="selected_answer"></div>
                 <div class="mt-2 pt-2 border-top">
-                <button type="button" class="btn btn-primary btn-sm">Antwort Bestätigen</button>
+                <button id="accept_button" type="button" class="btn btn-primary btn-sm">Antwort Bestätigen</button>
                 <button onclick="cancelSelected()" type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Abbrechen</button>
                 </div>
             </div>
