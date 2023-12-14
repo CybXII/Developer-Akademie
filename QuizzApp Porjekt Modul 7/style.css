@@ -15,8 +15,8 @@ body{
     align-items: center;
 }
 
-.quizz_toaster{
-
+.d_none{
+    display: none;
 }
 
 .quizz_toaster_div{
