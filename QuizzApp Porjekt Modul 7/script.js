@@ -2,45 +2,175 @@ let quizz = [
   {
     type: "HTML",
     info: "Mach dich bereit das HTML Quizz geht sofort los!",
-    questions: ["1.Frage", "2", "3", "4", "5", "6", "7"],
+    questions: [
+      "1.Frage: Was bedeutet HTML?",
+      "2.Frage: Welches HTML-Element wird verwendet, um einen Absatz zu erstellen?",
+      "3.Frage: Welches Attribut wird verwendet, um einen Link in einem neuen Fenster zu öffnen?",
+      "4.Frage: Wie wird ein Kommentar in HTML geschrieben?",
+      "5.Frage: Welches HTML-Element wird für die strukturierte Liste verwendet?",
+      "6.Frage: Welche der folgenden ist keine gültige HTML-Farbcodierung?",
+      "7.Frage: Welches HTML-Element wird verwendet, um eine Tabelle zu erstellen?"
+    ],
     answerOption: [
-      ["1Antwort", "test", "3", "4"],
-      ["1Antwort", "test", "3", "4"],
-      ["1Antwort", "test", "3", "4"],
-      ["1Antwort", "test", "3", "4"],
-      ["1Antwort", "test", "3", "4"],
-      ["1Antwort", "test", "3", "4"],
-      ["1Antwort", "test", "3", "4"]
+      [
+        "HighTech Modern Language",
+        "HyperText Markup Language",
+        "HyperTransfer Markup Language",
+        "HyperText Modulation Language"
+      ],
+      [
+        "<para>",
+        "<p>",
+        "<text>",
+        "<paragraph>"
+      ],
+      [
+        "href='_new'",
+        "link='new'",
+        "window='_open'",
+        "target='_blank'"
+      ],
+      [
+        "<!-- Dies ist ein Kommentar -->",
+        "// Dies ist ein Kommentar",
+        " /* Dies ist ein Kommentar */",
+        " # Dies ist ein Kommentar"
+      ],
+      [
+        "<ol>",
+        "<li>",
+        "<list>",
+        "<ul>"
+      ],
+      [
+        "#FF0000",
+        "yellow",
+        "rgb(255, 0, 0)",
+        "hsl(120, 100%, 50%)"
+      ],
+      [
+        "<tab>",
+        "<tbl>",
+        "<table>",
+        "<tr>"
+      ]
     ],
     rightAnswers: [1, 1, 3, 0, 3, 1, 2]
   },
   {
     type: "CSS",
     info: "Mach dich bereit das CSS Quizz geht sofort los!",
-    questions: ["1.Frage", "2", "3", "4", "5", "6", "7"],
+    questions: [
+      "1.Frage: Wie wird in CSS die Hintergrundfarbe einer Seite festgelegt?",
+      "2.Frage: Welche Einheit wird in CSS für die Größe von Schrift verwendet?",
+      "3.Frage: Welches CSS-Selektorzeichen wird verwendet, um alle Elemente auszuwählen?",
+      "4.Frage: Wie wird in CSS ein externes Stylesheet eingebunden?",
+      "5.Frage: Welche Eigenschaft wird in CSS verwendet, um Text in Großbuchstaben umzuwandeln?",
+      "6.Frage: Welches CSS-Element wird verwendet, um einen Schatten um ein Element zu erzeugen?",
+      "7.Frage: Wie zentriert man ein Blockelement horizontal in CSS?"
+    ],
     answerOption: [
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"]
+      [
+        "color-background",
+        "background-color",
+        "page-color",
+        "bgcolor"
+      ],
+      [
+        "em",
+        "px",
+        "%size",
+        "sp"
+      ],
+      [
+        "#",
+        ".",
+        "$",
+        "*"
+      ],
+      [
+        "link rel='stylesheet' type='text/css' href='external.css'",
+        "style>external.css</style",
+        "css src='external.css'></css",
+        "include stylesheet='external.css'"
+      ],
+      [
+        
+        "text-style: uppercase;",
+        "transform: text-uppercase;",
+        "uppercase: true;",
+        "text-transform: uppercase;"
+      ],
+      [
+        "shadow-effect",
+        "box-shadow",
+        "element-shadow",
+        "style-shadow"
+      ],
+      [
+        "center-align: horizontal;",
+        "align: center;",
+        "margin: auto;",
+        "horizontal: center;"
+      ]
     ],
     rightAnswers: [1, 1, 3, 0, 3, 1, 2]
   },
   {
     type: "Javascript",
     info: "Mach dich bereit das Javascript Quizz geht sofort los!",
-    questions: ["1.Frage", "2", "3", "4", "5", "6", "7"],
+    questions: [
+      "1.Frage: Wie deklariert man eine Variable in JavaScript?",
+      "2.Frage: Welches Schlüsselwort wird verwendet, um eine Funktion in JavaScript zu definieren?",
+      "3.Frage: Wie vergleicht man den Wert und den Typ zweier Variablen in JavaScript?",
+      "4.Frage: Welches Ereignis wird ausgelöst, wenn ein HTML-Formular abgeschickt wird?",
+      "5.Frage: Wie fügt man ein Element am Ende eines Arrays in JavaScript hinzu?",
+      "6.Frage: Wie ruft man die Anzahl der Elemente in einem Array ab?",
+      "7.Frage: "
+    ],
     answerOption: [
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"],
-      ["1Antwort", "2", "3", "4"]
+      [
+        "variable myVar;",
+        "var myVar;",
+        "v myVar;",
+        "let myVar;"
+      ],
+      [
+        "func",
+        "function",
+        "def",
+        "method"
+      ],
+      [
+        "==",
+        "=",
+        "!==",
+        "==="
+      ],
+      [
+        "onsubmit",
+        "onsend",
+        "onform",
+        "onsubmitting"
+      ],
+      [
+        "array.insertEnd()",
+        "array.append()",
+        "array.addToEnd()",
+        "array.push()"
+      ],
+      [
+        "array.size",
+        "array.length",
+        "array.count",
+        "array.elements"
+      ],
+      [
+        "Math.randomInt(1, 10)",
+        "random(1, 10)",
+        "Math.floor(Math.random() * 10) + 1",
+        "randomInt(1, 10)"
+      ]
     ],
     rightAnswers: [1, 1, 3, 0, 3, 1, 2]
   }
