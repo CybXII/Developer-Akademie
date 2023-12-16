@@ -183,19 +183,22 @@ function renderOnload() {
   let info = document.getElementById("infoline");
   let quizz_Answers = document.getElementById("startquizz");
   hideAcceptDiv();
-  headline.innerHTML = `
-   Herzlich Willkommen bei Alexanders QuizzApp<br>
-   `;
-  info.innerHTML = `
-   Suche dir eine Quizz Kategorie aus und dann kann es schon direkt los gehen!!!
-   `;
-  document.getElementById("startquizz");
-  quizz_Answers.innerHTML = `
-   Sobald du eine Kategorie ausgewählt hast kannste du eine von 4 Antworten zu eine Frage wählen und mit dem Bestätigen Button zur nächsten Frage springen. Am Ende des Quizz's bekommst du dein Ergebnis!
-  <br>
+  renderCard(headline,info,quizz_Answers)
+}
 
-   Viel Erfolg 
-   `;
+function renderCard(headline,info,quizz_Answers) {
+  headline.innerHTML = `
+  Herzlich Willkommen bei Alexanders QuizzApp<br>
+  `;
+ info.innerHTML = `
+  Suche dir eine Quizz Kategorie aus und dann kann es schon direkt los gehen!!!
+  `;
+ document.getElementById("startquizz");
+ quizz_Answers.innerHTML = `
+  Sobald du eine Kategorie ausgewählt hast kannste du eine von 4 Antworten zu eine Frage wählen und mit dem Bestätigen Button zur nächsten Frage springen. Am Ende des Quizz's bekommst du dein Ergebnis!
+ <br>
+  Viel Erfolg 
+  `;
 }
 
 function renderHeadlines(input) {
@@ -266,12 +269,8 @@ function resetQuizz() {
 }
 
 function hideAcceptDiv() {
-  document
-    .getElementById("quizz_toaster")
-    .setAttribute("class", "quizz_toaster toast");
-  document
-    .getElementById("quizz_toaster_div")
-    .setAttribute("class", "quizz_toaster_div");
+  document.getElementById("quizz_toaster").setAttribute("class", "quizz_toaster toast");
+  document.getElementById("quizz_toaster_div").setAttribute("class", "quizz_toaster_div");
 }
 
 
