@@ -3,6 +3,64 @@ body{
     right: 0;
     top: 0;
     margin: 0;
+    font-family: 'Lobster';
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+h1{
+    margin: 0;
+}
 
+header{
+    border-bottom: 1px solid ;
+    background-color:chocolate ;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    width: 100vw;
+    position: fixed;
+    z-index: 1;
+}
+
+main{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 100px
+}
+
+.navigation{
+    display: flex;
+}
+
+li{
+    margin-left: 24px;
+}
+
+.banner{
+    display: flex;
+}
+
+.shopping_cart{
+    position: fixed;
+    right: 0;
+    width: 25%;
+}
+
+.shopping_section{
+    width: 70%;
+
+}
+
+footer{
+    display: flex;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
