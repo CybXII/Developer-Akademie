@@ -26,14 +26,18 @@
                 </div>
             </div>
             <div class="col-md-8  border border-dark rounded bg-light">
-                <div class="card-body h-100">
-                    <h5 id="quizz_headline" class="card-title"></h5>
-                    <p id="infoline" class="card-text"></p>
-                    <div class="row d-flex justify-content-center align-middle align-items-center">
-                        <div class="col-4  w-100">
-                            <div id="startquizz" class="list-group" id="list-tab" role="tablist">
+                <div class="card-body h-100 inner_quizz_body">
+                    <div>
+                        <h5 id="quizz_headline" class="card-title"></h5>
+                        <p id="infoline" class="card-text"></p>
+                        <div class="row d-flex justify-content-center align-middle align-items-center">
+                            <div class="col-4  w-100">
+                                <div id="startquizz" class="list-group" id="list-tab" role="tablist">
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="progress_container">
                     </div>
                 </div>
             </div>
@@ -42,7 +46,7 @@
     <div id="quizz_toaster_div" class="quizz_toaster_div">
         <div id="quizz_toaster" class="quizz_toaster toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div id=""class="toast-body">
-                <div id="selected_answer"></div>
+                <div id="selected_answer" class="selected_answer"></div>
                 <div class="mt-2 pt-2 border-top">
                 <button id="accept_button" type="button" class="btn btn-primary btn-sm"></button>
                 <button id="cancel_button" onclick="cancelSelected()" type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Abbrechen</button>

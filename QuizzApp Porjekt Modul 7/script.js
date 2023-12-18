@@ -19,10 +19,10 @@ let quizz = [
         "HyperText Modulation Language"
       ],
       [
-        "<para>",
-        "<p>",
-        "<text>",
-        "<paragraph>"
+        "para",
+        "p",
+        "text",
+        "paragraph"
       ],
       [
         "href='_new'",
@@ -31,16 +31,16 @@ let quizz = [
         "target='_blank'"
       ],
       [
-        "<!-- Dies ist ein Kommentar -->",
-        "// Dies ist ein Kommentar",
-        " /* Dies ist ein Kommentar */",
-        " # Dies ist ein Kommentar"
+        "!-- Dies ist ein Kommentar -->",
+        "// Dies ist ein Kommentar>",
+        " /* Dies ist ein Kommentar */>",
+        " # Dies ist ein Kommentar>"
       ],
       [
-        "<ol>",
-        "<li>",
-        "<list>",
-        "<ul>"
+        "o",
+        "li",
+        "list",
+        "ul"
       ],
       [
         "#FF0000",
@@ -49,13 +49,14 @@ let quizz = [
         "hsl(120, 100%, 50%)"
       ],
       [
-        "<tab>",
-        "<tbl>",
-        "<table>",
-        "<tr>"
+        "tab",
+        "tbl",
+        "table",
+        "tr"
       ]
     ],
-    rightAnswers: [1, 1, 3, 0, 3, 1, 2]
+    rightAnswers: [1, 1, 3, 0, 3, 1, 2],
+    rightAnswerChecker: []
   },
   {
     type: "CSS",
@@ -114,7 +115,8 @@ let quizz = [
         "horizontal: center;"
       ]
     ],
-    rightAnswers: [1, 1, 3, 0, 3, 1, 2]
+    rightAnswers: [1, 1, 3, 0, 3, 1, 2],
+    rightAnswerChecker: []
   },
   {
     type: "Javascript",
@@ -172,19 +174,26 @@ let quizz = [
         "randomInt(1, 10)"
       ]
     ],
-    rightAnswers: [1, 1, 3, 0, 3, 1, 2]
+    rightAnswers: [1, 1, 3, 0, 3, 1, 2],
+    rightAnswerChecker: []
   }
 ];
 
+
 let selected = [];
+let AUDIO_SUCCES = new Audio('./sounds/succes.mp3');
+let AUDIO_FAIL = new Audio('./sounds/fail.mp3');
+
 
 function renderOnload() {
   let headline = document.getElementById("quizz_headline");
   let info = document.getElementById("infoline");
   let quizz_Answers = document.getElementById("startquizz");
   hideAcceptDiv();
+  clearProgressbar() 
   renderCard(headline,info,quizz_Answers)
 }
+
 
 function renderCard(headline,info,quizz_Answers) {
   headline.innerHTML = `
@@ -201,11 +210,13 @@ function renderCard(headline,info,quizz_Answers) {
   `;
 }
 
+
 function renderHeadlines(input) {
   const quizz_type = quizz[input]["type"];
   let headline = document.getElementById("quizz_headline");
   let info = document.getElementById("infoline");
   let start = document.getElementById("startquizz");
+  renderProgressbar(input,0);
   headline.innerHTML = `
         ${quizz_type} Quizz
         `;
@@ -217,8 +228,8 @@ function renderHeadlines(input) {
         data-bs-toggle="list" href="#list-profile" role="tab"
         aria-controls="list-profile">Beginne das Quizz</a>
         `;
-}
 
+}
 
 
 function renderQuizz(input, question_Number) {
@@ -230,7 +241,9 @@ function renderQuizz(input, question_Number) {
   quizz_Answers.innerHTML = ``;
   info.innerHTML = question[question_Number];
   renderAnswers(input, question_Number,quizz_type,quizz_Answers);
+  renderProgressbar(input,question_Number);
 }
+
 
 function renderAnswers(input, question_Number,quizz_type,quizz_Answers){
   for (let i = 0; i < quizz_type[question_Number].length; i++) {
@@ -241,10 +254,12 @@ function renderAnswers(input, question_Number,quizz_type,quizz_Answers){
   }
 }
 
+
 function setSelected(selected_Number, question_Number, input) {
   selected = selected_Number;
   showAcceptDiv(selected_Number, question_Number, input);
 }
+
 
 function showAcceptDiv(selected_Number, question_Number, input) {
   const quizz_head = quizz[input]["answerOption"];
@@ -257,16 +272,19 @@ function showAcceptDiv(selected_Number, question_Number, input) {
   document.getElementById("accept_button").innerHTML = `Antwort Bestätigen`;
 }
 
+
 function cancelSelected() {
   selected = 0;
   document.getElementById("quizz_toaster").setAttribute("class", " toast");
   document.getElementById("quizz_toaster_div").setAttribute("class", "toast");
 }
 
+
 function resetQuizz() {
   resetAcceptDiv();
   renderOnload();
 }
+
 
 function hideAcceptDiv() {
   document.getElementById("quizz_toaster").setAttribute("class", "quizz_toaster toast");
@@ -278,6 +296,7 @@ function checkAnswer(selected_Number, next_question_number, input) {
   const checker = quizz[input]["rightAnswers"][next_question_number - 1];
   if (quizz[input]["questions"].length >= next_question_number) {
     if (checker === selected) {
+      quizz[input]['rightAnswerChecker'].push(1)
       checkWin(input,next_question_number);
     } 
     else if (checker !== selected) {
@@ -287,15 +306,18 @@ function checkAnswer(selected_Number, next_question_number, input) {
   }
 }
 
+
 function checkWin(input,next_question_number) {
   hideAcceptDiv();
   if (quizz[input]["questions"].length > next_question_number) {
     renderQuizz(input, next_question_number);
   }
   else{
+    renderProgressbar(input,next_question_number);
     quizzEnd(input);
   }
 }
+
 
 function restartQuizz(input) {
   resetAcceptDiv();
@@ -303,31 +325,62 @@ function restartQuizz(input) {
   renderHeadlines(input)
 }
 
+
 function renderFalseButton(selected_Number) {
   document.getElementById(`liveToastBtn${selected_Number}`).setAttribute("class","list-group-item list-group-item-action w-75 bg-danger");
   document.getElementById(`liveToastBtn${selected_Number}`).setAttribute("aria-selected", "false");
   document.getElementById(`liveToastBtn${selected_Number}`).innerHTML = `Falsch!`;
 }
 
+
 function quizzEnd(input){
+  let question = quizz[input]['questions'].length;
   document.getElementById("quizz_toaster").setAttribute("class", "show quizz_toaster toast fade ");
   document.getElementById("quizz_toaster_div").setAttribute("class", "toast fade show quizz_toaster_div z_index");
-  document.getElementById("selected_answer").innerHTML = `Du hast es geschafft!!!<br>Das ${quizz[input]['type']} Quizz ist vorbei danke fürs mitmachen!`;
   document.getElementById("accept_button").setAttribute("onclick",`renderOnload()`);
   document.getElementById("accept_button").innerHTML = `Quizz Reset`;
   document.getElementById("cancel_button").setAttribute(`class`,'d_none');
+  document.getElementById("selected_answer").innerHTML = `
+  Du hast es geschafft!!!<br>
+  Das ${quizz[input]['type']} Quizz ist vorbei danke fürs mitmachen!<br>
+  Du hast ${quizz[input]['rightAnswerChecker'].length} von ${question} richtig beantwortet
+  <img class="align_right" src="./img/tropy.png" alt="">
+  `;
+  AUDIO_SUCCES.play();
 }
 
+
 function quizzEndLose(input) {
+  let question = quizz[input]['questions'].length;
   document.getElementById("quizz_toaster").setAttribute("class", "show quizz_toaster toast fade ");
   document.getElementById("quizz_toaster_div").setAttribute("class", "toast fade show quizz_toaster_div z_index");
-  document.getElementById("selected_answer").innerHTML = `Schade leider war das die falsche Antwort!!!<br>Das Quizz ist vorbei danke fürs mitmachen!`;
   document.getElementById("accept_button").setAttribute("onclick",`restartQuizz(${input})`);
   document.getElementById("accept_button").innerHTML = `Erneut Versuchen`;
   document.getElementById("cancel_button").setAttribute(`class`,'d_none');
+  document.getElementById("selected_answer").innerHTML = `Schade leider war das die falsche Antwort!!!<br>
+  Du hast ${quizz[input]['rightAnswerChecker'].length} von ${question} richtig beantwortet.<br>
+  Das Quizz ist vorbei danke fürs mitmachen!`;
+  AUDIO_FAIL.play();
 }
+
 
 function resetAcceptDiv() {
   document.getElementById("accept_button").innerHTML = `Antwort Bestätigen`;
   document.getElementById("cancel_button").setAttribute(`class`,'btn btn-secondary btn-sm');
+}
+
+
+function renderProgressbar(input,question_Number) {
+  let progress = Math.round((question_Number/quizz[input]['questions'].length)*100);
+  document.getElementById('progress_container').innerHTML=`
+  <div> ${question_Number} von ${quizz[input]['questions'].length}</div>
+  <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar" style="width:${progress}%">${progress} %</div>
+  </div>
+  `;
+}
+
+
+function clearProgressbar() {
+  document.getElementById('progress_container').innerHTML=``;
 }
