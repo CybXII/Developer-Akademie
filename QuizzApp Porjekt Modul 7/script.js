@@ -217,6 +217,11 @@ function renderHeadlines(input) {
   let info = document.getElementById("infoline");
   let start = document.getElementById("startquizz");
   renderProgressbar(input,0);
+  renderInfos(headline,info,start,quizz_type,input);
+}
+
+
+function renderInfos(headline,info,start,quizz_type,input) {
   headline.innerHTML = `
         ${quizz_type} Quizz
         `;
@@ -228,7 +233,6 @@ function renderHeadlines(input) {
         data-bs-toggle="list" href="#list-profile" role="tab"
         aria-controls="list-profile">Beginne das Quizz</a>
         `;
-
 }
 
 
