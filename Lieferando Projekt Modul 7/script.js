@@ -3,7 +3,7 @@ let restaurants = [
         name: 'Istanbul Grill',
         menüs:['Pommes','Döner','Dönerteller'],
         prices:[3.49, 7.49, 9.99],
-        imgs:['istanbulpommes.jpg','istanbuldoener.jpg','dönerteller.jpg']
+        imgs: ['istanbulpommes.jpg','istanbuldoener.jpg','dönerteller.jpg']
     },
     {
         name: 'Angelos Pizza',
@@ -26,3 +26,26 @@ let restaurants = [
 ]
 
 
+function renderCarousel(input){
+    let restaurant = restaurants[input]['imgs'];
+
+    for (let i = 0; i < restaurants[input]['imgs'].length; i++) {
+        if (i === 0) {
+            document.getElementById('carousel_inner').innerHTML = `
+            <div class="carousel-item active">
+                <img src="./img/${restaurant[i]}" class="d-block w-100" alt="...">
+            </div>
+            `;
+        }
+        else {
+            document.getElementById('carousel_inner').innerHTML = `
+            <div class="carousel-item">
+                <img src="./img/${restaurant[i]}" class="d-block w-100" alt="...">
+            </div>
+            `;
+        }
+
+        
+    }
+
+}

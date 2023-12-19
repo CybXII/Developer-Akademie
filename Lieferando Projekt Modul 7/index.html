@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="./fonts/fonts.css">
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js"></script>
+    <link rel="icon" type="" href="./img/bird.svg">
+
 </head>
-<body>
+<body onload="renderCarousel(0)">
 
     <header>
-        <div class="banner"><img src="./img/bird.svg" alt=""><h1>HotWings</h1></div>
+        <div class="banner"><img src="" alt=""><h1>HotWings</h1></div>
         <nav>
             <ul class="navigation">
                 <li><a href="#">Startseite</a></li>
@@ -23,7 +25,27 @@
 
     <main>
         <section class="shopping_section">
-            <div id="content"></div>
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div id="carousel_inner" class="carousel-inner">
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">></span>
+                </button>
+              </div>
+            <div id="content">
+
+            </div>
         </section>
         <section class="shopping_cart">
             <h2>Warenkorb</h2>

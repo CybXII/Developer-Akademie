@@ -50,7 +50,11 @@ li{
     top: 100;
     right: 0;
     width: 25%;
+    background-image: url(./img/bird.svg);
+    background-repeat: no-repeat;
+    background-position: 80% 20%;
 }
+
 
 .shopping_cart_sticky{
     position: sticky;
