@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HotWings</title>
-    <link rel="stylesheet" href="./fonts/fonts.css">
-    <link rel="stylesheet" href="./style.css">
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="./script.js"></script>
+    <link rel="stylesheet" href="./fonts/fonts.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="" href="./img/bird.svg">
-
 </head>
 <body onload="renderCarousel(0)">
-
     <header>
         <div class="banner"><img src="" alt=""><h1>HotWings</h1></div>
         <nav>
@@ -25,14 +25,10 @@
 
     <main>
         <section class="shopping_section">
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <div id="carouselExampleIndicators" class="carousel slide height_200">
+                <div id="carousel_indicator" class="carousel-indicators">
                 </div>
                 <div id="carousel_inner" class="carousel-inner">
-
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>

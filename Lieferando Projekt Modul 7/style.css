@@ -47,12 +47,13 @@ li{
 
 .shopping_cart{
     position: fixed;
-    top: 100;
     right: 0;
     width: 25%;
+    height: 80vh;
     background-image: url(./img/bird.svg);
+    background-size:  100px;
     background-repeat: no-repeat;
-    background-position: 80% 20%;
+    background-position: bottom left;
 }
 
 
@@ -77,4 +78,16 @@ footer{
 a{
     text-decoration: none;
     color: black;
+}
+.food_banner{
+    object-fit: cover;
+    height: 300px;
+}
+
+h5{
+    margin: 0;
+}
+
+.restaurant_info{
+    background-color: #0000009e;
 }
