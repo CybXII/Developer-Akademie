@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,12 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="" href="./img/bird.svg">
 </head>
-<body onload="renderCarousel(0)">
+
+<body onload="renderSite(0)">
     <header>
-        <div class="banner"><img src="" alt=""><h1>HotWings</h1></div>
+        <div class="banner"><img src="" alt="">
+            <h1>HotWings</h1>
+        </div>
         <nav>
             <ul class="navigation">
                 <li><a href="#">Startseite</a></li>
@@ -30,24 +34,27 @@
                 </div>
                 <div id="carousel_inner" class="carousel-inner">
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">></span>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">></span>
                 </button>
-              </div>
+            </div>
             <div id="content">
 
             </div>
         </section>
-        <section class="shopping_cart">
+        <section class="shopping_cart p-2">
             <h2>Warenkorb</h2>
             <p>Ihre ausgewählten Menü`s</p>
-            <div id="meal_container" class="meal_container">      
-            <p id="max_sum" class="max_sum">Gesamtpreis:</p>
+            <div id="meal_container" class="meal_container p-2">
+            </div>
+            <p id="max_sum" class="max_sum p-2">Gesamtpreis:</p>
         </section>
     </main>
 

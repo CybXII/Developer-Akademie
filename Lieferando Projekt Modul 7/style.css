@@ -24,7 +24,7 @@ header{
     height: 100px;
     width: 100vw;
     position: sticky;
-    z-index: 1;
+    z-index: 3;
     top: 0;
 }
 
@@ -48,7 +48,7 @@ li{
 .shopping_cart{
     position: fixed;
     right: 0;
-    width: 25%;
+    width: 30%;
     height: 80vh;
     background-image: url(./img/bird.svg);
     background-size:  100px;
@@ -73,7 +73,15 @@ footer{
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 4;
+    background-color: #ffffff;
 }
+
+.meal_container{
+    width: 100%;
+}
+
+
 
 a{
     text-decoration: none;
@@ -90,4 +98,76 @@ h5{
 
 .restaurant_info{
     background-color: #0000009e;
+}
+
+.d_flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.d_flexbasket{
+    display: flex;
+    justify-content: space-between;
+}
+
+.center{
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center p{
+    margin: 0;
+}
+
+.margin_5{
+    margin: 5%
+}
+
+@media (max-width: 620px){
+    .d_flexbasket{
+        display: block;
+    }
+
+}
+
+
+@media (max-width: 520px){
+    main{
+        flex-direction: column;
+    }
+    .shopping_cart{
+        position: relative;
+        right: unset;
+        width: 100%;
+        height: fit-content;
+        background-image: url(./img/bird.svg);
+        background-size:  50px;
+        background-repeat: no-repeat;
+        background-position: bottom right;
+    }
+
+    footer{
+        display: flex;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-top: 20px;
+    }
+    
+    .d_flex{
+        display: block;
+    }
+
+    .w-25{
+        width: 100%!important;
+    }
+    
+    .mt-3{
+        margin: 0;
+    }
+
+    .shopping_section{
+        width: 100%;
+    }
 }
