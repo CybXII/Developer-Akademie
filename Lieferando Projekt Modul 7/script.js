@@ -19,7 +19,7 @@ let restaurants = [
     },
     {
         name: 'Ibo`s Döner',
-        menüs:['Pommes','Döner','Dönerteller'],
+        menüs:['Pommes','Döner','Ibos Dönnerteller'],
         menüInfos:['Bespiel Menü Infos1','Bespiel Menü Infos2','Bespiel Menü Infos3'],
         prices:[3.49, 6.99, 9.49],
         imgs:['ibopommes.jpg','ibodoener.jpg','dönerteller.jpg'],
@@ -38,17 +38,17 @@ let restaurants = [
 ]
 
 
-let basket = [
-    { // Restaurant 0 = Istanbul Grill
-    addedMenues:[],
-    menuePrices:[],
-    menueAmount:[],
-    },
-]
+let basket = [];
 
 
 function renderSite(input){
     renderCarousel(input);
+    renderShoppingSection(input)
+}
+
+function renderShoppingSection(input){
+    
+    setCarouselSwitchButtons(input);
     renderMenues(input);
     renderBasket();
 }
@@ -58,16 +58,17 @@ function renderCarousel(input){
 
     for (let i = 0; i < restaurants.length; i++) {
         if (i === 0) {
-            renderFirstCarouselItem(input,i,restaurant)
+            renderFirstCarouselItem(input,i,restaurant);
         }
-        else {
-            renderOtherCarouselItem(input,i,restaurant)
+        else if(i !== 0){
+            renderOtherCarouselItem(input,i,restaurant);
         }
     }
 }
 
 
 function renderFirstCarouselItem(input,i,restaurant){
+    setCarouselSwitchButtons(input)
     document.getElementById('carousel_indicator').innerHTML += `
     <button onclick="switchCarousel(${i})" id="switchCarousel${i}" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" class="active" aria-current="true" aria-label="Slide ${i+1}"></button>
     `;
@@ -83,7 +84,7 @@ function renderFirstCarouselItem(input,i,restaurant){
 }
 
 
-function renderOtherCarouselItem(i){
+function renderOtherCarouselItem(input,i,restaurant){
     document.getElementById('carousel_indicator').innerHTML += `
     <button onclick="switchCarousel(${i})" id="switchCarousel${i}" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${i+1}"></button>
     `;
@@ -99,6 +100,8 @@ function renderOtherCarouselItem(i){
 }
 
 
+
+
 function renderMenues(input){
     document.getElementById('content').innerHTML = ``;
     for (let i = 0; i < restaurants[input]['menüs'].length; i++) {
@@ -107,7 +110,7 @@ function renderMenues(input){
             <div class="card-body">
                 <div class="d_flex">
                     <h5 class="card-title">${restaurants[input]['menüs'][i]}</h5>
-                    <a href="#" onclick=addToBasket(${input},${i}) class="btn btn-primary">+</a>
+                    <a href="#" onclick=addToBasket(${input},'${restaurants[input]['menüs'][i]}') class="btn btn-primary">+</a>
                 </div>
                 <div class="d_flex mt-3">
                     <div>
@@ -123,35 +126,118 @@ function renderMenues(input){
 }
 
 function renderBasket(){
-    document.getElementById('meal_container').innerHTML = ``;
-
-    for (let i = 0; i < basket[0]['addedMenues'].length; i++) {
-        document.getElementById('meal_container').innerHTML += `
+    let addedMeals = document.getElementById('meal_container');
+    addedMeals.innerHTML = ``;
+    if (basket.length === 0){
+        addedMeals.innerHTML += `
         <div class="d_flex center">
-            <p>${basket[0]['addedMenues'][i]}</p>
-            <p>${basket[0]['menuePrices'][i]}€</p>
-        </div>
-        <div class="d_flexbasket p-2 center border rounded">
-            <p>Menge</p>
-            <div class="d_flex g-2">
-                <button onclick="increaseAmount()" id="increase_amount" type="button" class="btn btn-outline-primary h-50">+</button>
-                <p class="amount fs-5 p-1">${basket[0]['menueAmount'][i]}</p>
-                <button onclick="decreaseAmount()" id="decrease_amount" type="button" class="btn btn-outline-primary h-50">-</button>
-            </div>
-        </div>
-        `;
+            <p>Ihr Warenkorb ist leer</p>
+
+        </div>`;
     }
+    else{
+        for (let i = 0; i < basket[0]['menüs'].length; i++) {
+            addedMeals.innerHTML += `
+            <div class="d_flex center">
+                <p>${basket[0]['menüs'][i]}</p>
+                <p>${basket[0]['prices'][i]}€</p>
+            </div>
+            <div class="d_flexbasket p-2 center border rounded">
+                <p>Menge</p>
+                <div class="d_flex g-2">
+                    <button onclick="increaseAmount()" id="increase_amount" type="button" class="btn btn-outline-primary h-50">+</button>
+                    <p class="amount fs-5 p-1">${basket[0]['amount'][i]}</p>
+                    <button onclick="decreaseAmount()" id="decrease_amount" type="button" class="btn btn-outline-primary h-50">-</button>
+                </div>
+            </div>
+            `;
+        }
+    }
+ 
 }
 
 
-function addToBasket(input,menüId){
-        basket[input]['menuePrices'].push(restaurants[input]['prices'][menüId]);
-        basket[input]['addedMenues'].push(restaurants[input]['menüs'][menüId]);
-        basket[input]['menueAmount'].push(1);
+function addToBasket(input,menü){
+    let restaurant = restaurants[input]['name'];
+    var indexRestaurant = restaurants.findIndex(obj => obj.name== restaurant);
+    let indexMenue  = restaurants[input]['menüs'].indexOf(menü);
+    if (basket.length === 0) {
+        addNewRestaurant(input,restaurant,menü,indexMenue)
+    }
+    else {  
+        //checken ob restaurant im basket vorhanden ist
+        if (indexRestaurant == -1) { 
+            addNewRestaurant(input,restaurant,menü,indexMenue)
+        }
+        //checken ob menü im basket vorhanden ist
+        else {
+           if(basket.findIndex(obj => obj.menüs==menü) == -1 ){
+            addNewMeal(input,restaurant,menü,indexMenue)
+           }
+        }
+    }
         renderBasket();
 }
 
+function addNewMeal(input,restaurant,menü,indexMenue){
+    let indexRestaurant = basket.findIndex(obj => obj.name==restaurant);
+    let newMeal = basket[indexRestaurant];
+    let newPrice = [restaurants[input]['prices'][indexMenue]];
+    newMeal['menüs'].push(menü);
+    newMeal['prices'].push(newPrice);
+    newMeal['amount'].push([1])
+}
+
+function addNewRestaurant(input,restaurant,menü,indexMenue){
+    let newPush = {
+        name: restaurant,
+        menüs:[menü],
+        prices:[restaurants[input]['prices'][indexMenue]],
+        amount:[1]
+        }
+    basket.push(newPush);
+}
+
 function switchCarousel(input){
-renderMenues(input);
-renderBasket();
+    if (input < 0){
+        renderShoppingSection(restaurants.length)
+    }
+    else if (input >= restaurants.length){
+        renderShoppingSection(0)    
+    }
+    else {
+        renderShoppingSection(input)
+    }
+}
+
+function switchCarouselForward(input){
+    if (input >= restaurants.length){
+           renderShoppingSection(0)    
+       }
+       else {
+           renderShoppingSection(input)
+       }
+   }
+function switchCarouselBackward(input){
+    if (input < 0){
+       renderShoppingSection(restaurants.length)
+    }
+       else {
+           renderShoppingSection(input)
+       }
+   }
+
+function setCarouselSwitchButtons(input){
+    if (input <= 0){
+        document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${restaurants.length-1})`);
+        document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${input+1})`);
+    }
+    else if (input >= restaurants.length-1){
+        document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${input-1})`);
+        document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${0})`);
+    }
+    else{
+        document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${input-1})`);
+        document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${input+1})`);
+    }
 }

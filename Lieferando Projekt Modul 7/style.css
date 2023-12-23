@@ -143,7 +143,7 @@ h5{
         background-image: url(./img/bird.svg);
         background-size:  50px;
         background-repeat: no-repeat;
-        background-position: bottom right;
+        background-position: bottom right 6%;
     }
 
     footer{
