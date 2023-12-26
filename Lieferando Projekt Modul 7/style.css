@@ -124,20 +124,26 @@ h5{
     overflow-y: auto;
     height:60%;
 }
-@media (max-width: 620px){
-    .d_flexbasket{
-        display: block;
-    }
-}
 
 .d_none{
     display: none;
 }
 
-@media (max-width: 520px){
+@media (max-width: 620px){
+    .d_flexbasket{
+        display: block;
+    }
+
+    .d_flex{
+        display: block;
+    }
     main{
         flex-direction: column;
     }
+    .shopping_section{
+        width: 100%;
+    }
+
     .shopping_cart{
         position: relative;
         right: unset;
@@ -148,6 +154,9 @@ h5{
         background-repeat: no-repeat;
         background-position: bottom right 6%;
     }
+}
+
+@media (max-width: 520px){
 
     footer{
         display: flex;
@@ -158,10 +167,6 @@ h5{
         margin-top: 20px;
     }
     
-    .d_flex{
-        display: block;
-    }
-
     .w-25{
         width: 100%!important;
     }
@@ -170,7 +175,11 @@ h5{
         margin: 0;
     }
 
-    .shopping_section{
-        width: 100%;
+    .navigation{
+        display: block;
+    }
+
+    .basket_menüs{
+        display: flex;
     }
 }

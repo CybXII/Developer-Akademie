@@ -2,7 +2,10 @@ let restaurants = [
     {
         name: 'Istanbul Grill',
         menüs:['Pommes','Döner','Dönerteller'],
-        menüInfos:['Bespiel Menü Infos1','Bespiel Menü Infos2','Bespiel Menü Infos3'],
+        menüInfos:[
+            'Pommes Frites sind eine beliebte Beilage oder Snack-Option, die sich gut mit verschiedenen Saucen oder Dips kombinieren lässt.',
+            'Döner ist eine beliebte türkische Spezialität, bei der hauchdünnes, gewürztes Fleisch, oft aus Lamm, Huhn oder Kalb, vertikal auf einem Spieß gegrillt wird.',
+            'Der Dönerteller ist eine großzügige Portion gegrillten Dönerfleischs, serviert auf einem Teller und begleitet von Beilagen wie Reis, Salat, und oft mit verschiedenen Saucen. '],
         prices:[3.49, 7.49, 9.99],
         imgs: ['istanbulpommes.jpg','istanbuldoener.jpg','dönerteller.jpg'],
         logo: 'istanbul.jpg',
@@ -11,7 +14,10 @@ let restaurants = [
     {
         name: 'Angelos Pizza',
         menüs:[`Salami Pizza`, 'Hawaii Pizza', 'Pizza Speciale'],
-        menüInfos:['Bespiel Menü Infos1','Bespiel Menü Infos2','Bespiel Menü Infos3'],
+        menüInfos:[
+            'Die Salami Pizza ist eine klassische Pizzavariante, belegt mit großzügigen Scheiben herzhaft-würziger Salami, die auf einem saftigen Teig mit Tomatensauce und geschmolzenem Käse gebacken wird.',
+            'Die Hawaii-Pizza zeichnet sich durch die harmonische Kombination von herzhaftem Schinken, süßer Ananas und geschmolzenem Käse auf einem saftigen Pizzateig aus. ',
+            'Die Pizza Speciale ist eine exquisite Pizzakreation, die durch eine erlesene Auswahl an Zutaten wie aromatischer Prosciutto, frische Champignons, Paprika und Oliven besticht.'],
         prices:[6.99, 7.99, 7.49],
         imgs:['salami-pizza.jpg','hawaii-pizza.jpg','speziale-pizza.jpg'],
         logo: 'angelos.jpg',
@@ -20,7 +26,10 @@ let restaurants = [
     {
         name: 'Ibo`s Döner',
         menüs:['Pommes','Döner','Ibos Dönnerteller'],
-        menüInfos:['Bespiel Menü Infos1','Bespiel Menü Infos2','Bespiel Menü Infos3'],
+        menüInfos:[
+            'Pommes Frites sind eine beliebte Beilage oder Snack-Option, die sich gut mit verschiedenen Saucen oder Dips kombinieren lässt.',
+            'Döner ist eine beliebte türkische Spezialität, bei der hauchdünnes, gewürztes Fleisch, oft aus Lamm, Huhn oder Kalb, vertikal auf einem Spieß gegrillt wird.',
+            'Der Dönerteller ist eine großzügige Portion gegrillten Dönerfleischs, serviert auf einem Teller und begleitet von Beilagen wie Reis, Salat, und oft mit verschiedenen Saucen. '],
         prices:[3.49, 6.99, 9.49],
         imgs:['ibopommes.jpg','ibodoener.jpg','dönerteller.jpg'],
         logo: 'ibos.jpg',
@@ -29,7 +38,10 @@ let restaurants = [
     {
         name: 'Mythos',
         menüs:['Bauernsalat','Kreta-Platte','Gyros'],
-        menüInfos:['Bespiel Menü Infos1','Bespiel Menü Infos2','Bespiel Menü Infos3'],
+        menüInfos:[
+            'Ein Bauernsalat, auch bekannt als Griechischer Salat, ist eine köstliche Mischung aus frischem Gemüse und traditionellen mediterranen Zutaten.',
+            'Die Kreta-Platte ist eine mediterrane Genusserfahrung, die eine Vielzahl authentischer griechischer Spezialitäten auf einem Teller vereint',
+            'Gyros ist eine griechische Delikatesse, bei der mariniertes Fleisch, typischerweise vom Schwein oder Huhn, auf einem vertikalen Spieß gegrillt wird. '],
         prices:[9.50, 18.50, 14.50],
         imgs:['bauern-salad.jpg','kretaplatte.jpg','gyros.jpg'],
         logo: 'Mythos.jpg',
@@ -175,14 +187,17 @@ function renderBasketOptions(addedMeals,i,j){
         <p>${basket[i]['menüs'][j]}</p>
         <p>${(basket[i]['prices'][j]*basket[i]['amount'][j]).toFixed(2)}€</p>
     </div>
-    <div class="d_flexbasket p-2 center border rounded">
+    <div class=" p-2 center border rounded">
         <p>Menge</p>
-        <div class="d_flex g-2">
+        <div class="basket_menüs d_flex g-2">
             <button onclick="increaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="increase_amount" type="button"
              class="btn btn-outline-primary h-50">+</button>
             <p class="amount fs-5 p-1">${basket[i]['amount'][j]}</p>
             <button onclick="decreaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="decrease_amount" type="button"
              class="btn btn-outline-primary h-50">-</button>
+             <button onclick="removeFromBasket('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="remove" type="button"
+             class="btn btn-alert h-50">x</button>
+
         </div>
     </div>
     `;
@@ -235,6 +250,13 @@ function decreaseMeal(restaurant,menü){
     }
 
     renderBasket();
+}
+
+function removeFromBasket(restaurant,menü){
+    let checkRestaurant = basket.findIndex(obj => obj.name==restaurant)
+    let checkMeal = basket[checkRestaurant]['menüs'] .indexOf(menü)
+    removeMeal(checkRestaurant,checkMeal)  
+    renderBasket();      
 }
 
 
@@ -349,7 +371,7 @@ function renderMaxSum(max_sum,var_sum){
     max_sum+=var_sum
     document.getElementById('max_sum').innerHTML=`
     <div>Gesamtpreis:</div>
-    <div>${max_sum.toFixed(2)}</div>
+    <div>${max_sum.toFixed(2)}€</div>
     `;
 }
 
