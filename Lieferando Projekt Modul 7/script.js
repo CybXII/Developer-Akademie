@@ -141,6 +141,7 @@ function renderBasket(){
             renderBasketMenues(i)
         }
     }
+    checkMaxSum()
 }
 
 
@@ -160,7 +161,7 @@ function renderBasketMenues(i){
         addedMeals.innerHTML += `
         <div class="d_flex center">
             <p>${basket[i]['menüs'][j]}</p>
-            <p>${basket[i]['prices'][j]}€</p>
+            <p>${basket[i]['prices'][j]*basket[i]['amount'][j]}€</p>
         </div>
         <div class="d_flexbasket p-2 center border rounded">
             <p>Menge</p>
@@ -291,5 +292,29 @@ function setCarouselSwitchButtons(input){
     else{
         document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${input-1})`);
         document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${input+1})`);
+    }
+}
+
+function checkMaxSum(){
+    let max_sum = 0
+    let var_sum = 0
+    for (let i = 0; i < basket.length; i++) {
+        if (basket.length === 0) {
+            document.getElementById('max_sum').innerHTML=`
+            `;
+        }
+        else {
+            for (let j = 0; j < basket[i]['prices'].length; j++) {
+                var mealSum = basket[i]['prices'][j]
+                var mealAmount= basket[i]['amount'][j]
+                var_sum+=(mealSum*mealAmount)
+            }
+
+        }
+        max_sum+=var_sum
+        document.getElementById('max_sum').innerHTML=`
+        <div>Gesamtpreis:</div>
+        <div>${max_sum}</div>
+        `;
     }
 }
