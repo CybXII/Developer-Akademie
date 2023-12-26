@@ -168,6 +168,7 @@ function renderBasketMenues(i){
     }
 }
 
+
 function renderBasketOptions(addedMeals,i,j){
     addedMeals.innerHTML += `
     <div class="d_flex center">
@@ -373,7 +374,6 @@ function Listener(){
     document.getElementById('next_Button').addEventListener('click', function() {
         toggleButtonVisibility('next_Button', 0.75); 
     });
-    
     document.getElementById('prev_Button').addEventListener('click', function() {
         toggleButtonVisibility('prev_Button', 0.75); 
     });
