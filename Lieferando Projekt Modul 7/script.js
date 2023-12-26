@@ -361,20 +361,23 @@ function carouselSwitchTimeout(){
 }
 
 
-function toggleButtonVisibility(buttonId, timer) {
-    let button = document.getElementById(buttonId);
-    button.classList.add('d_none');
+function toggleButtonVisibility( timer) {
+    let nextButton = document.getElementById('next_Button');
+    let prevButton = document.getElementById('prev_Button');
+    nextButton.classList.add('d_none');
+    prevButton.classList.add('d_none');
     setTimeout(function() {
-        button.classList.remove('d_none');
+        nextButton.classList.remove('d_none');
+        prevButton.classList.remove('d_none');
     }, timer * 1000); 
 }
 
 
 function Listener(){
     document.getElementById('next_Button').addEventListener('click', function() {
-        toggleButtonVisibility('next_Button', 0.75); 
+        toggleButtonVisibility( 0.75); 
     });
     document.getElementById('prev_Button').addEventListener('click', function() {
-        toggleButtonVisibility('prev_Button', 0.75); 
+        toggleButtonVisibility( 0.75); 
     });
 }
