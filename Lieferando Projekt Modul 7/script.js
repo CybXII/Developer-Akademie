@@ -51,6 +51,7 @@ function renderShoppingSection(input){
     setCarouselSwitchButtons(input);
     renderMenues(input);
     renderBasket();
+    Listener();
 }
 
 
@@ -116,12 +117,12 @@ function renderrestaurantOptions(input,i){
         <div class="card-body">
             <div class="d_flex">
                 <h5 class="card-title">${restaurants[input]['menüs'][i]}</h5>
-                <a href="#" onclick="addToBasket(${input},'${menu}')" class="btn btn-primary">+</a>
+                <a onclick="addToBasket(${input},'${menu}')" class="btn btn-primary">+</a>
             </div>
             <div class="d_flex mt-3">
                 <div>
                     <p class="card-text">${restaurants[input]['menüInfos'][i]}</p>
-                    <p class="card-text">${restaurants[input]['prices'][i]}€</p>
+                    <p class="card-text">${(restaurants[input]['prices'][i]).toFixed(2)}€</p>
                 </div>
                 <img src="./img/${restaurants[input]['imgs'][i]}" class="w-25 card-img-top" alt="...">
             </div>
@@ -171,7 +172,7 @@ function renderBasketOptions(addedMeals,i,j){
     addedMeals.innerHTML += `
     <div class="d_flex center">
         <p>${basket[i]['menüs'][j]}</p>
-        <p>${basket[i]['prices'][j]*basket[i]['amount'][j]}€</p>
+        <p>${(basket[i]['prices'][j]*basket[i]['amount'][j]).toFixed(2)}€</p>
     </div>
     <div class="d_flexbasket p-2 center border rounded">
         <p>Menge</p>
@@ -347,7 +348,33 @@ function renderMaxSum(max_sum,var_sum){
     max_sum+=var_sum
     document.getElementById('max_sum').innerHTML=`
     <div>Gesamtpreis:</div>
-    <div>${max_sum}</div>
+    <div>${max_sum.toFixed(2)}</div>
     `;
 }
 
+
+function carouselSwitchTimeout(){
+    document.getElementById('next_Button')
+    document.getElementById('prev_Button')
+
+}
+
+
+function toggleButtonVisibility(buttonId, timer) {
+    let button = document.getElementById(buttonId);
+    button.classList.add('d_none');
+    setTimeout(function() {
+        button.classList.remove('d_none');
+    }, timer * 1000); 
+}
+
+
+function Listener(){
+    document.getElementById('next_Button').addEventListener('click', function() {
+        toggleButtonVisibility('next_Button', 0.75); 
+    });
+    
+    document.getElementById('prev_Button').addEventListener('click', function() {
+        toggleButtonVisibility('prev_Button', 0.75); 
+    });
+}
