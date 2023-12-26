@@ -104,25 +104,30 @@ function renderOtherCarouselItem(input,i,restaurant){
 function renderMenues(input){
     document.getElementById('content').innerHTML = ``;
     for (let i = 0; i < restaurants[input]['menüs'].length; i++) {
-        let menu = restaurants[input]['menüs'][i];
-        document.getElementById('content').innerHTML += `
-        <div class="margin_5 card w-80">
-            <div class="card-body">
-                <div class="d_flex">
-                    <h5 class="card-title">${restaurants[input]['menüs'][i]}</h5>
-                    <a href="#" onclick="addToBasket(${input},'${menu}')" class="btn btn-primary">+</a>
+        renderrestaurantOptions(input,i)
+    }
+}
+
+
+function renderrestaurantOptions(input,i){
+    let menu = restaurants[input]['menüs'][i];
+    document.getElementById('content').innerHTML += `
+    <div class="margin_5 card w-80">
+        <div class="card-body">
+            <div class="d_flex">
+                <h5 class="card-title">${restaurants[input]['menüs'][i]}</h5>
+                <a href="#" onclick="addToBasket(${input},'${menu}')" class="btn btn-primary">+</a>
+            </div>
+            <div class="d_flex mt-3">
+                <div>
+                    <p class="card-text">${restaurants[input]['menüInfos'][i]}</p>
+                    <p class="card-text">${restaurants[input]['prices'][i]}€</p>
                 </div>
-                <div class="d_flex mt-3">
-                    <div>
-                        <p class="card-text">${restaurants[input]['menüInfos'][i]}</p>
-                        <p class="card-text">${restaurants[input]['prices'][i]}€</p>
-                    </div>
-                    <img src="./img/${restaurants[input]['imgs'][i]}" class="w-25 card-img-top" alt="...">
-                </div>
+                <img src="./img/${restaurants[input]['imgs'][i]}" class="w-25 card-img-top" alt="...">
             </div>
         </div>
-        `;
-    }
+    </div>
+    `;
 }
 
 
@@ -158,21 +163,27 @@ function renderBasketRestaurants(addedRestaurants,i){
 function renderBasketMenues(i){
     let addedMeals = document.getElementById(`meal_container${i}`);
     for (let j = 0; j < basket[i]['menüs'].length; j++) {
-        addedMeals.innerHTML += `
-        <div class="d_flex center">
-            <p>${basket[i]['menüs'][j]}</p>
-            <p>${basket[i]['prices'][j]*basket[i]['amount'][j]}€</p>
-        </div>
-        <div class="d_flexbasket p-2 center border rounded">
-            <p>Menge</p>
-            <div class="d_flex g-2">
-                <button onclick="increaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="increase_amount" type="button" class="btn btn-outline-primary h-50">+</button>
-                <p class="amount fs-5 p-1">${basket[i]['amount'][j]}</p>
-                <button onclick="decreaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="decrease_amount" type="button" class="btn btn-outline-primary h-50">-</button>
-            </div>
-        </div>
-        `;
+        renderBasketOptions(addedMeals,i,j)
     }
+}
+
+function renderBasketOptions(addedMeals,i,j){
+    addedMeals.innerHTML += `
+    <div class="d_flex center">
+        <p>${basket[i]['menüs'][j]}</p>
+        <p>${basket[i]['prices'][j]*basket[i]['amount'][j]}€</p>
+    </div>
+    <div class="d_flexbasket p-2 center border rounded">
+        <p>Menge</p>
+        <div class="d_flex g-2">
+            <button onclick="increaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="increase_amount" type="button"
+             class="btn btn-outline-primary h-50">+</button>
+            <p class="amount fs-5 p-1">${basket[i]['amount'][j]}</p>
+            <button onclick="decreaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="decrease_amount" type="button"
+             class="btn btn-outline-primary h-50">-</button>
+        </div>
+    </div>
+    `;
 }
 
 
@@ -187,15 +198,19 @@ function addToBasket(input,menü){
         addNewRestaurant(input,basketRestaurant,menü,indexMenue) 
     }
     else if(restaurantAdded !== -1){
-        let addedMeal = basket[restaurantAdded]['menüs'].indexOf(menü)
-        if (addedMeal === -1) { 
-        //checken ob menü im basket vorhanden ist
-        addNewMeal(input,basketRestaurant,menü,indexMenue)
-        } else {
-            increaseMeal(basketRestaurant,menü);
-        }
+        checkAddedMeals(restaurantAdded,menü,input,basketRestaurant,indexMenue)
     }
     renderBasket();
+}
+
+
+function checkAddedMeals(restaurantAdded,menü,input,basketRestaurant,indexMenue){
+    let addedMeal = basket[restaurantAdded]['menüs'].indexOf(menü)
+    if (addedMeal === -1) {         //checken ob menü im basket vorhanden ist
+    addNewMeal(input,basketRestaurant,menü,indexMenue)
+    } else {
+        increaseMeal(basketRestaurant,menü);
+    }
 }
 
 
@@ -211,18 +226,23 @@ function decreaseMeal(restaurant,menü){
     let checkRestaurant = basket.findIndex(obj => obj.name==restaurant)
     let checkMeal = basket[checkRestaurant]['menüs'] .indexOf(menü)
     if (basket[checkRestaurant]['amount'][checkMeal] === 1){
-        basket[checkRestaurant]['amount'].splice(checkMeal)
-        basket[checkRestaurant]['prices'].splice(checkMeal)
-        basket[checkRestaurant]['menüs'].splice(checkMeal)
-        if(basket[checkRestaurant]['menüs'].length===0){
-            basket.splice(checkRestaurant)
-        }
+        removeMeal(checkRestaurant,checkMeal)        
     }
     else {
         basket[checkRestaurant]['amount'][checkMeal]--
     }
 
     renderBasket();
+}
+
+
+function removeMeal(checkRestaurant,checkMeal){
+    basket[checkRestaurant]['amount'].splice(checkMeal)
+    basket[checkRestaurant]['prices'].splice(checkMeal)
+    basket[checkRestaurant]['menüs'].splice(checkMeal)
+    if(basket[checkRestaurant]['menüs'].length===0){
+        basket.splice(checkRestaurant)
+    }
 }
 
 
@@ -277,44 +297,57 @@ function switchCarouselBackward(input){
        else {
            renderShoppingSection(input)
        }
-   }
+}
 
 
 function setCarouselSwitchButtons(input){
     if (input <= 0){
-        document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${restaurants.length-1})`);
-        document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${input+1})`);
+        renderCarouselSwitchButtons(restaurants.length-1,input+1)
     }
     else if (input >= restaurants.length-1){
-        document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${input-1})`);
-        document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${0})`);
+        renderCarouselSwitchButtons(input-1,0)
     }
     else{
-        document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${input-1})`);
-        document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${input+1})`);
+        renderCarouselSwitchButtons(input-1,input+1)
     }
 }
+
+
+function renderCarouselSwitchButtons(OperatorPrev,OperatorNext){
+    document.getElementById('prev_Button').setAttribute('onclick',`switchCarouselBackward(${OperatorPrev})`);
+    document.getElementById('next_Button').setAttribute('onclick',`switchCarouselForward(${OperatorNext})`);
+
+}
+
 
 function checkMaxSum(){
     let max_sum = 0
     let var_sum = 0
     for (let i = 0; i < basket.length; i++) {
         if (basket.length === 0) {
-            document.getElementById('max_sum').innerHTML=`
-            `;
+            renderEmptyMaxSum()
         }
         else {
-            for (let j = 0; j < basket[i]['prices'].length; j++) {
-                var mealSum = basket[i]['prices'][j]
-                var mealAmount= basket[i]['amount'][j]
-                var_sum+=(mealSum*mealAmount)
+            for (let j = 0; j < basket[i]['prices'].length; j++) {                
+                var_sum+=(basket[i]['prices'][j]*basket[i]['amount'][j])
             }
-
         }
-        max_sum+=var_sum
-        document.getElementById('max_sum').innerHTML=`
-        <div>Gesamtpreis:</div>
-        <div>${max_sum}</div>
-        `;
+        renderMaxSum(max_sum,var_sum)
     }
 }
+
+
+function renderEmptyMaxSum(){
+    document.getElementById('max_sum').innerHTML=`
+    `;
+}
+
+
+function renderMaxSum(max_sum,var_sum){
+    max_sum+=var_sum
+    document.getElementById('max_sum').innerHTML=`
+    <div>Gesamtpreis:</div>
+    <div>${max_sum}</div>
+    `;
+}
+
