@@ -10,7 +10,7 @@ let restaurants = [
     },
     {
         name: 'Angelos Pizza',
-        menüs:['Salami Pizza', 'Hawaii Pizza', 'Pizza Speciale'],
+        menüs:[`Salami Pizza`, 'Hawaii Pizza', 'Pizza Speciale'],
         menüInfos:['Bespiel Menü Infos1','Bespiel Menü Infos2','Bespiel Menü Infos3'],
         prices:[6.99, 7.99, 7.49],
         imgs:['salami-pizza.jpg','hawaii-pizza.jpg','speziale-pizza.jpg'],
@@ -46,12 +46,13 @@ function renderSite(input){
     renderShoppingSection(input)
 }
 
+
 function renderShoppingSection(input){
-    
     setCarouselSwitchButtons(input);
     renderMenues(input);
     renderBasket();
 }
+
 
 function renderCarousel(input){
     let restaurant = restaurants[input]['logo'];
@@ -100,17 +101,16 @@ function renderOtherCarouselItem(input,i,restaurant){
 }
 
 
-
-
 function renderMenues(input){
     document.getElementById('content').innerHTML = ``;
     for (let i = 0; i < restaurants[input]['menüs'].length; i++) {
+        let menu = restaurants[input]['menüs'][i];
         document.getElementById('content').innerHTML += `
         <div class="margin_5 card w-80">
             <div class="card-body">
                 <div class="d_flex">
                     <h5 class="card-title">${restaurants[input]['menüs'][i]}</h5>
-                    <a href="#" onclick=addToBasket(${input},'${restaurants[input]['menüs'][i]}') class="btn btn-primary">+</a>
+                    <a href="#" onclick="addToBasket(${input},'${menu}')" class="btn btn-primary">+</a>
                 </div>
                 <div class="d_flex mt-3">
                     <div>
@@ -125,59 +125,105 @@ function renderMenues(input){
     }
 }
 
+
 function renderBasket(){
-    let addedMeals = document.getElementById('meal_container');
-    addedMeals.innerHTML = ``;
+    let addedRestaurants = document.getElementById('restaurants');
+    addedRestaurants.innerHTML = ``;
     if (basket.length === 0){
-        addedMeals.innerHTML += `
+        addedRestaurants.innerHTML += `
         <div class="d_flex center">
             <p>Ihr Warenkorb ist leer</p>
-
         </div>`;
     }
     else{
-        for (let i = 0; i < basket[0]['menüs'].length; i++) {
-            addedMeals.innerHTML += `
-            <div class="d_flex center">
-                <p>${basket[0]['menüs'][i]}</p>
-                <p>${basket[0]['prices'][i]}€</p>
-            </div>
-            <div class="d_flexbasket p-2 center border rounded">
-                <p>Menge</p>
-                <div class="d_flex g-2">
-                    <button onclick="increaseAmount()" id="increase_amount" type="button" class="btn btn-outline-primary h-50">+</button>
-                    <p class="amount fs-5 p-1">${basket[0]['amount'][i]}</p>
-                    <button onclick="decreaseAmount()" id="decrease_amount" type="button" class="btn btn-outline-primary h-50">-</button>
-                </div>
-            </div>
-            `;
+        for (let i = 0; i < basket.length; i++) {
+            renderBasketRestaurants(addedRestaurants,i)
+            renderBasketMenues(i)
         }
     }
- 
+}
+
+
+function renderBasketRestaurants(addedRestaurants,i){
+    addedRestaurants.innerHTML +=`
+    <div id=restaurants${i}>
+        <p>Ihre ausgewählten Menü's bei ${basket[i]['name']}</p>
+        <div id="meal_container${i}" class="meal_container p-2">
+    </div>`
+    ;
+}
+
+
+function renderBasketMenues(i){
+    let addedMeals = document.getElementById(`meal_container${i}`);
+    for (let j = 0; j < basket[i]['menüs'].length; j++) {
+        addedMeals.innerHTML += `
+        <div class="d_flex center">
+            <p>${basket[i]['menüs'][j]}</p>
+            <p>${basket[i]['prices'][j]}€</p>
+        </div>
+        <div class="d_flexbasket p-2 center border rounded">
+            <p>Menge</p>
+            <div class="d_flex g-2">
+                <button onclick="increaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="increase_amount" type="button" class="btn btn-outline-primary h-50">+</button>
+                <p class="amount fs-5 p-1">${basket[i]['amount'][j]}</p>
+                <button onclick="decreaseMeal('${basket[i]['name']}','${basket[i]['menüs'][j]}')" id="decrease_amount" type="button" class="btn btn-outline-primary h-50">-</button>
+            </div>
+        </div>
+        `;
+    }
 }
 
 
 function addToBasket(input,menü){
-    let restaurant = restaurants[input]['name'];
-    var indexRestaurant = restaurants.findIndex(obj => obj.name== restaurant);
-    let indexMenue  = restaurants[input]['menüs'].indexOf(menü);
+    let basketRestaurant = restaurants[input]['name'];
+    let indexMenue = restaurants[input]['menüs'].indexOf(menü); 
+    let restaurantAdded = basket.findIndex(obj => obj.name== basketRestaurant)
     if (basket.length === 0) {
-        addNewRestaurant(input,restaurant,menü,indexMenue)
+        addNewRestaurant(input,basketRestaurant,menü,indexMenue)
     }
-    else {  
-        //checken ob restaurant im basket vorhanden ist
-        if (indexRestaurant == -1) { 
-            addNewRestaurant(input,restaurant,menü,indexMenue)
-        }
+    else if (restaurantAdded === -1) {  //checken ob restaurant im basket vorhanden ist
+        addNewRestaurant(input,basketRestaurant,menü,indexMenue) 
+    }
+    else if(restaurantAdded !== -1){
+        let addedMeal = basket[restaurantAdded]['menüs'].indexOf(menü)
+        if (addedMeal === -1) { 
         //checken ob menü im basket vorhanden ist
-        else {
-           if(basket.findIndex(obj => obj.menüs==menü) == -1 ){
-            addNewMeal(input,restaurant,menü,indexMenue)
-           }
+        addNewMeal(input,basketRestaurant,menü,indexMenue)
+        } else {
+            increaseMeal(basketRestaurant,menü);
         }
     }
-        renderBasket();
+    renderBasket();
 }
+
+
+function increaseMeal(restaurant,menü){
+    let checkRestaurant = basket.findIndex(obj => obj.name==restaurant)
+    let checkMeal = basket[checkRestaurant]['menüs'] .indexOf(menü)
+    basket[checkRestaurant]['amount'][checkMeal]++
+    renderBasket();
+}
+
+
+function decreaseMeal(restaurant,menü){
+    let checkRestaurant = basket.findIndex(obj => obj.name==restaurant)
+    let checkMeal = basket[checkRestaurant]['menüs'] .indexOf(menü)
+    if (basket[checkRestaurant]['amount'][checkMeal] === 1){
+        basket[checkRestaurant]['amount'].splice(checkMeal)
+        basket[checkRestaurant]['prices'].splice(checkMeal)
+        basket[checkRestaurant]['menüs'].splice(checkMeal)
+        if(basket[checkRestaurant]['menüs'].length===0){
+            basket.splice(checkRestaurant)
+        }
+    }
+    else {
+        basket[checkRestaurant]['amount'][checkMeal]--
+    }
+
+    renderBasket();
+}
+
 
 function addNewMeal(input,restaurant,menü,indexMenue){
     let indexRestaurant = basket.findIndex(obj => obj.name==restaurant);
@@ -185,8 +231,9 @@ function addNewMeal(input,restaurant,menü,indexMenue){
     let newPrice = [restaurants[input]['prices'][indexMenue]];
     newMeal['menüs'].push(menü);
     newMeal['prices'].push(newPrice);
-    newMeal['amount'].push([1])
+    newMeal['amount'].push(1)
 }
+
 
 function addNewRestaurant(input,restaurant,menü,indexMenue){
     let newPush = {
@@ -197,6 +244,7 @@ function addNewRestaurant(input,restaurant,menü,indexMenue){
         }
     basket.push(newPush);
 }
+
 
 function switchCarousel(input){
     if (input < 0){
@@ -210,14 +258,17 @@ function switchCarousel(input){
     }
 }
 
+
 function switchCarouselForward(input){
     if (input >= restaurants.length){
-           renderShoppingSection(0)    
-       }
-       else {
-           renderShoppingSection(input)
-       }
-   }
+        renderShoppingSection(0)    
+    }
+    else {
+       renderShoppingSection(input)
+    }
+}
+
+
 function switchCarouselBackward(input){
     if (input < 0){
        renderShoppingSection(restaurants.length)
@@ -226,6 +277,7 @@ function switchCarouselBackward(input){
            renderShoppingSection(input)
        }
    }
+
 
 function setCarouselSwitchButtons(input){
     if (input <= 0){

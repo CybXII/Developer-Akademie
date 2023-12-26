@@ -56,7 +56,6 @@ li{
     background-position: bottom left;
 }
 
-
 .shopping_cart_sticky{
     position: sticky;
     top: 0;
@@ -80,8 +79,6 @@ footer{
 .meal_container{
     width: 100%;
 }
-
-
 
 a{
     text-decoration: none;
@@ -123,6 +120,10 @@ h5{
     margin: 5%
 }
 
+.overflowY{
+    overflow-y: auto;
+    height:60%;
+}
 @media (max-width: 620px){
     .d_flexbasket{
         display: block;
