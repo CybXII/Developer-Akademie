@@ -75,7 +75,7 @@ function renderCarousel(input){
             renderFirstCarouselItem(input,i,restaurant);
         }
         else if(i !== 0){
-            renderOtherCarouselItem(input,i,restaurant);
+            renderOtherCarouselItem(i);
         }
     }
 }
@@ -98,7 +98,7 @@ function renderFirstCarouselItem(input,i,restaurant){
 }
 
 
-function renderOtherCarouselItem(input,i,restaurant){
+function renderOtherCarouselItem(i){
     document.getElementById('carousel_indicator').innerHTML += `
     <button onclick="switchCarousel(${i})" id="switchCarousel${i}" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" aria-label="Slide ${i+1}"></button>
     `;
@@ -243,30 +243,32 @@ function decreaseMeal(restaurant,menü){
     let checkRestaurant = basket.findIndex(obj => obj.name==restaurant)
     let checkMeal = basket[checkRestaurant]['menüs'] .indexOf(menü)
     if (basket[checkRestaurant]['amount'][checkMeal] === 1){
-        removeMeal(checkRestaurant,checkMeal)        
+        removeMeal(checkRestaurant,checkMeal)      
     }
     else {
         basket[checkRestaurant]['amount'][checkMeal]--
     }
-
     renderBasket();
 }
 
 function removeFromBasket(restaurant,menü){
     let checkRestaurant = basket.findIndex(obj => obj.name==restaurant)
     let checkMeal = basket[checkRestaurant]['menüs'] .indexOf(menü)
-    removeMeal(checkRestaurant,checkMeal)  
-    renderBasket();      
+    removeMeal(checkRestaurant,checkMeal)      
 }
 
 
 function removeMeal(checkRestaurant,checkMeal){
-    basket[checkRestaurant]['amount'].splice(checkMeal)
-    basket[checkRestaurant]['prices'].splice(checkMeal)
-    basket[checkRestaurant]['menüs'].splice(checkMeal)
+    basket[checkRestaurant]['amount'].splice(checkMeal,1)
+    basket[checkRestaurant]['prices'].splice(checkMeal,1)
+    basket[checkRestaurant]['menüs'].splice(checkMeal,1)
     if(basket[checkRestaurant]['menüs'].length===0){
         basket.splice(checkRestaurant)
+        if (basket.length === 0){
+            renderEmptyMaxSum()
+        }    
     }
+    renderBasket();
 }
 
 
