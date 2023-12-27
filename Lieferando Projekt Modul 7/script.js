@@ -130,7 +130,7 @@ function renderBasketOptions(addedMeals,i,j){
     addedMeals.innerHTML += `
     <div class="d_flex center">
         <p>${basket[i]['menüs'][j]}</p>
-        <p>${(basket[i]['prices'][j]*basket[i]['amount'][j]).(2).replaceAll(".", ",")}€</p>
+        <p>${(basket[i]['prices'][j]*basket[i]['amount'][j]).toFixed(2).replaceAll(".", ",")}€</p>
     </div>
     <div class=" p-2 center border rounded">
         <p>Menge</p>
