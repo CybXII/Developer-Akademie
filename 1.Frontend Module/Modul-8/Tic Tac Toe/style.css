@@ -1,8 +1,101 @@
-body{
-    left: 0;
-    right: 0;
-    top: 0;
+body {
+    background-color: #001f3f; /* Dunkelblau */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     margin: 0;
 }
 
+.player{
+    display:flex;
+    justify-content: center;
+    width: 25%;
+    gap:10%;
+    font-size:xx-large;
+}
 
+.player1{
+    color: red;
+    padding: 5%;
+}
+
+.player2{
+    color: green;
+    padding: 5%;
+}
+
+h1{
+    color: #fff;
+}
+
+#content {
+    text-align: center;
+}
+
+table {
+    height: 50vh;
+    aspect-ratio: 1/1;
+    border-collapse: collapse;
+    margin-top: 20px; /* Abstand zum oberen Rand des Inhalts */
+    border: 6px solid #fff; /* Weißer Rahmen um die gesamte Tabelle */
+}
+
+td {
+    height: 25%;
+    width: 25%;
+    border: 1px solid #fff; /* Weißer Rahmen um jede Zelle */
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff; /* Weißer Text */
+}
+
+td:hover {
+    background-color: #7c7c7c;
+    color: #000; /* Schwarzer Text bei Hover */
+}
+
+.aktive{
+    background-color: rgba(255, 255, 255, 0.248);
+    border-radius: 8px;
+}
+
+.winning-cell{
+    background-color: greenyellow;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Schwarze Hintergrundfarbe mit 30% Transparenz */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* Stellen Sie sicher, dass das Overlay über dem Inhalt liegt */
+}
+
+.overlay-content {
+    background-color: #fff; /* Weiße Hintergrundfarbe für den Overlay-Inhalt */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.overlay button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4caf50; /* Grüner Hintergrundfarbe für den Button */
+    color: #fff; /* Weiße Textfarbe für den Button */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.overlay button:hover {
+    background-color: #45a049; /* Dunklere grüne Farbe beim Hover-Effekt */
+}
