@@ -72,14 +72,12 @@ function checkWinner() {
         // Überprüfe, ob die Felder in der aktuellen Kombination alle das gleiche Symbol haben
         if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
             // Gewinner gefunden
-            console.log(`Player ${fields[a]} wins!`);
             return combination; // Rückgabe der gewinnenden Kombination
         }
     }
 
     // Überprüfe auf ein Unentschieden (alle Felder sind belegt)
     if (fields.every(field => field)) {
-        console.log('It\'s a draw!');
         showDrawOverlay(); // Zeige das Overlay für ein Unentschieden an
         return null;
     }
