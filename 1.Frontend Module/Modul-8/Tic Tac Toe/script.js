@@ -155,4 +155,12 @@ function showOverlay(winner) {
     document.body.appendChild(overlay);
 }
 
-
+function highlightWinningCells(winningCells) {
+    // Markiere alle Zellen in der gewinnenden Zeile visuell
+    winningCells.forEach(index => {
+        const cell = document.querySelector(`td[data-index="${index}"]`);
+        if (cell) {
+            cell.classList.add('winning-cell');
+        }
+    });
+}
