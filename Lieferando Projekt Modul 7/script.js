@@ -79,7 +79,7 @@ function renderrestaurantOptions(input,i){
             <div class="d_flex mt-3">
                 <div>
                     <p class="card-text">${restaurants[input]['menüInfos'][i]}</p>
-                    <p class="card-text">${(restaurants[input]['prices'][i]).toFixed(2)}€</p>
+                    <p class="card-text">${(restaurants[input]['prices'][i]).toFixed(2).replaceAll(".", ",")}€</p>
                 </div>
                 <img src="./img/${restaurants[input]['imgs'][i]}" class="w-25 card-img-top" alt="...">
             </div>
@@ -130,7 +130,7 @@ function renderBasketOptions(addedMeals,i,j){
     addedMeals.innerHTML += `
     <div class="d_flex center">
         <p>${basket[i]['menüs'][j]}</p>
-        <p>${(basket[i]['prices'][j]*basket[i]['amount'][j]).toFixed(2)}€</p>
+        <p>${(basket[i]['prices'][j]*basket[i]['amount'][j]).(2).replaceAll(".", ",")}€</p>
     </div>
     <div class=" p-2 center border rounded">
         <p>Menge</p>
@@ -318,7 +318,7 @@ function renderMaxSum(max_sum,var_sum){
     max_sum+=var_sum
     document.getElementById('max_sum').innerHTML=`
     <div>Gesamtpreis:</div>
-    <div>${max_sum.toFixed(2)}€</div>
+    <div>${max_sum.toFixed(2).replaceAll(".", ",")}€</div>
     `;
 }
 
