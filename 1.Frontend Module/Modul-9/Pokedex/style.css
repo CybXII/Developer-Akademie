@@ -1,0 +1,72 @@
+body{
+    margin: 0;
+    background-color: rgba(0, 0, 20, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.pokedex{
+    height: 90%;
+    border: solid 6px;
+    border-color: a52a2a;
+    border-radius: 2vw;  
+    background-color: #a52a2a;
+    width: 90%;
+    box-shadow: 5px 5px 0px 0px #5673a7, -5px 5px 0px 0px #5673a7,
+                5px 5px 10px 5px #5673a7,-5px 5px 10px 5px #5673a7;
+}
+
+.pokedex_upper_border{
+    height: 10%;
+    width: 100%;
+    background-color: brown;
+    border-top-left-radius: 1.25vw;
+    border-top-right-radius: 1.25vw;
+}
+
+.pokedex_screen{
+    background-color: #ffffff;
+    height: 75%;
+    border-radius: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: solid 2px;
+    overflow-y: auto;
+}
+
+.pokedex_buttons{
+    height: 9%;
+    background-color: brown;
+    border-bottom-left-radius: 1.25vw;
+    border-bottom-right-radius: 1.25vw;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+    transform:translateX(-20px);
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    transform:translateX(-20px);
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 8px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+  }
+  ::-webkit-scrollbar-corner{
+    transform:translateX(20px);
+
+  }
