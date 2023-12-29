@@ -7,6 +7,7 @@ body{
     height: 100vh;
 }
 
+
 .pokedex{
     height: 90%;
     border: solid 6px;
@@ -34,6 +35,8 @@ body{
     margin-right: 2%;
     border: solid 2px;
     overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .pokedex_buttons{
@@ -41,6 +44,12 @@ body{
     background-color: brown;
     border-bottom-left-radius: 1.25vw;
     border-bottom-right-radius: 1.25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.load{
 }
 
 /* width */
