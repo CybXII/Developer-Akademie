@@ -58,7 +58,7 @@ function renderType(pokeType,i){
 
 function renderCard(card,pokeName,pokeImg,i){
     card.innerHTML += `
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <img src="${pokeImg}" class="card-img-top" alt="${pokeName}">
         <div class="card-body">
             <h2 class="card-text">${pokeName}</h2>
