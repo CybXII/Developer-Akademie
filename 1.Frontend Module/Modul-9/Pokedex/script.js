@@ -1,71 +1,81 @@
 let responseAsJson = ``;
 let responseLength = 0;
-let maxPokemonRender = 20;
-let loadPokemonNumber = 1;
-let pokemons =[];
+let maxPokemonRender = 21;
+let loadedPokemonNumber = 1;
+let renderedPokemonNumber = 1;
+let pokemonSpeciesAsJson = ``;
+let pokemonAsJson =``; 
 
-async function loadAPI(index){
-    let url = `https://pokeapi.co/api/v2/pokemon?offset=${index}&limit=1400`;
+
+async function loadAPI(){
+    let url = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1400`;
     let response = await fetch(url);
     responseAsJson = await response.json();
     responseLength = responseAsJson['count'];
-    loadPokemon(1);
-    renderScreenInfos();
+    renderScreenInfos()
 }
+
 
 async function loadPokemon(index){
-    let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${index}`;
-    let pokemon = await fetch(urlPokemon);
-    pokemonAsJson = await pokemon.json();
-        pokemons.push(pokemonAsJson)
+        let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${index}`;
+        let pokemon = await fetch(urlPokemon);
+        pokemonAsJson = await pokemon.json();
 }
 
-async function renderScreenInfos(){
-    renderPokemon(loadPokemonNumber)
+
+async function loadSpecies(index){
+        let urlPokemonSpecies = `https://pokeapi.co/api/v2/pokemon-species/${index}`;
+        let pokemonsSpecies = await fetch(urlPokemonSpecies);
+        pokemonSpeciesAsJson = await pokemonsSpecies.json();
 }
+
+
+function renderScreenInfos(){    
+    renderPokemon(renderedPokemonNumber);
+}
+
 
 function loadMore(){
-    let index =  loadPokemonNumber + 20;
-    loadPokemonNumber = index;
-    maxPokemonRender = maxPokemonRender+20
-    renderPokemon(loadPokemonNumber)
+    maxPokemonRender = maxPokemonRender+10
+    renderPokemon(renderedPokemonNumber)
 }
 
-async function renderPokemon(loadPokemonNumber){
-    let card = document.getElementById('pokedex_screen');
-    let pokeName=``;
-    let pokeImg=``;
 
-    for (let i = loadPokemonNumber; i < maxPokemonRender && responseLength ; i++) {
-        await loadPokemon(i);
-        pokeName = [(responseAsJson['results'][i-1]['name'])];
-        pokeImg = pokemonAsJson['sprites']['other']["official-artwork"]["front_default"];
-        let pokeTypeLength = pokemonAsJson['types'].length;
-        renderCard(card,pokeName,pokeImg,i)
-        for (let j = 0; j < pokeTypeLength; j++) {
-            let pokeType = pokemonAsJson['types'][j]['type']['name'];
-            renderType(pokeType,i);
-        }
+async function renderPokemon(renderedPokemonNumber){
+    for (let i = renderedPokemonNumber; i < maxPokemonRender && responseLength ; i++) {
+       await renderCard(i);
+       await renderType(i);
+       renderedPokemonNumber = renderedPokemonNumber+1;
     }
 }
 
-function renderType(pokeType,i){
-    let type = document.getElementById(`type${i}`);
-    type.innerHTML +=`
-    <p>${pokeType}</p>
-    `;
+
+async function renderType(index){
+    await loadPokemon(index);
+    let pokeTypeLength = pokemonAsJson['types'].length;
+    for (let j = 0; j < pokeTypeLength; j++) {
+        let pokeType =  pokemonAsJson['types'][j]['type']['name'];
+        document.getElementById(`type${index}`).innerHTML +=`
+        <p>${pokeType}</p>
+        `;
+    }
 }
 
-function renderCard(card,pokeName,pokeImg,i){
+
+async function renderCard(index){
+    await loadPokemon(index);
+    await loadSpecies(index);
+    let card = document.getElementById('pokedex_screen');
+    let pokeName = pokemonSpeciesAsJson['names'][5]['name'];
+    let pokeImg = pokemonAsJson['sprites']['other']["official-artwork"]["front_default"];
+    renderedPokemonNumber = renderedPokemonNumber+1;
     card.innerHTML += `
     <div class="card">
         <img src="${pokeImg}" class="card-img-top" alt="${pokeName}">
         <div class="card-body">
             <h2 class="card-text">${pokeName}</h2>
-            <div id="type${i}"></div>
+            <div class="types" id="type${index}"></div>
         </div>
     </div>
     `;
 }
-
-

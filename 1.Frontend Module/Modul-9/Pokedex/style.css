@@ -7,7 +7,6 @@ body{
     height: 100vh;
 }
 
-
 .pokedex{
     height: 90%;
     border: solid ;
@@ -43,6 +42,8 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     padding: 12px;
+    box-shadow: inset 5px 5px 25px #5673a7;
+    z-index: 5;
 }
 
 .pokedex_buttons{
@@ -53,6 +54,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 90%;
 }
 
   /* width */
@@ -79,33 +81,53 @@ body{
     background: #b30000; 
   }
 
-
   .card{
-    min-height: 1vh;
-    min-width: 1vw;
-
-    max-width: 40vw;
+    height: 280px;
+    width: 180px;
     margin:0.5%;
     border: solid 0.15vw;
-    box-shadow: inset 5px 5px 25px #5673a7;
+    z-index: 1;
   }
 
+  .card img{
+    height: 60%;
+    aspect-ratio: 1/1;
+    box-shadow: inset 5px 5px 25px #5673a7;
+  }
 
   .load{
     height: 6vh;
     width: 10vw;
-    min-width: 6vh;
+
     font-size: 3vh;
-    border: solid 0.2vw;
     padding: 0.1vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: solid 0.2vw;
+    border-radius: 1vh
   }
+
   .load p{
     text-align: center;
     font-size: 2vh;
     margin: 0;
   }
 
-  
+  .card-body{
+    max-height: 100%;
+    padding: 0;
+  }
+
+h2{
+  margin: 0;
+}
+
+.grass{
+  box-shadow: inset 5px 5px 50px #00ff40;
+}
+
+.types{
+  display: flex;
+  justify-content: space-around;
+}
