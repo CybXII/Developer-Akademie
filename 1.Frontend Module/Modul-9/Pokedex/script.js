@@ -29,9 +29,7 @@ async function loadAPI(){
 async function init(){
     for (let i = renderedPokemonNumber; i < responseLength; i++) {
         await loadPokemon(responseAsJson['results'][i-1],i-1);
-        if (i>50){
-            renderPokemon(loadedPokemonNumber)
-        }
+        renderPokemon(loadedPokemonNumber)
         fetchedPokemons++
     }
 }
@@ -45,12 +43,13 @@ async function loadPokemon(index,i){
     pokemonsUrl.push(pokemonUrl);
     pokemonSpecies.push(speciesAsJson);
     let names = speciesAsJson['names'][5]['name'];
-    let imgs = pokemonAsJson['sprites']['other']['official-artwork']['front_default'];
-    let types = pokemonAsJson['types'];
     fetchPokemons.name.push(names);
     fetchPokemons.id.push(i+1);
+/*    let imgs = pokemonAsJson['sprites']['other']['official-artwork']['front_default'];
+    let types = pokemonAsJson['types'];
     fetchPokemons.img.push(imgs);
     fetchPokemons.type.push(types);
+*/
 }
 
 
@@ -72,16 +71,17 @@ function renderScreenInfos(){
 
 
 async function loadMore(){
- maxRender= maxRender+20;
-
+ maxRender= maxRender+25;
+ console.log(loadedPokemonNumber+25)
+ console.log(renderedPokemonNumber+25)
+ renderPokemon(loadedPokemonNumber);
 }
 
 
 function renderPokemon(input){
-    if (fetchedPokemons>loadedPokemonNumber+20 && maxRender+20){
+    if (fetchedPokemons>loadedPokemonNumber+50 && maxRender+50){
         for (let i = input; loadedPokemonNumber < maxRender; i++) {
             renderCard(i);
-            renderType(i);
             loadedPokemonNumber++ 
         }
     }else {
@@ -92,14 +92,17 @@ function renderPokemon(input){
 }
 
 
-
-
-
-async function renderType(index){
-    let typeLength = fetchPokemons['type'][index-1].length
+async function fetchImg(index){
+    let pokemonUrl = await fetch(responseAsJson['results'][index-1].url);
+    let pokemonAsJson = await pokemonUrl.json();
+    let imgs = await  pokemonAsJson.sprites.other["official-artwork"].front_default;
+    let types = await pokemonAsJson['types'];
+    let img = document.getElementById(`img${index-1}`);
+    let typeLength = pokemonAsJson['types'].length
+    img.setAttribute(`src`,`${imgs}`)
     for (let j = 0; j < typeLength; j++) {
-        let pokeType =  fetchPokemons['type'][index-1][j]['type']['name'];
-        document.getElementById(`type${index}`).innerHTML +=`
+        let pokeType =  types[j]['type']['name'];
+        document.getElementById(`type${index-1}`).innerHTML +=`
         <p>${pokeType}</p>
         `;
     }
@@ -113,11 +116,12 @@ function renderCard(index){
     renderedPokemonNumber = renderedPokemonNumber+1;
     card.innerHTML += `
     <div class="card">
-        <img src="${pokeImg}" class="card-img-top" alt="${pokeName}">
+        <img id="img${index-1}" src="" class="card-img-top" alt="${pokeName}">
         <div class="card-body">
             <h2 class="card-text">${pokeName}</h2>
-            <div class="types" id="type${index}"></div>
+            <div class="types" id="type${index-1}"></div>
         </div>
     </div>
     `;
+    fetchImg(index);
 }
