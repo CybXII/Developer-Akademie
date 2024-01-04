@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    background-color: rgba(0, 0, 20, 0.95);
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,12 +38,12 @@ body{
     margin-right: 24px;
     border: solid 0.25vw;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 12px;
     box-shadow: inset 5px 5px 25px #5673a7;
-    z-index: 5;
 }
 
 .pokedex_buttons{
@@ -82,12 +82,17 @@ body{
   }
 
   .card{
-    height: 280px;
-    width: 180px;
-    margin:0.5%;
-    border: solid 0.15vw;
+    height: 22rem;
+    width: 16rem;
+    margin: 1rem;
+    border: solid 6px;
+    border-radius: 12px;
     z-index: 1;
+    cursor: pointer;
+    overflow: hidden;
+    transition: ease-in-out 125ms;
   }
+  
 
   .card img{
     height: 60%;
@@ -97,37 +102,166 @@ body{
 
   .load{
     height: 6vh;
-    width: 10vw;
-
+    width: fit-content;
     font-size: 3vh;
-    padding: 0.1vw;
+    padding: 0.3vw;
     display: flex;
     justify-content: center;
     align-items: center;
     border: solid 0.2vw;
-    border-radius: 1vh
-  }
-
-  .load p{
+    border-radius: 2rem;
     text-align: center;
     font-size: 2vh;
-    margin: 0;
   }
 
   .card-body{
     max-height: 100%;
     padding: 0;
+    background-color: #00005a;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center
   }
 
 h2{
   margin: 0;
 }
 
-.grass{
-  box-shadow: inset 5px 5px 50px #00ff40;
-}
-
 .types{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: column;
+  width: 250px;
+  align-items: center;
 }
+
+.test{
+  padding: 0.25rem;
+  border-radius: 8px;
+  width: 80%;
+  margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-text{
+  color: #ffffff;
+}
+
+span{
+  cursor: default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_closed{
+  width: 0rem !important; 
+  border: solid 0px !important;
+  transition: ease-in-out 125ms;
+}
+
+.bigCard{
+  display: flex;
+  flex-direction: column;
+  border-radius: 4%;
+  border: solid 0.5vw;
+  overflow: hidden;
+  width: 50vw !important;
+}
+
+.card_Big{
+  position: relative;
+  transition: ease-in-out 125ms;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  overflow: hidden;
+  font-size: 2vw;
+}
+
+.big_headline{
+  margin-left: 0.7rem;
+  font-size: 3vh;
+  font-weight: bolder;
+}
+
+.sideInfos{
+    width: 50%;
+    min-width: 10%;
+    overflow-wrap: anywhere;
+}
+
+.typeBigCard{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bigImg{
+  max-height: 100%;
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 2%;
+}
+
+.d_none{
+  display: none;
+}
+
+.ID{
+  position: absolute;
+  top: 0;
+  margin-top: 1%;
+  margin-left: 1%;
+  font-size: 3vh;
+  font-weight: bolder;
+}
+
+.test2{
+  height: 100%;
+  width: 100%;
+  border-radius: 4% 4% 0 0;
+  background-color: #00005a;  
+}
+
+
+@media (max-width: 540px){
+  .card_Big{
+    display: block;
+    height: fit-content;
+    overflow: unset;
+  }
+  
+  .sideInfos{
+    background-color: #00005a;
+    width: 100%;
+    border-radius: 2vw 2vw 0 0;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .big_headline{
+    margin-left: 0;
+  }
+
+  .typeBigCard{
+    width: 75%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .test2{
+    border-radius: 0;
+  }
+}
+
+
+
+

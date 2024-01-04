@@ -6,6 +6,7 @@
     <title>Pokedex-Air</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./types.css">
     <script src="./script.js"></script>
     <link rel="icon" type="image" href="./img/logo_small.png">
     <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
@@ -13,9 +14,11 @@
 <body onload="loadAPI()">
     <div id="pokedex" class="pokedex">
         <div id="pokedex_upper_border" class="pokedex_upper_border"></div>
-        <div id="pokedex_screen" class="pokedex_screen"></div>
+        <div onclick="showCards()" id="pokedex_screen" class="pokedex_screen">
+            <div id="pokemonCard" class="bigCard d_none"></div>
+        </div>
         <div id="pokedex_buttons" class="pokedex_buttons">
-            <button type="button" class="load btn-primary" onclick="loadMore(10)"><p>More</p></button>
+            <button id="moreButton" type="button" class="load btn-primary" onclick="loadMore()">More</button>
         </div>
     </div>
 </body>
