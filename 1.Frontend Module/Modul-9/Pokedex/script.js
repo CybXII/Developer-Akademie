@@ -94,12 +94,12 @@ async function init() {
 
 
 function stopLoadingScreen(){
-    document.getElementById('loading_screen').classList.add(`loading_stop`);
+    document.getElementById('loading_screen').classList.remove(`screen_loader`);
 }
 
 function stoploadingBar(){
-    document.getElementById('loading_process').classList.remove(`loading_process`);
-    document.getElementById('loading_process').classList.add(`loading_process_stop`);
+    document.getElementById('loading_process').classList.remove(`loader`);
+    document.getElementById('loading_process').classList.add(`loader_stop`);
 }
 
 //Mein Code von ChatGPT Optimiert
@@ -158,7 +158,6 @@ function renderPokemon(input){
 
 
 function openCard(index){
-    hideCards();
     showPokemonCard(index);
     fillCardInfos(index);
     stopLoadingScreen();
@@ -176,13 +175,7 @@ function showCards(){
 
 
 function hideCards(){
-    for (let i = 1; i < renderedPokemonNumber; i++) {
-        const id = i;
-
-        setTimeout((x)=>{
             document.getElementById(`pokemonCard`).classList.remove('d_none');
-        }, 500);
-    }
 }
 
 
@@ -243,18 +236,24 @@ function renderCard(index){
 
 function renderBigCard(index,pokemonIndex,card,img,pokeName){
     card.innerHTML = `
-    <div class="card_Big">
-        <p class="ID">#${index}</p>
-        <img id="img${pokemonIndex}" src="${img}" class="bigImg " alt="${pokeName}">
-        <div class="sideInfos">
-            <h2 class="big_headline">${pokeName}</h2>
-            <div id="typeBigCard" class="typeBigCard">
-                
+    <div onclick="showCards()" class="fixed">
+        <div class=CardBackground>
+            <div id="card_Big" class="bigCard">
+                <div>
+                    <div class="card_Big">
+                        <p class="ID">#${index}</p>
+                        <img id="img${pokemonIndex}" src="${img}" class="bigImg " alt="${pokeName}">
+                        <div class="sideInfos">
+                            <h2 class="big_headline">${pokeName}</h2>
+                            <div id="typeBigCard" class="typeBigCard"></div>
+                            <div class="types" id="type${pokemonIndex}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="test2">
+                </div>
             </div>
-            <div class="types" id="type${pokemonIndex}"></div>
         </div>
-    </div>
-    <div class="test2">
     </div>
     `;
 }
@@ -267,7 +266,7 @@ function fillCardInfos(index){
         if (j==0){
             let pokeType =  fetchPokemons['type'][pokemonIndex][j]['type']['name'];
             document.getElementById('pokemonCard').classList.remove('d_none');
-            document.getElementById('pokemonCard').classList.add(`box-shadow-${pokeType}`);
+            document.getElementById('card_Big').classList.add(`box-shadow-${pokeType}`);
             document.getElementById(`typeBigCard`).innerHTML +=`
             <div class="${pokeType} test"><span>${pokeType}</span></div>
             `;

@@ -14,14 +14,16 @@
 <body onload="loadAPI()">
     <div id="pokedex" class="pokedex">
         <div id="pokedex_upper_border" class="pokedex_upper_border">
-            <div id="loading_process" class="loading_process"></div>
+            <div class="logo"></div>
+            <h1>AIRDEX</h1>
+            <div id="loading_process" class="loader"></div>
         </div>
-        <div onclick="showCards()" id="pokedex_screen" class="pokedex_screen">
-            <div id="pokemonCard" class="bigCard d_none"></div>
-            <div id="loading_screen" class="loading"></div>
+        <div  id="pokedex_screen" class="pokedex_screen">
+            <div  id="pokemonCard" class="bigCardContainer d_none"></div>
+            <div id="loading_screen" class="screen_loader"></div>
         </div>
         <div id="pokedex_buttons" class="pokedex_buttons">
-            <button id="moreButton" type="button" class="load btn-primary" onclick="loadMore()">More</button>
+            <button onclick="loadMore()">Show more</button>        
         </div>
     </div>
 </body>
