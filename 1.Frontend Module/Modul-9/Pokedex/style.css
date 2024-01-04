@@ -30,6 +30,7 @@ body{
 }
 
 .pokedex_screen{
+    position: relative;
     background-color: #ffffff;
     height: 75%;
     width: 98%;
@@ -42,7 +43,6 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 12px;
     box-shadow: inset 5px 5px 25px #5673a7;
 }
 
@@ -163,21 +163,29 @@ span{
   transition: ease-in-out 125ms;
 }
 
+
+
 .bigCard{
+  margin-top: 0.5%;
+  position: fixed;
   display: flex;
   flex-direction: column;
+  height: 65%;
+  width: 100%;
   border-radius: 4%;
   border: solid 0.5vw;
   overflow: hidden;
   width: 50vw !important;
+  z-index: 10;
+  background-color: #ffffff;
 }
 
 .card_Big{
+  height: 55%;
   position: relative;
   transition: ease-in-out 125ms;
   display: flex;
   justify-content:space-between;
-  align-items: center;
   overflow: hidden;
   font-size: 2vw;
 }
@@ -189,9 +197,9 @@ span{
 }
 
 .sideInfos{
-    width: 50%;
-    min-width: 10%;
-    overflow-wrap: anywhere;
+  width: 50%;
+  min-width: 10%;
+  overflow-wrap: anywhere;
 }
 
 .typeBigCard{
@@ -227,6 +235,47 @@ span{
   border-radius: 4% 4% 0 0;
   background-color: #00005a;  
 }
+
+
+.loading{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #040404;
+  z-index: 10;
+  background-image: url(./img/load.gif);
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-position: center;  
+}
+.loading_process_stop{
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-image: url(./img/loading_static.jpg);
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-position: center;
+  background-clip: unset;  
+}
+
+.loading_process{
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-image: url(./img/loading.gif);
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position: center;
+    transition: ease-in-out 125ms;
+}
+
+.loading_stop{
+  width: 0 !important;
+  height: 0 !important;
+  transition: ease-in-out 125ms;
+}
+
 
 
 @media (max-width: 540px){

@@ -60,7 +60,7 @@ async function loadAPI() {
     const fetchPromises = [];
     fetchPromises.push(await init());
     await Promise.all(fetchPromises);
-    renderPokemon(renderedPokemonNumber);
+    stoploadingBar();
 }
 
 
@@ -85,9 +85,22 @@ async function init() {
         await Promise.all(batchPromises);
         // Warte 10 ms, bevor der nächste Batch geladen wird
         await new Promise((resolve) => setTimeout(resolve, 10));
+        if(fetchPokemons['name'].length>50){
+            renderPokemon(renderedPokemonNumber)
+            stopLoadingScreen();
+        }
     }
 }
 
+
+function stopLoadingScreen(){
+    document.getElementById('loading_screen').classList.add(`loading_stop`);
+}
+
+function stoploadingBar(){
+    document.getElementById('loading_process').classList.remove(`loading_process`);
+    document.getElementById('loading_process').classList.add(`loading_process_stop`);
+}
 
 //Mein Code von ChatGPT Optimiert
 /*async function init(){
@@ -148,6 +161,7 @@ function openCard(index){
     hideCards();
     showPokemonCard(index);
     fillCardInfos(index);
+    stopLoadingScreen();
 }
 
 
@@ -164,9 +178,8 @@ function showCards(){
 function hideCards(){
     for (let i = 1; i < renderedPokemonNumber; i++) {
         const id = i;
-        document.getElementById(`card${i}`).classList.add('card_closed');
+
         setTimeout((x)=>{
-            document.getElementById(`card${id}`).classList.add('d_none');
             document.getElementById(`pokemonCard`).classList.remove('d_none');
         }, 500);
     }
@@ -178,7 +191,6 @@ function showPokemonCard(index){
     let card = document.getElementById('pokemonCard');
     let img = fetchPokemons['img'][pokemonIndex]
     let pokeName = fetchPokemons['name'][pokemonIndex];
-
     renderBigCard(index,pokemonIndex,card,img,pokeName)
 }
 
