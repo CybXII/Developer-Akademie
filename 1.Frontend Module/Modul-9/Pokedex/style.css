@@ -29,10 +29,9 @@ body{
   border-top-right-radius: 2vw;
   display: flex;
   justify-content: space-between;
-  padding-left: 1vw;
-  padding-right: 1vw;
+  padding-left: 3vw;
+  padding-right: 3vw;
   align-items: center;
-  padding-right: 2vw;
 }
 
 .pokedex_screen{
@@ -96,6 +95,9 @@ button:hover {
   background-color: rgb(255, 0, 38);
   box-shadow: rgb(0, 0, 0) 0px 1vh 0px 0px;
 }
+.CardBackground{
+  	z-index: 30;
+}
 
 button:active {
   background-color: rgb(255, 0, 38);
@@ -131,8 +133,8 @@ button:active {
   }
 
   .card{
-    height: 22rem;
-    width: 16rem;
+    height: 24rem;
+    width: 18rem;
     margin: 1rem;
     border: solid 6px;
     border-radius: 12px;
@@ -141,6 +143,8 @@ button:active {
     overflow: hidden;
     transition: ease-in-out 125ms;
   }
+
+  
   
 
   .card img{
@@ -181,15 +185,15 @@ h2{
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 250px;
   align-items: center;
+  width: 90%;
 }
 
-.test{
-  padding: 0.25rem;
-  border-radius: 8px;
-  width: 80%;
-  margin: 0.5rem;
+.test {
+  width: 100%;
+  padding: 0.25vh;
+  border-radius: 4vw;
+  margin: 0.5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,16 +217,19 @@ span{
 }
 
 .bigCardContainer{
-display: flex;
-position: absolute;
-width: 100%;
-height: 100%;
-justify-content: center;
-align-items: center;
-z-index: 10;
-width: 100%;
-height: 100%;
+  top:2vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+  z-index: 10;
 }
+
+
+
+
 
 .fixed{
   position: fixed;
@@ -233,53 +240,56 @@ height: 100%;
   width: 85vw;
   border-radius: 1vw;
   background-color: #00000071;
+  z-index: 15;
 }
 
 
 .bigCard{
-  height: 45vw;
+  position: relative;
+  height: 70vh;
   margin-top: 0.5%;
   display: flex;
   flex-direction: column;
   border-radius: 4%;
   border: solid 0.5vw;
   overflow: hidden;
-  width: 50vw !important;
-  z-index: 10;
+  width: 60vw;
+  z-index: 30;
   background-color: #ffffff;
-
 }
 
-.card_Big{
-  height: 20vw;
+.card_Big {
+  height: 20vh;
   position: relative;
   transition: ease-in-out 125ms;
   overflow: hidden;
-  font-size: 2vw;
   display: flex;
 }
 
+.cardContainer{
+  height: 20vh;
+}
+
 .big_headline{
-  margin-left: 0.7rem;
+  margin-left: 0.7vw;
   font-size: 3vh;
   font-weight: bolder;
 }
 
-.sideInfos{
-  width: 50%;
+.sideInfos {
+  width: 100%;
   min-width: 10%;
   overflow-wrap: anywhere;
+  padding: 1vw;
 }
 
-.typeBigCard{
-  width: 75%;
+.typeBigCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .bigImg{
-  height: 20vw;
   aspect-ratio: 1/1;
   border-radius: 2%;
 }
@@ -297,19 +307,52 @@ height: 100%;
   font-weight: bolder;
 }
 
-.test2{
-  height: 100%;
-  width: 100%;
-  border-radius: 4% 4% 0 0;
+.infoContainer{
+  height: 50vh;
+  border-radius: 2% 2% 0 0;
   background-color: #00005a;  
+  display: flex;
+  justify-content: center;
+  color: #FFF;
+  font-size: 2vh;
+  width: 100%;
 }
 
+.base-state-container{
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45vh;
+  padding: 2vh;
+}
+
+canvas{
+  background-color: #FFF;
+  aspect-ratio: 1/1;
+  border-radius: 2vh;
+}
+
+.switch{
+  cursor: pointer;
+}
+
+.pokemonInfos{
+  display: flex;
+  justify-content: space-around;
+}
+
+.bar{
+  width: 60vw;
+  display: flex;
+  justify-content: space-around;
+}
 
 .loader {
-  width: 2vw;
-  height: 2vw;
-  border: 0.1vw solid #FFF;
-  border-radius: 1vw;
+  width: 2vh;
+  height: 2vh;
+  border: 0.1vh solid #FFF;
+  border-radius: 1vh;
   position: relative;
   transform:rotate(45deg);
   box-sizing: border-box;
@@ -319,17 +362,18 @@ height: 100%;
   content: "";
   position: absolute;
   box-sizing: border-box;
-  inset:-1vw;
+  inset:-1vh;
   border-radius: 50%;
-  border: 1vw solid #22ff00;
+  border: 1vh solid #22ff00;
   animation: prixClipFix 2s infinite linear;
 }
 
 .loader_stop {
-  width: 2vw;
-  height: 2vw;
-  border: 0.1vw solid #FFF;
-  border-radius: 1vw;
+  display: flex;
+  width: 2vh;
+  height: 2vh;
+  border: 0.1vh solid #FFF;
+  border-radius: 1vh;
   position: relative;
   transform:rotate(45deg);
   box-sizing: border-box;
@@ -338,9 +382,9 @@ height: 100%;
   content: "";
   position: absolute;
   box-sizing: border-box;
-  inset:-1vw;
+  inset:-1vh;
   border-radius: 50%;
-  border:1vw solid #22ff00;
+  border:1vh solid #22ff00;
   animation: prixClipFix 2s  linear;
 }
 
@@ -404,6 +448,52 @@ height: 100%;
     transform: scale(1.2);
   }
 }
+
+
+@media (max-width:740px) {
+  .bigCard {
+    width: 80vw;
+  }
+  .card_Big {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  span{
+    font-size: 2vw;
+  }
+
+  .bigImg{
+    transform: translateY(3vh);
+    border-radius: 2%;
+    aspect-ratio: 1/1;  
+    height: 50%;
+  }
+  .ID{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 1%;
+    margin-left: 1%;
+    font-size: 3vh;
+    font-weight: bolder;
+  }
+  .sideInfos {
+    width: 80%;
+    min-width: 10%;
+    overflow-wrap: anywhere;
+  }
+  .infoContainer {
+  width: 100%;
+  }
+  .base-state-container{
+    height: 45vh;
+    width: 80vw;
+    padding: 1vw;
+  }
+}
+
 
 
 

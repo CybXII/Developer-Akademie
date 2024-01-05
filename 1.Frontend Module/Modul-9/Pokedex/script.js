@@ -7,13 +7,33 @@ let pokemonAsJson;
 let maxRender = 75;
 let pokemons= [];
 let pokemonsUrl=[];
+let namesStats= []
+
+let numbersStats = [[65], [59], [90], [81], [56], [55], [40]];
+const data = {
+    labels: ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed'],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [65, 59, 90, 81, 56, 55, 40],
+      fill: true,
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(75, 192, 192)',
+        'rgb(255, 205, 86)',
+        'rgb(201, 203, 207)',
+        'rgb(54, 162, 235)'
+      ],
+    }]
+  };
 
 let fetchPokemons={
     'name':[],
     'id':[],
     'img':[],
-    'type':[]
+    'type':[],
+    'namesStats': ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed']
 }
+
 /*async function loadAPI() {
     let url = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1400`;
     let response = await fetch(url);
@@ -180,11 +200,12 @@ function hideCards(){
 
 
 function showPokemonCard(index){
-    let pokemonIndex = fetchPokemons['id'].indexOf(index)
+    let pokemonIndex = fetchPokemons['id'].indexOf(index);
     let card = document.getElementById('pokemonCard');
-    let img = fetchPokemons['img'][pokemonIndex]
+    let img = fetchPokemons['img'][pokemonIndex];
     let pokeName = fetchPokemons['name'][pokemonIndex];
-    renderBigCard(index,pokemonIndex,card,img,pokeName)
+    renderBigCard(index,pokemonIndex,card,img,pokeName);
+
 }
 
 
@@ -237,24 +258,34 @@ function renderCard(index){
 function renderBigCard(index,pokemonIndex,card,img,pokeName){
     card.innerHTML = `
     <div onclick="showCards()" class="fixed">
-        <div class=CardBackground>
-            <div id="card_Big" class="bigCard">
-                <div>
-                    <div class="card_Big">
-                        <p class="ID">#${index}</p>
-                        <img id="img${pokemonIndex}" src="${img}" class="bigImg " alt="${pokeName}">
-                        <div class="sideInfos">
-                            <h2 class="big_headline">${pokeName}</h2>
-                            <div id="typeBigCard" class="typeBigCard"></div>
-                            <div class="types" id="type${pokemonIndex}"></div>
-                        </div>
-                    </div>
+    </div>
+    <div class=CardBackground>
+    <div onclick="" id="card_Big" class="bigCard">
+        <div class="cardContainer">
+            <div class="card_Big">
+                <p class="ID">#${index}</p>
+                <img id="img${pokemonIndex}" src="${img}" class="bigImg " alt="${pokeName}">
+                <div class="sideInfos">
+                    <h2 class="big_headline">${pokeName}</h2>
+                    <div id="typeBigCard" class="typeBigCard"></div>
+                    <div class="types" id="type${pokemonIndex}"></div>
                 </div>
-                <div class="test2">
+            </div>
+        </div>
+        <div class="infoContainer">
+            <div class="">
+                <div class="bar">
+                    <p onclick="switchPokemon(${index},'-')" class="switch"><-</p>
+                    Pokemon Stats
+                    <p onclick="switchPokemon(${index},'+')" class="switch">-></p>
+                </div>
+                <div class="base-state-container" id="infoContainer">
+                    <canvas  id="myChart" width="100%" height="50%">
                 </div>
             </div>
         </div>
     </div>
+</div>
     `;
 }
 
@@ -277,4 +308,26 @@ function fillCardInfos(index){
             `;
         }
     }
+}
+
+
+function switchPokemon(index,operator){
+    if(operator==='-'){
+        let newIndex=index-1;
+        if (newIndex<=0){
+            newIndex = responseLength-1
+            openCard(newIndex)
+
+        }
+        openCard(newIndex)
+    }
+    if(operator==='+'){
+        let newIndex=index+1;
+        if (newIndex>=responseLength){
+            newIndex = 1
+            openCard(newIndex)
+        }
+        openCard(newIndex)
+    }
+
 }
