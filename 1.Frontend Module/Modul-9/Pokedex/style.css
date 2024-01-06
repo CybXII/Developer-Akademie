@@ -186,7 +186,6 @@ button:active {
   .card-body{
     max-height: 100%;
     padding: 0;
-    background-color: #00005a;
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -195,6 +194,7 @@ button:active {
 
 h2{
   margin: 0;
+  color: #000000;
 }
 
 .types{
@@ -205,7 +205,7 @@ h2{
 }
 
 .type_container {
-  width: 40%;
+  width: 80%;
   padding: 0.25vh;
   border-radius: 4vw;
   margin: 0.5vh;
@@ -217,11 +217,9 @@ h2{
 
 .type_container img{
   height: 100%;
+  border-radius: 2vh;
 }
 
-.card-text{
-  color: #ffffff;
-}
 
 span{
   cursor: default;
@@ -260,6 +258,16 @@ span{
   z-index: 15;
 }
 
+.card-img-top {
+  margin-left: 1vh;
+  margin-right: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  border-bottom: #00000084 solid 0.5vh;
+}
+
 
 .bigCard{
   position: relative;
@@ -282,12 +290,12 @@ span{
 }
 
 .cardContainer{
-  height: 20vh;
+  height: 25vh;
 }
 
 .card_Infos{
 display: flex;
-justify-content: center;
+justify-content: space-evenly;
 align-items: center;
 flex-direction: column;
 }
@@ -297,25 +305,23 @@ flex-direction: column;
   font-size: 3vh;
   font-weight: bolder;
   padding: 1vh;
+  margin-bottom: 1vh
 }
 
 .sideInfos {
   width: 100%;
   min-width: 10%;
   overflow-wrap: anywhere;
-  padding: 1vw;
+  display: flex;
 }
 
 .typeBigCard {
   height: 12vh;
-  display: flex;
+  width: 100%;
+  display: flex;  
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateY(-1vh);
-}
-
-.types img{
-  height: 3rem;
 }
 
 .d_none{
@@ -323,11 +329,11 @@ flex-direction: column;
 }
 
 .bigImg{
-  position: absolute;
-  height: 15vh;
+  height: 25vh;
   transform: translateY(-5vh);
 }
-.ID{
+
+.ID_big{
   position: absolute;
   top: 0;
   right: 1vh;
@@ -336,13 +342,25 @@ flex-direction: column;
   font-size: 3vh;
   font-weight: bolder;
 }
+
+.ID{
+  position: absolute;
+  top: 0;
+  right: 1vh;
+  margin-top: 1%;
+  margin-left: 1%;
+  font-size: 2rem;
+  font-weight: bolder;
+}
 .infoContainer{
   height: 50vh;
   border-radius: 2% 2% 0 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
   font-size: 2vh;
   width: 100%;
+  z-index: 50;
 }
 
 .base-state-container{
@@ -350,17 +368,12 @@ flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 45vh;
-  padding: 2vh;
-}
-
-canvas{
-  aspect-ratio: 1/1;
-  border-radius: 2vh;
+  height: 40vh;
 }
 
 .switch{
   cursor: pointer;
+  margin: 0;
 }
 
 .pokemonInfos{
@@ -369,10 +382,63 @@ canvas{
 }
 
 .bar{
-  width: 60vw;
+  width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
+
+.state{
+  height: 80%;
+}
+
+.flex{
+  display:flex;
+  width: 80%;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.options{
+  background-color: #565656c6;
+  border: solid 0.1vh #565656c6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 40%;
+}
+
+.option_left{
+  background-color: #565656c6;
+  border: solid 0.1vh #565656c6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2vw 0 0 0;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  cursor: pointer;
+  width: 40%;
+}
+.option_right{
+  background-color: #565656c6;
+  border: solid 0.1vh #565656c6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 2vw 0 0;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  cursor: pointer;
+  width: 40%;
+}
+
+.aktive{
+  border: solid 0.1vh black;
+  color: red;
+}
+
 
 .loader {
   width: 2vh;
@@ -498,11 +564,10 @@ canvas{
   .infoContainer {
   width: 100%;
   }
-  .base-state-container{
-    height: 45vh;
+  .base-state-container {
+    height: 41vh;
     width: 80vw;
-    padding: 1vw;
-  }
+}
 }
 
 @media (max-width:740px) {
@@ -510,12 +575,6 @@ canvas{
     display: flex;
     width: 100%;
   }
-
-  .bigImg{
-
-    height: 20vw;
-    transform: translateY(-5vh);
-    }
 
 }
 

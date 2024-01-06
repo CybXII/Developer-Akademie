@@ -13,7 +13,7 @@ let numbersStats = [[65], [59], [90], [81], [56], [55], [40]];
 const data = {
     labels: ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed'],
     datasets: [{
-      label: 'My First Dataset',
+      label: '',
       data: [65, 59, 90, 81, 56, 55, 40],
       fill: true,
       backgroundColor: [
@@ -31,8 +31,13 @@ let fetchPokemons={
     'id':[],
     'img':[],
     'type':[],
+    'genera':[],
+    'descr':[],
+    'weight':[],
+    'height':[],
     'namesStats': ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed']
 }
+
 
 /*async function loadAPI() {
     let url = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1400`;
@@ -84,15 +89,6 @@ async function loadAPI() {
 }
 
 
-//Mein alter Code 
-/*async function init(){
-    for (let i = renderedPokemonNumber; i < responseLength; i++) {
-        await loadPokemon(responseAsJson['results'][i-1],i-1);
-        renderPokemon(loadedPokemonNumber)
-        fetchedPokemons++
-    }
-}*/
-
 //Mein Code von ChatGPT Optimiert
 /*async function init(){
     const fetchPromises = [];
@@ -106,11 +102,8 @@ async function init() {
     const batchSize = 100;
     for (let i = renderedPokemonNumber; i < responseLength; i += batchSize) {
         const batchPromises = [];
-        // Lade 50 Pokemon asynchron
-        for (let j = 0; j < batchSize && i + j < responseLength; j++) {
-            batchPromises.push(loadPokemon(responseAsJson['results'][i + j - 1], i + j - 1));
-        }
-        // Warte, bis alle 50 Pokemon geladen sind
+        loadBatch(batchSize,batchPromises,i);
+        // Warte, bis alle batchSize Pokemon geladen sind
         await Promise.all(batchPromises);
         // Warte 10 ms, bevor der nächste Batch geladen wird
         await new Promise((resolve) => setTimeout(resolve, 10));
@@ -118,6 +111,13 @@ async function init() {
             renderPokemon(renderedPokemonNumber)
             stopLoadingScreen();
         }
+    }
+}
+
+
+function loadBatch(batchSize,batchPromises,i){
+    for (let j = 0; j < batchSize && i + j < responseLength; j++) {
+        batchPromises.push(loadPokemon(responseAsJson['results'][i + j - 1], i + j - 1));
     }
 }
 
@@ -145,11 +145,24 @@ async function loadPokemon(index, i){
     fetchPokemons.id.push(i+1);
     fetchPokemons.img.push(imgs);
     fetchPokemons.type.push(types);
+    await loadPokeInfos(pokemonAsJson,speciesAsJson);
+}
+
+
+async function loadPokeInfos(pokemonAsJson,speciesAsJson){
+    const genera = speciesAsJson['genera'][4];
+    const descr = speciesAsJson['flavor_text_entries']
+    const weight = pokemonAsJson['weight'];
+    const height = pokemonAsJson['height'];
+    fetchPokemons.genera.push(genera);
+    fetchPokemons.descr.push(descr);
+    fetchPokemons.weight.push(weight);
+    fetchPokemons.height.push(height);
 }
 
 
 function loadMore(){
-    maxRender= maxRender+100;
+    maxRender= maxRender+50;
     if (maxRender< responseLength){
         renderPokemon(renderedPokemonNumber);
     } else{
@@ -165,15 +178,15 @@ function renderPokemon(input){
     for (let i = input; i < maxRender; i++ & renderedPokemonNumber++) {
         renderCard(i);
         renderType(i);
-        }
+    }
 }
 
 
 function openCard(index){
     showPokemonCard(index);
-    fillCardInfos(index);
+    renderCardInfos(index);
     stopLoadingScreen();
-    renderchart()
+    renderChart();
 }
 
 
@@ -197,7 +210,7 @@ function showPokemonCard(index){
     let card = document.getElementById('pokemonCard');
     let img = fetchPokemons['img'][pokemonIndex];
     let pokeName = fetchPokemons['name'][pokemonIndex];
-    renderBigCard(index,pokemonIndex,card,img,pokeName);
+    renderBigCard(index,card,pokeName);
 }
 
 
@@ -219,10 +232,15 @@ function switchPokemon(index,operator){
 function getPrevious(index){
     let newIndex=index-1;
     if (newIndex<=0){
-        newIndex = responseLength-1;
+        if (fetchPokemons['name'].length === responseLength-1){
+            newIndex = responseLength-1;
+            openCard(newIndex);
+        }else{
+            console.log('Es wurden noch nicht alle Pokemon fertig geladen um das letzte an zu zeigen warte einen Augenblick bitte!');
+        }
+    }else if(newIndex>0){
         openCard(newIndex);
     }
-    openCard(newIndex);
 }
 
 
