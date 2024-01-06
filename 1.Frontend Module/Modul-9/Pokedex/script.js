@@ -92,7 +92,16 @@ async function loadAPI() {
         fetchedPokemons++
     }
 }*/
+
 //Mein Code von ChatGPT Optimiert
+/*async function init(){
+    const fetchPromises = [];
+    for (let i = renderedPokemonNumber; i < responseLength; i++) {
+        fetchPromises.push(loadPokemon(responseAsJson['results'][i-1], i-1));
+    }
+    await Promise.all(fetchPromises);
+}*/
+//Mein Code von ChatGPT Optimiert nach meinen Vorgaben
 async function init() {
     const batchSize = 100;
     for (let i = renderedPokemonNumber; i < responseLength; i += batchSize) {
@@ -117,20 +126,13 @@ function stopLoadingScreen(){
     document.getElementById('loading_screen').classList.remove(`screen_loader`);
 }
 
+
 function stoploadingBar(){
     document.getElementById('loading_process').classList.remove(`loader`);
     document.getElementById('loading_process').classList.add(`loader_stop`);
 }
 
-//Mein Code von ChatGPT Optimiert
-/*async function init(){
-    const fetchPromises = [];
-    for (let i = renderedPokemonNumber; i < responseLength; i++) {
-        fetchPromises.push(loadPokemon(responseAsJson['results'][i-1], i-1));
-    }
-    await Promise.all(fetchPromises);
-}*/
-//Mein Code von ChatGPT Optimiert
+
 async function loadPokemon(index, i){
     const pokemonUrl = await fetch(index.url);
     const pokemonAsJson = await pokemonUrl.json();
@@ -146,26 +148,16 @@ async function loadPokemon(index, i){
 }
 
 
-//Mein alter Code 
-/*async function loadPokemon(index,i){
-    let pokemonUrl = await fetch(index.url);
-    let pokemonAsJson = await pokemonUrl.json();
-    let speciesFetch = await fetch(pokemonAsJson.species.url);
-    let speciesAsJson = await speciesFetch.json();
-    let names = speciesAsJson['names'][5]['name'];
-    fetchPokemons.name.push(names);
-}*/
-//Mein Code von ChatGPT Optimiert
 function loadMore(){
-        maxRender= maxRender+100;
-        if (maxRender< responseLength){
-            renderPokemon(renderedPokemonNumber);
-        } else{
-            maxRender=responseLength
-            document.getElementById('pokedex_screen').setAttribute('onscroll','')
-            document.getElementById('pokedex_screen').setAttribute('onscroll','')
-            renderPokemon(renderedPokemonNumber)
-        }
+    maxRender= maxRender+100;
+    if (maxRender< responseLength){
+        renderPokemon(renderedPokemonNumber);
+    } else{
+        maxRender=responseLength
+        document.getElementById('pokedex_screen').setAttribute('onscroll','')
+        document.getElementById('pokedex_screen').setAttribute('onscroll','')
+        renderPokemon(renderedPokemonNumber)
+    }
 }
 
 
@@ -181,6 +173,7 @@ function openCard(index){
     showPokemonCard(index);
     fillCardInfos(index);
     stopLoadingScreen();
+    renderchart()
 }
 
 
@@ -195,7 +188,7 @@ function showCards(){
 
 
 function hideCards(){
-            document.getElementById(`pokemonCard`).classList.remove('d_none');
+    document.getElementById(`pokemonCard`).classList.remove('d_none');
 }
 
 
@@ -205,7 +198,6 @@ function showPokemonCard(index){
     let img = fetchPokemons['img'][pokemonIndex];
     let pokeName = fetchPokemons['name'][pokemonIndex];
     renderBigCard(index,pokemonIndex,card,img,pokeName);
-
 }
 
 
@@ -214,120 +206,31 @@ function hideBigCard(){
 }
 
 
-function renderType(index){    
-    let pokemonIndex = fetchPokemons['id'].indexOf(index)
-    let img = document.getElementById(`img${pokemonIndex}`)
-    let imgs = fetchPokemons['img'][pokemonIndex];
-    let typeLength = fetchPokemons['type'][pokemonIndex].length;
-    img.setAttribute(`src`,`${imgs}`)
-    for (let j = 0; j < typeLength; j++) {
-        if (j==0){
-            let pokeType =  fetchPokemons['type'][pokemonIndex][j]['type']['name'];
-            document.getElementById(`type${pokemonIndex}`).innerHTML +=`
-            <div class="${pokeType} test"><span>${pokeType}</span></div>
-            `;
-            document.getElementById(`img${pokemonIndex}`).classList.add(`box-shadow-${pokeType}`)
-
-        }else{
-            let pokeType =  fetchPokemons['type'][pokemonIndex][j]['type']['name'];
-            document.getElementById(`type${pokemonIndex}`).innerHTML +=`
-            <div class="${pokeType} test"><span>${pokeType}</span></div>
-            `;
-        }
-
-    }
-}
-
-
-function renderCard(index){
-    let pokemonIndex = fetchPokemons['id'].indexOf(index)
-    let card = document.getElementById('pokedex_screen');
-    let pokeName = fetchPokemons['name'][pokemonIndex];
-    card.innerHTML += `
-    <div id="card${index}" onclick="openCard(${index})" class="card">
-        <img id="img${pokemonIndex}" src="" class="card-img-top " alt="${pokeName}">
-        <div class="card-body card_Infos">
-            <h2 class="card-text">${pokeName}</h2>
-            <div class="types" id="type${pokemonIndex}"></div>
-        </div>
-    </div>
-    `;
-}
-
-
-function renderBigCard(index,pokemonIndex,card,img,pokeName){
-    card.innerHTML = `
-    <div onclick="showCards()" class="fixed">
-    </div>
-    <div class=CardBackground>
-    <div onclick="" id="card_Big" class="bigCard">
-        <div class="cardContainer">
-            <div class="card_Big">
-                <p class="ID">#${index}</p>
-                <img id="img${pokemonIndex}" src="${img}" class="bigImg " alt="${pokeName}">
-                <div class="sideInfos">
-                    <h2 class="big_headline">${pokeName}</h2>
-                    <div id="typeBigCard" class="typeBigCard"></div>
-                    <div class="types" id="type${pokemonIndex}"></div>
-                </div>
-            </div>
-        </div>
-        <div class="infoContainer">
-            <div class="">
-                <div class="bar">
-                    <p onclick="switchPokemon(${index},'-')" class="switch"><-</p>
-                    Pokemon Stats
-                    <p onclick="switchPokemon(${index},'+')" class="switch">-></p>
-                </div>
-                <div class="base-state-container" id="infoContainer">
-                    <canvas  id="myChart" width="100%" height="50%">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    `;
-}
-
-
-function fillCardInfos(index){
-    let pokemonIndex = fetchPokemons['id'].indexOf(index);
-    let typeLength = fetchPokemons['type'][pokemonIndex].length;
-    for (let j = 0; j < typeLength; j++) {
-        if (j==0){
-            let pokeType =  fetchPokemons['type'][pokemonIndex][j]['type']['name'];
-            document.getElementById('pokemonCard').classList.remove('d_none');
-            document.getElementById('card_Big').classList.add(`box-shadow-${pokeType}`);
-            document.getElementById(`typeBigCard`).innerHTML +=`
-            <div class="${pokeType} test"><span>${pokeType}</span></div>
-            `;
-        }else{
-            let pokeType =  fetchPokemons['type'][pokemonIndex][j]['type']['name'];
-            document.getElementById(`typeBigCard`).innerHTML +=`
-            <div class="${pokeType} test"><span>${pokeType}</span></div>
-            `;
-        }
-    }
-}
-
-
 function switchPokemon(index,operator){
     if(operator==='-'){
-        let newIndex=index-1;
-        if (newIndex<=0){
-            newIndex = responseLength-1
-            openCard(newIndex)
-
-        }
-        openCard(newIndex)
+        getPrevious(index);
     }
     if(operator==='+'){
-        let newIndex=index+1;
-        if (newIndex>=responseLength){
-            newIndex = 1
-            openCard(newIndex)
-        }
-        openCard(newIndex)
+        getNext(index);
     }
+}
 
+
+function getPrevious(index){
+    let newIndex=index-1;
+    if (newIndex<=0){
+        newIndex = responseLength-1;
+        openCard(newIndex);
+    }
+    openCard(newIndex);
+}
+
+
+function getNext(index){
+    let newIndex=index+1;
+    if (newIndex>=responseLength){
+        newIndex = 1;
+        openCard(newIndex);
+    }
+    openCard(newIndex);
 }

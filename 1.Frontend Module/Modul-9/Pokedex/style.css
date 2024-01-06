@@ -13,18 +13,19 @@ body{
     border-radius: 2vw;  
     background-color: #a52a2a;
     width: 90%;
-    box-shadow: 0.5vw 0.5vw 0.5vh 0.5vh #5673a7, -0.5vw 0.5vw 0.5vh 0.5vh #5673a7,
-                0.5vw 0.5vw 0.5vw 0.5vw #5673a7,-0.5vw 0.5vw 0.5vw 0.5vw #5673a7;            
+    box-shadow: 0 0 3.5vh -0.5vh #4be4e4;           
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+
+
 .pokedex_upper_border{
   height: 9vh;
   width: 100%;
-  background-color: brown;
+  background-color: #a52a2a;
   border-top-left-radius: 2vw;
   border-top-right-radius: 2vw;
   display: flex;
@@ -50,6 +51,26 @@ body{
     justify-content: center;
     box-shadow: inset 5px 5px 25px #5673a7;
 }
+
+
+.screen_backgound{
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  }
+  .screen_img{
+    height: 72vh;
+    width: 85.75vw;
+    position: fixed;
+    object-fit: cover;
+    border-radius: 1vh 0 0 1vh;
+  }
 
 .pokedex_buttons{
   display: flex;
@@ -111,20 +132,19 @@ button:active {
   /* width */
   ::-webkit-scrollbar {
     width: 1vw;
-
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
     box-shadow: inset 10px 5px 25px grey; 
-    border-radius: 1vw;
+    border-radius: 0.5vw;
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: red; 
-    border-radius: 1vw;
-    width: 1vw;
+    border-radius: 0.5vw;
+    width: 0.5vw;
     }
   
   /* Handle on hover */
@@ -144,13 +164,9 @@ button:active {
     transition: ease-in-out 125ms;
   }
 
-  
-  
-
   .card img{
-    height: 60%;
-    aspect-ratio: 1/1;
-    box-shadow: inset 5px 5px 25px #5673a7;
+    height: 12rem;
+    object-fit: contain;
   }
 
   .load{
@@ -184,19 +200,23 @@ h2{
 .types{
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
   width: 90%;
 }
 
-.test {
-  width: 100%;
+.type_container {
+  width: 40%;
   padding: 0.25vh;
   border-radius: 4vw;
   margin: 0.5vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 3rem;
+}
+
+.type_container img{
+  height: 100%;
 }
 
 .card-text{
@@ -228,9 +248,6 @@ span{
 }
 
 
-
-
-
 .fixed{
   position: fixed;
   display: flex;
@@ -239,7 +256,7 @@ span{
   height: 71vh;
   width: 85vw;
   border-radius: 1vw;
-  background-color: #00000071;
+  background-color: #000000cc;
   z-index: 15;
 }
 
@@ -259,10 +276,8 @@ span{
 }
 
 .card_Big {
-  height: 20vh;
   position: relative;
   transition: ease-in-out 125ms;
-  overflow: hidden;
   display: flex;
 }
 
@@ -270,10 +285,18 @@ span{
   height: 20vh;
 }
 
+.card_Infos{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
 .big_headline{
   margin-left: 0.7vw;
   font-size: 3vh;
   font-weight: bolder;
+  padding: 1vh;
 }
 
 .sideInfos {
@@ -284,36 +307,40 @@ span{
 }
 
 .typeBigCard {
+  height: 12vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  transform: translateY(-1vh);
 }
 
-.bigImg{
-  aspect-ratio: 1/1;
-  border-radius: 2%;
+.types img{
+  height: 3rem;
 }
 
 .d_none{
   display: none;
 }
 
+.bigImg{
+  position: absolute;
+  height: 15vh;
+  transform: translateY(-5vh);
+}
 .ID{
   position: absolute;
   top: 0;
+  right: 1vh;
   margin-top: 1%;
   margin-left: 1%;
   font-size: 3vh;
   font-weight: bolder;
 }
-
 .infoContainer{
   height: 50vh;
   border-radius: 2% 2% 0 0;
-  background-color: #00005a;  
   display: flex;
   justify-content: center;
-  color: #FFF;
   font-size: 2vh;
   width: 100%;
 }
@@ -328,7 +355,6 @@ span{
 }
 
 canvas{
-  background-color: #FFF;
   aspect-ratio: 1/1;
   border-radius: 2vh;
 }
@@ -464,21 +490,6 @@ canvas{
     font-size: 2vw;
   }
 
-  .bigImg{
-    transform: translateY(3vh);
-    border-radius: 2%;
-    aspect-ratio: 1/1;  
-    height: 50%;
-  }
-  .ID{
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-top: 1%;
-    margin-left: 1%;
-    font-size: 3vh;
-    font-weight: bolder;
-  }
   .sideInfos {
     width: 80%;
     min-width: 10%;
@@ -492,6 +503,20 @@ canvas{
     width: 80vw;
     padding: 1vw;
   }
+}
+
+@media (max-width:740px) {
+  .typeBigCard{
+    display: flex;
+    width: 100%;
+  }
+
+  .bigImg{
+
+    height: 20vw;
+    transform: translateY(-5vh);
+    }
+
 }
 
 

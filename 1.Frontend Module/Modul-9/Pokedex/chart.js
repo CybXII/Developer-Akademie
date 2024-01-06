@@ -4,7 +4,7 @@ function renderchart() {
   const ctx = document.getElementById('myChart');
   
   new Chart(ctx, {
-    type: 'polarArea',
+    type: 'radar',
     data: data,
     options: {
       elements: {
