@@ -364,16 +364,33 @@ flex-direction: column;
 }
 
 .base-state-container{
-  width: 60vw;
+  width: 59.5vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 40vh;
 }
 
-.switch{
+.switchNext{
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+  height: 10vh;
+  margin: 0;
+  width: 5%;
+  background-color: #565656c6;
+}
+.switchPrev{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
   cursor: pointer;
   margin: 0;
+  width: 5%;
+  background-color: #565656c6;
+
 }
 
 .pokemonInfos{
@@ -540,6 +557,8 @@ flex-direction: column;
     transform: scale(1.2);
   }
 }
+
+
 
 
 @media (max-width:740px) {

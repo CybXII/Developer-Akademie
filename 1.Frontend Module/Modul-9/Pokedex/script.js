@@ -242,3 +242,20 @@ function getNext(index){
     }
     openCard(newIndex);
 }
+
+
+function checkDescription(pokemonIndex){
+    function filterPokemonData(dataArray, languageFilter, versionFilter) {
+        let filteredData = dataArray.filter((pokemon) => {
+            return pokemon.language.name === languageFilter && pokemon.version.name === versionFilter;
+        });
+        if (filteredData.length > 0) {
+            return filteredData.map((pokemon) => pokemon.flavor_text);
+        } 
+        else {
+            return "Leider gibt es zu diesem Pokemon keine näheren Daten.";
+        }
+        }
+        let result = filterPokemonData(fetchPokemons['descr'][pokemonIndex], "de", "x");
+       return result
+}

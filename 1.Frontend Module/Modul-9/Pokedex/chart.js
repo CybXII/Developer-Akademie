@@ -1,10 +1,30 @@
-
-
-
-function renderChart(index) {
+function buildChart(index) {
   let pokemonIndex = fetchPokemons['id'].indexOf(index);
   let pokeLabel = fetchPokemons['name'][pokemonIndex];
-  let pokeData = fetchPokemons['stats'][pokemonIndex]
+  let data =  buildDataJson(pokemonIndex,pokeLabel);
+  renderChart(index);
+  createChart(data);
+}
+
+
+function createChart(data){
+  const ctx = document.getElementById('myChart');
+  new Chart(ctx, {
+    type: 'polarArea',
+    data: data,
+    options: {
+      elements: {
+        line: {
+          borderWidth: 1
+        }
+      }
+    },
+  });
+}
+
+
+//Json Builder Funktion  könnte ich noch runter brechen aber dann wird das Json unübersichtlich
+function buildDataJson(pokemonIndex,pokeLabel){
   const data = {
     labels: ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed'],
     datasets: [{
@@ -27,23 +47,5 @@ function renderChart(index) {
       ],
     }]
   };
-  document.getElementById('pokestats').classList.add('aktive')
-  document.getElementById('pokeinfos').classList.remove('aktive')
-  document.getElementById('pokeabilitys').classList.remove('aktive')
-  document.getElementById('infoContainer').innerHTML=`
-    <canvas  id="myChart" width="100%" height="50%"></canvas>
-  `;
-  const ctx = document.getElementById('myChart');
-  
-  new Chart(ctx, {
-    type: 'polarArea',
-    data: data,
-    options: {
-      elements: {
-        line: {
-          borderWidth: 1
-        }
-      }
-    },
-  });
+  return data
 }
