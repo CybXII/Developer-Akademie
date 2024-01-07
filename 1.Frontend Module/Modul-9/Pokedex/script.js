@@ -10,31 +10,18 @@ let pokemonsUrl=[];
 let namesStats= []
 
 let numbersStats = [[65], [59], [90], [81], [56], [55], [40]];
-const data = {
-    labels: ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed'],
-    datasets: [{
-      label: '',
-      data: [65, 59, 90, 81, 56, 55, 40],
-      fill: true,
-      backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(75, 192, 192)',
-        'rgb(255, 205, 86)',
-        'rgb(201, 203, 207)',
-        'rgb(54, 162, 235)'
-      ],
-    }]
-  };
+
 
 let fetchPokemons={
     'name':[],
     'id':[],
     'img':[],
     'type':[],
-    'genera':[],
+    'ability':[],
     'descr':[],
     'weight':[],
     'height':[],
+    'stats':[],
     'namesStats': ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed']
 }
 
@@ -150,14 +137,18 @@ async function loadPokemon(index, i){
 
 
 async function loadPokeInfos(pokemonAsJson,speciesAsJson){
-    const genera = speciesAsJson['genera'][4];
+    const ability = pokemonAsJson['abilities'];
     const descr = speciesAsJson['flavor_text_entries']
     const weight = pokemonAsJson['weight'];
     const height = pokemonAsJson['height'];
-    fetchPokemons.genera.push(genera);
+    const stats = pokemonAsJson['stats'];
+
+    fetchPokemons.ability.push(ability);
     fetchPokemons.descr.push(descr);
     fetchPokemons.weight.push(weight);
     fetchPokemons.height.push(height);
+    fetchPokemons.stats.push(stats);
+
 }
 
 
@@ -186,7 +177,7 @@ function openCard(index){
     showPokemonCard(index);
     renderCardInfos(index);
     stopLoadingScreen();
-    renderChart();
+    renderInfos(index);
 }
 
 
@@ -208,7 +199,6 @@ function hideCards(){
 function showPokemonCard(index){
     let pokemonIndex = fetchPokemons['id'].indexOf(index);
     let card = document.getElementById('pokemonCard');
-    let img = fetchPokemons['img'][pokemonIndex];
     let pokeName = fetchPokemons['name'][pokemonIndex];
     renderBigCard(index,card,pokeName);
 }

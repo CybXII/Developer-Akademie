@@ -546,6 +546,7 @@ flex-direction: column;
   .bigCard {
     width: 80vw;
   }
+
   .card_Big {
     flex-direction: column;
     justify-content: center;
@@ -561,21 +562,22 @@ flex-direction: column;
     min-width: 10%;
     overflow-wrap: anywhere;
   }
+
   .infoContainer {
   width: 100%;
   }
+
   .base-state-container {
     height: 41vh;
     width: 80vw;
-}
+  }
 }
 
 @media (max-width:740px) {
   .typeBigCard{
     display: flex;
     width: 100%;
-  }
-
+  } 
 }
 
 

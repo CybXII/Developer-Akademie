@@ -102,24 +102,59 @@ function renderCardInfos(index){
 
 function renderInfos(index){
     let pokemonIndex = fetchPokemons['id'].indexOf(index);
-    let height = fetchPokemons['height'][pokemonIndex]
+    let height = fetchPokemons['height'][pokemonIndex];
+    let weight = fetchPokemons['weight'][pokemonIndex];
+    let gerdescIndex = fetchPokemons['descr'][pokemonIndex].indexOf('de');
+    let descr = checkDescription(pokemonIndex,gerdescIndex);
     document.getElementById('pokestats').classList.remove('aktive');
     document.getElementById('pokeinfos').classList.add('aktive');
     document.getElementById('pokeabilitys').classList.remove('aktive');
-    document.getElementById('infoContainer').innerHTML= `
+    document.getElementById('infoContainer').innerHTML=`
     <div>
-        Height = ${height}
+        <div>
+            Größe: ${height/10} Meter
+            Gewicht: ${weight/10} Kg
+        </div>
+        <div>
+            ${descr}
+        </div>
     </div>
     `;
 }
 
+
+
+function checkDescription(pokemonIndex,gerdescIndex){
+    // if(gerdescIndex=== -1){
+    //     descr = "Es liegen keine Daten vor zu diesem Pokemon"
+    // }
+    // else if(gerdescIndex){
+        function filterPokemonData(dataArray, languageFilter, versionFilter) {
+            const filteredData = dataArray.filter((pokemon) => {
+                return pokemon.language.name === languageFilter && pokemon.version.name === versionFilter;
+            });
+        
+            if (filteredData.length > 0) {
+                return filteredData.map((pokemon) => pokemon.flavor_text);
+            } else {
+                return "Leider gibt es zu diesem Pokemon keine näheren Daten.";
+            }
+        }
+        // Beispielaufruf
+        const result = filterPokemonData(fetchPokemons['descr'][pokemonIndex], "de", "x");
+       return result
+        // descr= fetchPokemons['descr'][pokemonIndex][gerdescIndex]
+    // }
+}
+
+
 function renderAbilitys(index){
+    let pokemonIndex = fetchPokemons['id'].indexOf(index);
     document.getElementById('pokestats').classList.remove('aktive');
-    document.getElementById('pokeinfos').classList.add('aktive');
-    document.getElementById('pokeabilitys').classList.remove('aktive');
-    document.getElementById('infoContainer').innerHTML= `
-    <div>
-        Height = ${height}
-    </div>
-    `;
+    document.getElementById('pokeinfos').classList.remove('aktive');
+    document.getElementById('pokeabilitys').classList.add('aktive');
+    document.getElementById('infoContainer').innerHTML= `<div id="ability"></div>`;
+    fetchPokemons.ability[pokemonIndex].forEach(element => {
+        document.getElementById('ability').innerHTML += `<div>${element.ability['name']}</div>`;
+    });
 }
