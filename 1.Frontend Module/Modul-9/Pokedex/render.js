@@ -34,7 +34,7 @@ function renderBigCard(index,card,pokeName){
 
 function renderCard(index){
     let pokemonIndex = fetchPokemons['id'].indexOf(index)
-    let card = document.getElementById('pokedex_screen');
+    let card = document.getElementById('smallCard');
     let pokeName = fetchPokemons['name'][pokemonIndex];
     card.innerHTML += `
     <div id="card${index}" onclick="openCard(${index})" class="card">
@@ -108,13 +108,13 @@ function renderInfos(index){
     document.getElementById('pokeabilitys').classList.remove('aktive');
     document.getElementById('infoContainer').innerHTML=`
     <div onclick="switchPokemon(${index},'-')" class="switchPrev"><</div>
-    <div>
+    <div class="small_info_Container">
         <div class="info">
-            Größe: ${height/10} Meter
-            Gewicht: ${weight/10} Kg
+            <h3>Größe: ${height/10} Meter</h3>
+            <h3>Gewicht: ${weight/10} Kg</h3>
         </div>
         <div>
-            ${descr}
+            <span>${descr}</span>
         </div>
     </div>
     <div onclick="switchPokemon(${index},'+')" class="switchNext">></div>
@@ -129,24 +129,82 @@ function renderAbilitys(index){
     document.getElementById('pokeabilitys').classList.add('aktive');
     document.getElementById('infoContainer').innerHTML= `
     <div onclick="switchPokemon(${index},'-')" class="switchPrev"><</div>
-    <div class="info" id="ability"></div>
+    <p class="ability" id="ability"></p>
     <div onclick="switchPokemon(${index},'+')" class="switchNext">></div>
     `;
     fetchPokemons.ability[pokemonIndex].forEach(element => {
-        document.getElementById('ability').innerHTML += `<div>${element.ability['name']}</div>`;
+        document.getElementById('ability').innerHTML += `<div class="move">${element.move['name']}</div>`;
     });
 }
 
 
 function renderChart(index){
-  document.getElementById('pokestats').classList.add('aktive')
-  document.getElementById('pokeinfos').classList.remove('aktive')
-  document.getElementById('pokeabilitys').classList.remove('aktive')
-  document.getElementById('infoContainer').innerHTML=`
-  <div onclick="switchPokemon(${index},'-')" class="switchPrev"><</div>
-  <canvas  id="myChart" width="100%" height="50%"></canvas>
-  <div onclick="switchPokemon(${index},'+')" class="switchNext">></div>
-
-  `;
-
+    document.getElementById('pokestats').classList.add('aktive')
+    document.getElementById('pokeinfos').classList.remove('aktive')
+    document.getElementById('pokeabilitys').classList.remove('aktive')
+    document.getElementById('infoContainer').innerHTML=`
+        <div onclick="switchPokemon(${index},'-')" class="switchPrev"><</div>
+        <canvas  id="myChart" width="100%" height="50%"></canvas>
+        <div onclick="switchPokemon(${index},'+')" class="switchNext">></div>
+     `;
 }
+
+
+function renderSearchPokemon(){
+document.getElementById('pokemonCard').classList.remove('d_none')
+document.getElementById('pokemonCard').innerHTML =`
+<div onclick="showCards()" class="fixed">
+</div>
+<div class=CardBackground>
+    <div onclick="" id="card_Big" class="bigCard">
+        <div class="cardContainer">
+            <div class="card_Big">
+                <div class="searchContainer">
+                    <div class="search">
+                        <input onkeyup="filterID()" id="searchID" type="number"  label="ID" placeholder="100">
+                        <input onkeyup="filterName()" id="searchName" type="text" label="Pokemon Name" placeholder="Bisasam">      
+                    </div>
+                    <div id="output" class=searchOutput>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+`;
+}
+
+
+function renderSearchName(search,list){
+    for (let i = 0; i < fetchPokemons['name'].length; i++) {
+        let name = fetchPokemons['name'][i];
+        if (name.toLowerCase().includes(search))
+        list.innerHTML += `
+        <li onclick="openCard(${fetchPokemons['id'][i]})">
+            <p>ID#${fetchPokemons['id'][i]}</p>
+            <div>
+                <p>${name}</p>
+            </div>
+            <img src="${fetchPokemons['img'][i]}">
+        </li>
+        `;
+    }
+}
+
+function renderSearchId(search,list){
+    for (let i = 0; i < fetchPokemons['id'].length; i++) {
+        let id = fetchPokemons['id'][i];
+        if (id.toString().includes(search))
+        list.innerHTML += `        
+        <li>
+            <p>ID#${id}</p>
+            <div>
+                <p>${fetchPokemons['name'][i]}</p>
+            </div>
+            <img src="${fetchPokemons['img'][i]}">
+        </li>
+    `;
+    }
+}
+

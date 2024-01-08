@@ -9,8 +9,6 @@ let pokemons= [];
 let pokemonsUrl=[];
 let namesStats= []
 
-let numbersStats = [[65], [59], [90], [81], [56], [55], [40]];
-
 
 let fetchPokemons={
     'name':[],
@@ -26,44 +24,6 @@ let fetchPokemons={
 }
 
 
-/*async function loadAPI() {
-    let url = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1400`;
-    let response = await fetch(url);
-    responseAsJson = await response.json();
-    responseLength = responseAsJson['count'] + 1;
-
-    // Versuche die init-Funktion auszuführen
-    try {
-        await init();
-        // Überprüfe, ob alle Daten korrekt geladen wurden
-        if (
-            fetchPokemons['name'].length !== responseLength - 1 ||
-            fetchPokemons['id'].length !== responseLength - 1 ||
-            fetchPokemons['img'].length !== responseLength - 1 ||
-            fetchPokemons['type'].length !== responseLength - 1
-        ) {
-            throw new Error('Daten nicht vollständig geladen.');
-        }
-        else {
-                    // Wenn die Daten korrekt geladen wurden, warte 2 Sekunden und rufe renderPokemon auf
-        setTimeout(() => {
-            renderPokemon(renderedPokemonNumber);
-        }, 2000);
-        }
-    } 
-    catch (x) {
-        // Wenn ein Fehler auftritt (Daten nicht vollständig geladen), rufe loadAPI erneut auf
-        fetchPokemons = {
-            'name': [],
-            'id': [],
-            'img': [],
-            'type': []
-        };        
-        loadAPI();
-    }
-}*/
-
-
 async function loadAPI() {
     let url = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=1400`;
     let response = await fetch(url);
@@ -76,15 +36,6 @@ async function loadAPI() {
 }
 
 
-//Mein Code von ChatGPT Optimiert
-/*async function init(){
-    const fetchPromises = [];
-    for (let i = renderedPokemonNumber; i < responseLength; i++) {
-        fetchPromises.push(loadPokemon(responseAsJson['results'][i-1], i-1));
-    }
-    await Promise.all(fetchPromises);
-}*/
-//Mein Code von ChatGPT Optimiert nach meinen Vorgaben
 async function init() {
     const batchSize = 100;
     for (let i = renderedPokemonNumber; i < responseLength; i += batchSize) {
@@ -137,7 +88,7 @@ async function loadPokemon(index, i){
 
 
 async function loadPokeInfos(pokemonAsJson,speciesAsJson){
-    const ability = pokemonAsJson['abilities'];
+    const ability = pokemonAsJson['moves'];
     const descr = speciesAsJson['flavor_text_entries']
     const weight = pokemonAsJson['weight'];
     const height = pokemonAsJson['height'];
@@ -148,7 +99,6 @@ async function loadPokeInfos(pokemonAsJson,speciesAsJson){
     fetchPokemons.weight.push(weight);
     fetchPokemons.height.push(height);
     fetchPokemons.stats.push(stats);
-
 }
 
 
@@ -248,7 +198,7 @@ function checkDescription(pokemonIndex){
     function filterPokemonData(dataArray, languageFilter, versionFilter) {
         let filteredData = dataArray.filter((pokemon) => {
             return pokemon.language.name === languageFilter && pokemon.version.name === versionFilter;
-        });
+            });
         if (filteredData.length > 0) {
             return filteredData.map((pokemon) => pokemon.flavor_text);
         } 
@@ -256,6 +206,40 @@ function checkDescription(pokemonIndex){
             return "Leider gibt es zu diesem Pokemon keine näheren Daten.";
         }
         }
-        let result = filterPokemonData(fetchPokemons['descr'][pokemonIndex], "de", "x");
-       return result
+    let result = filterPokemonData(fetchPokemons['descr'][pokemonIndex], "de", "x");
+    return result
+}
+
+
+
+function getValueFromInput(input){
+    let wert = document.getElementById(input).value;
+  return wert
+  }
+
+
+function filterID(){
+    let search = document.getElementById('searchID').value;
+    search= search.toLowerCase();
+    let list = document.getElementById('output');
+    list.innerHTML='';
+    if(search.length===0){
+        list.innerHTML='';
+    }
+    else{
+        renderSearchId(search,list);
+    }
+}
+
+function filterName(){
+    let search = document.getElementById('searchName').value;
+    search= search.toLowerCase();
+    let list = document.getElementById('output');
+    list.innerHTML='';
+    if(search.length===0){
+        list.innerHTML='';
+    }
+    else{
+        renderSearchName(search,list);
+    }
 }

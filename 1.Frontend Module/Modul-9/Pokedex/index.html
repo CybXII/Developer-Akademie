@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./types.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./script.js"></script>
-  <link rel="icon" type="image" href="./img/logo_small.png">
+  <link rel="icon" type="image" href="./img/pokeball-1594373_640.png">
   <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./chart.js"></script>
@@ -25,7 +25,7 @@
       <div id="loading_process" class="loader"></div>
     </div>
     <div id="pokedex_screen" class="pokedex_screen">
-      <div class="screen_backgound">
+      <div id="smallCard" class="screen_backgound">
         <img class="screen_img" src="./img/pokemon-1593048_1920.jpg" alt="">
       </div>
       <div id="pokemonCard" class="bigCardContainer d_none">
@@ -36,6 +36,7 @@
     </div>
     <div id="pokedex_buttons" class="pokedex_buttons">
       <button onclick="loadMore()">Show more</button>
+      <button onclick="renderSearchPokemon()">Search</button>
     </div>
   </div>
 </body>
