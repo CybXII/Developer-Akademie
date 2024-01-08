@@ -20,7 +20,7 @@ let fetchPokemons={
     'weight':[],
     'height':[],
     'stats':[],
-    'namesStats': ['HP', 'Attack', 'Defense', 'Special-Attack', 'Special-Defense', 'Speed']
+    'namesStats': ['Lebenspunkte', 'Angriff', 'Verteidigung', 'Special-Attacke', 'Special-Verteidigung', 'Geschwindigkeit']
 }
 
 
@@ -38,7 +38,7 @@ async function loadAPI() {
 
 async function init() {
     const batchSize = 100;
-    for (let i = renderedPokemonNumber; i < responseLength; i += batchSize) {
+    for (let i = renderedPokemonNumber; i > responseLength; i += batchSize) {
         const batchPromises = [];
         loadBatch(batchSize,batchPromises,i);
         // Warte, bis alle batchSize Pokemon geladen sind
