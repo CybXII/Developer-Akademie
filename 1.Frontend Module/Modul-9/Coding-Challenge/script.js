@@ -10,8 +10,10 @@ function renderLand(){
 function test(json){
     json.forEach(element => {
         document.getElementById('content').innerHTML+=`
-        <div>
-            ${element.name}
+        <div class="lands" href="${element.url}">
+            <h2>${element.name}<br></h2>
+            ${element.population}<br>
+            <a>${element.url}</a>
         </div>
         `;
     });
