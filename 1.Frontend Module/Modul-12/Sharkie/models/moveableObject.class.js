@@ -19,8 +19,17 @@ class MoveableObject{
     moveLeft(){
         this.x = this.x - 5;
     }
+
     moveRight() {
         this.x = this.x + 5;
-        console.log('Moving right')
     }
+
+    moveUp(){
+        this.y = this.y - 5;
+    }
+
+    moveDown() {
+        this.y = this.y + 5;
+    }
+
 }

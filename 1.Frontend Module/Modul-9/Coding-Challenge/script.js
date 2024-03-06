@@ -64,9 +64,9 @@ function renderSearchOptions(){
 }
 
 function checkLetters(){
-     lands[0].forEach(element => {
-         availableLetters.push(element.name.charAt(0))
-     });
+    lands[0].forEach(element => {
+        availableLetters.push(element.name.charAt(0))
+    });
     sortedArray = lands[0].sort((a, b) => a.name.substring(0).localeCompare(b.name.substring(0)));
     console.log(sortedArray)
     const uniqueSet = new Set(availableLetters);
