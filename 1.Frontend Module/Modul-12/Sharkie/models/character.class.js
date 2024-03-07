@@ -5,7 +5,7 @@ class Character extends MoveableObject{
     constructor(){
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.x = 10;
-        this.y = 340*Math.random();
+        this.y = (440-200)*Math.random();
     }
 
     jump(){

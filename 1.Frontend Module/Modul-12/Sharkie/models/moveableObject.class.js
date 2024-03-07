@@ -15,21 +15,20 @@ class MoveableObject{
         this.img.src = path;
     }
 
-
-    moveLeft(){
-        this.x = this.x - 5;
+    moveLeft(speed){
+        this.x = this.x - speed;
     }
 
-    moveRight() {
-        this.x = this.x + 5;
+    moveRight(speed) {
+        this.x = this.x + speed;
     }
 
-    moveUp(){
-        this.y = this.y - 5;
+    moveUp(speed){
+        this.y = this.y - speed;
     }
 
-    moveDown() {
-        this.y = this.y + 5;
+    moveDown(speed) {
+        this.y = this.y + speed;
     }
 
 }
