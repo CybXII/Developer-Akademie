@@ -10,5 +10,10 @@ class Water extends MoveableObject{
         this.y = 480 - this.height;
         this.height = height;
         this.width = width;
+        this.animate();
+    }
+
+    animate(){
+        this.moveLeft();
     }
 }

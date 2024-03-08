@@ -18,12 +18,10 @@ class World{
     ]
 
     water = [
-        new Ground('img/3. Background/Layers/5. Water/D1.png' , 0,0,480,1001 ),
-        new Ground('img/3. Background/Layers/5. Water/D2.png' , 1000,0,480,1001 ),
-        new Ground('img/3. Background/Layers/5. Water/D1.png' , 2000,0,480,1001 ),
-        new Ground('img/3. Background/Layers/5. Water/D2.png' , 3000,0,480,1001 ),
-
-
+        new Water('img/3. Background/Layers/5. Water/D1.png' , 0,0,480,1001 ),
+        new Water('img/3. Background/Layers/5. Water/D2.png' , 1000,0,480,1001 ),
+        new Water('img/3. Background/Layers/5. Water/D1.png' , 2000,0,480,1001 ),
+        new Water('img/3. Background/Layers/5. Water/D2.png' , 3000,0,480,1001 ),
     ]
 
 
@@ -59,7 +57,6 @@ class World{
         this.addObjectsToMap(this.ground);
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
-
         // calls Draw 
         let self = this;
         requestAnimationFrame(function(){
@@ -100,14 +97,6 @@ class World{
         });
     }
 
-    characterSwimUp(){
-        this.character.moveUp(2.5);
-    }
-
-    characterSwimDown(){
-        this.character.moveDown(2.5);
-    }
-
     characterSwimLeft(){
         // this.character.moveRight(5);
         this.ground.forEach(o => {
@@ -127,4 +116,11 @@ class World{
         });
     }
 
+    characterSwimUp(){
+        this.character.moveUp(2.5);
+    }
+
+    characterSwimDown(){
+        this.character.moveDown(2.5);
+    }
 }
