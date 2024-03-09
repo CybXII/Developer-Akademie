@@ -8,6 +8,7 @@ class Enemy extends MoveableObject{
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png',
     ]
+    speed = Math.random()*2;
 
     currentImage = 0;
 
@@ -30,7 +31,7 @@ class Enemy extends MoveableObject{
     }
 
     enemieAnimate(){
-        this.moveLeft();
+        this.moveLeft(this.speed);
         setInterval(() =>{
             let i = this.currentImage % this.Images_Walking.length
             let path = this.Images_Walking[i];
