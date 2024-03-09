@@ -26,20 +26,20 @@ class MoveableObject{
     }
 
     moveRight(speed) {
-        this.x = this.x + this.speedspeed;
+        this.x = this.x + speed;
     }
 
     moveUp(speed){
-        this.y = this.y - this.speedspeed;
+        this.y = this.y - speed;
     }
 
     moveDown(speed) {
-        this.y = this.y + this.speedspeed;
+        this.y = this.y + speed;
     }
 
-    moveLeft(){
+    moveLeft(speed){
         setInterval(() =>{
-            this.x -= this.speed;
+            this.x -= speed;
         }, 1000/60)
     }
 

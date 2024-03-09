@@ -1,50 +1,38 @@
 let canvas;
 let ctx;
 let world;
-let right = false;
-let left = false;
-let down = false;
-let up = false;
-let space = false;
 let keyboard = new Keyboard();
 
 window.addEventListener("keydown", (event) => {
     if (event.key === 'd' || event.key === 'ArrowRight') {    
-        right = true;
+        keyboard.RIGHT = true;
     } else if (event.key === 'a' || event.key === 'ArrowLeft') {    
-        left = true;
+        keyboard.LEFT = true;
     } else if (event.key === 'w' || event.key === 'ArrowUp') {  
-        up = true;
+        keyboard.UP = true;
     } else if (event.key === 's' || event.key === 'ArrowDown') {    
-        down = true;
+        keyboard.DOWN = true;
     }
-    setKeyboard();
 });
 
 window.addEventListener("keyup", (event) => {
+    console.log(event.key+'Reset')
     resetKey(event);
 });
 
 function resetKey(event) {
     if (event.key === 'd' || event.key === 'ArrowRight') {  
-        KeyD = false;
+        keyboard.RIGHT = false;
     } else if (event.key === 'a' || event.key === 'ArrowLeft') {    
-        KeyA = false;
+        keyboard.LEFT = false;
     } else if (event.key === 's' || event.key === 'ArrowDown') {    
-        KeyS = false;
+        keyboard.DOWN = false;
     } else if (event.key === 'w' || event.key === 'ArrowUp') {    
-        KeyW = false;
+        keyboard.UP = false;
     }
-    setKeyboard();
 }
-
-function setKeyboard(){
-    keyboard.push(right,left,down,up,space);
-}
-
 
 function init() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas)
+    world = new World(canvas,keyboard)
 }
-

@@ -14,14 +14,14 @@ class World{
         new Ground('img/3. Background/Layers/2. Floor/D.png', 2000, 0, 480,2001 ),
         new Ground('img/3. Background/Layers/2. Floor/D1.png' ,4000,0,480,1001 ),
         new Ground('img/3. Background/Layers/2. Floor/D2.png', 5000, 0, 480,1001 ),
-        new Ground('img/3. Background/Layers/2. Floor/D.png', 6000, 0, 480,2001 ),
+        new Ground('img/3. Background/Layers/2. Floor/D.png', 6000, 0, 480,2001 )
     ]
 
     water = [
         new Water('img/3. Background/Layers/5. Water/D1.png' , 0,0,480,1001 ),
         new Water('img/3. Background/Layers/5. Water/D2.png' , 1000,0,480,1001 ),
         new Water('img/3. Background/Layers/5. Water/D1.png' , 2000,0,480,1001 ),
-        new Water('img/3. Background/Layers/5. Water/D2.png' , 3000,0,480,1001 ),
+        new Water('img/3. Background/Layers/5. Water/D2.png' , 3000,0,480,1001 )
     ]
 
 
@@ -31,7 +31,7 @@ class World{
         new Background('img/3. Background/Layers/3.Fondo 1/D.png' , 2000,0,480,2001 ),
         new Background('img/3. Background/Layers/3.Fondo 1/D1.png', 4000, 0, 480,1001 ),
         new Background('img/3. Background/Layers/3.Fondo 1/D2.png' , 5000,0,480,1001 ),
-        new Background('img/3. Background/Layers/3.Fondo 1/D.png' , 6000,0,480,2001 ),
+        new Background('img/3. Background/Layers/3.Fondo 1/D.png' , 6000,0,480,2001 )
     ]   
 
     farBackground = [
@@ -40,14 +40,21 @@ class World{
         new FarBackground('img/3. Background/Layers/4.Fondo 2/D.png' , 2000,0,480,2001 ),
         new FarBackground('img/3. Background/Layers/4.Fondo 2/D1.png', 4000, 0, 480,1001 ),
         new FarBackground('img/3. Background/Layers/4.Fondo 2/D2.png' , 5000,0,480,1001 ),
-        new FarBackground('img/3. Background/Layers/4.Fondo 2/D.png' , 6000,0,480,2001 ),
+        new FarBackground('img/3. Background/Layers/4.Fondo 2/D.png' , 6000,0,480,2001 )
     ]   
 
-    constructor(canvas){
+    constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
     }
+
+    setWorld(){
+        this.character.world = this;
+    }
+
 
     draw(){
         this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height);
