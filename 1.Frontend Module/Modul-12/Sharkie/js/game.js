@@ -1,7 +1,7 @@
 let canvas;
 let ctx;
-let world;
 let keyboard = new Keyboard();
+let world;
 
 window.addEventListener("keydown", (event) => {
     if (event.key === 'd' || event.key === 'ArrowRight') {    

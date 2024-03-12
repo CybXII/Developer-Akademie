@@ -1,7 +1,7 @@
 class Character extends MoveableObject{
     height= 200;
     width= 160;
-    Images_Walking =[
+    Images_IDLE =[
         'img/1.Sharkie/1.IDLE/1.png',
         'img/1.Sharkie/1.IDLE/2.png',
         'img/1.Sharkie/1.IDLE/3.png',
@@ -20,25 +20,36 @@ class Character extends MoveableObject{
         'img/1.Sharkie/1.IDLE/16.png',
         'img/1.Sharkie/1.IDLE/17.png',
         'img/1.Sharkie/1.IDLE/18.png'
-    ]
+    ];
+
+    Images_Walking =[
+        'img/1.Sharkie/3.Swim/1.png',
+        'img/1.Sharkie/3.Swim/2.png',
+        'img/1.Sharkie/3.Swim/3.png',
+        'img/1.Sharkie/3.Swim/4.png',
+        'img/1.Sharkie/3.Swim/5.png',
+        'img/1.Sharkie/3.Swim/6.png',
+    ];
+
 
     speed = 5;
 
     world;
     currentImage=0;
+    currentImageWalking=0;
 
     constructor(){
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.Images_Walking);
+        this.loadImages(this.Images_IDLE);
         this.x = 10;
         this.y = (440-200)*Math.random();
-
         this.sharkieAnimate();
         this.sharkieSink();
-        this.sharkieSwimRight(this.speed);
-        this.sharkieSwimLeft(this.speed);
-        this.sharkieSwimUP(this.speed);
-        this.sharkieSwimDown(this.speed)
+        this.sharkieSwimRight();
+        this.sharkieSwimUP();
+        this.sharkieSwimLeft();
+        this.sharkieStop();
     }
 
     jump(){
@@ -54,52 +65,68 @@ class Character extends MoveableObject{
                 this.img = this.imageCache[path];
                 this.currentImage++;
             }
-        }, 200)
+            else  {
+                let i = this.currentImage % this.Images_IDLE.length
+                let path = this.Images_IDLE[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 100)
     }
 
     sharkieSink(){
-        setInterval(() =>{
-            if (!this.world.keyboard.RIGHT&&!this.world.keyboard.LEFT&&!this.world.keyboard.DOWN&&!this.world.keyboard.UP){
-                console.log('sink')
-                if (this.y < 330)
-                this.y += 2;
+        setInterval(() => {
+            if(!this.world.keyboard.RIGHT ||!this.world.keyboard.LEFT ||!this.world.keyboard.DOWN ||!this.world.keyboard.UP){
+                if (this.y<329){
+                    this.y +=this.speed/2    
+                }
             }
-        }, 200)
+            if(this.world.keyboard.DOWN){
+                if (this.y<329){
+                    this.y +=this.speed/2;
+                }    
+            }
+
+        }, 1000/60);
     }
 
-    sharkieSwimRight(speed){
-        setInterval(() =>{
-            if (this.world.keyboard.RIGHT){
-                console.log('right');
-                this.x += speed;
+    sharkieSwimRight(){
+        setInterval(() => {
+            if(this.world.keyboard.RIGHT){
+                // if (this.x>200){
+                //     this.world.characterSwimRight();
+                //     clearInterval();
+                //     }
+                // else{
+                    this.x +=this.speed;
+                // }
             }
-        }, 50)
+        }, 1000/60);
     }
 
-    sharkieSwimLeft(speed){
-        setInterval(() =>{
-            if (this.world.keyboard.LEFT){
-            console.log('left');
-            this.x -= speed;
+    sharkieSwimLeft(){
+        setInterval(() => {
+            if(this.world.keyboard.LEFT){
+                this.x -=this.speed;
             }
-        }, 50)
+        }, 1000/60);
     }
 
-    sharkieSwimUP(speed){
-        setInterval(() =>{
-            if (this.world.keyboard.UP){
-                console.log('up');
-                this.y -= speed;
+    sharkieSwimUP(){
+        setInterval(() => {
+            if(this.world.keyboard.UP){
+                if (this.y>-94){
+                    this.y -=this.speed    
+                }
             }
-        }, 50)
+        }, 1000/60);
     }
 
-    sharkieSwimDown(speed){
-        setInterval(() =>{
-            if (this.world.keyboard.DOWN){
-                console.log('down');
-                this.y += speed;
+    sharkieStop(){
+        setInterval(() => {
+            if(!this.world.keyboard.RIGHT ||!this.world.keyboard.LEFT ||!this.world.keyboard.DOWN ||!this.world.keyboard.UP){
+                clearInterval()
             }
-        }, 50)
-    }
+        },1)
+    }    
 }

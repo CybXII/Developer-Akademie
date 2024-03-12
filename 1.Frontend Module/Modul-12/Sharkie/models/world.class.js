@@ -1,5 +1,5 @@
 class World{
-    character = new Character();
+    character = new Character(2.5);
     enemies = [
         new Enemy(),
         new Enemy(),
@@ -82,30 +82,24 @@ class World{
     }
 
     characterSwimRight(){
-        // this.character.moveRight(5);
         this.ground.forEach(o => {
-            o.moveLeft(5);
+            o.moveLeft(0.02);
         });
 
         this.farBackground.forEach(o => {
-            o.moveLeft(1.25);
+            o.moveLeft(0.0075);
         });
 
         this.water.forEach(o => {
-            o.moveLeft(5);
+            o.moveLeft(0.01);
         });
 
         this.background.forEach(o => {
-            o.moveLeft(2.5);
+            o.moveLeft(0.010);
         });
-
-        this.enemies.forEach(o => {
-            o.moveLeft(5);
-        });
-    }
+}
 
     characterSwimLeft(){
-        // this.character.moveRight(5);
         this.ground.forEach(o => {
             o.moveRight(5);
         });
@@ -121,13 +115,5 @@ class World{
         this.enemies.forEach(o => {
             o.moveRight(5);
         });
-    }
-
-    characterSwimUp(){
-        this.character.moveUp(2.5);
-    }
-
-    characterSwimDown(){
-        this.character.moveDown(2.5);
     }
 }
