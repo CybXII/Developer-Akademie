@@ -37,6 +37,10 @@ class MoveableObject{
         this.y = this.y + speed;
     }
 
+    movementLeft(speed){
+        this.x -= speed;
+    }
+
     moveLeft(speed){
         setInterval(() =>{
             this.x -= speed;

@@ -31,7 +31,6 @@ class Character extends MoveableObject{
         'img/1.Sharkie/3.Swim/6.png',
     ];
 
-
     speed = 5;
 
     world;
@@ -45,15 +44,11 @@ class Character extends MoveableObject{
         this.x = 10;
         this.y = (440-200)*Math.random();
         this.sharkieAnimate();
-        this.sharkieSink();
-        this.sharkieSwimRight();
-        this.sharkieSwimUP();
-        this.sharkieSwimLeft();
-        this.sharkieStop();
+        this.sharkieMove();
     }
 
     jump(){
-
+        
     }
 
     sharkieAnimate(){
@@ -74,11 +69,11 @@ class Character extends MoveableObject{
         }, 100)
     }
 
-    sharkieSink(){
+    sharkieMove(){
         setInterval(() => {
             if(!this.world.keyboard.RIGHT ||!this.world.keyboard.LEFT ||!this.world.keyboard.DOWN ||!this.world.keyboard.UP){
                 if (this.y<329){
-                    this.y +=this.speed/2    
+                    this.y +=this.speed/2;
                 }
             }
             if(this.world.keyboard.DOWN){
@@ -86,47 +81,33 @@ class Character extends MoveableObject{
                     this.y +=this.speed/2;
                 }    
             }
-
-        }, 1000/60);
-    }
-
-    sharkieSwimRight(){
-        setInterval(() => {
             if(this.world.keyboard.RIGHT){
-                // if (this.x>200){
-                //     this.world.characterSwimRight();
-                //     clearInterval();
-                //     }
-                // else{
+                this.otherDirection = false;
+                if (this.x<2000){
                     this.x +=this.speed;
-                // }
+                    this.world.camera_x = -this.x
+                    this.world.characterSwimRight()
+                }else{
+                    if (this.x<2590){
+                        this.x +=this.speed;
+                    }
+                }
             }
-        }, 1000/60);
-    }
-
-    sharkieSwimLeft(){
-        setInterval(() => {
             if(this.world.keyboard.LEFT){
-                this.x -=this.speed;
+                this.otherDirection = true;
+                if (this.x>10&& this.x <=2000){
+                    this.x -=this.speed;
+                    this.world.camera_x = -this.x
+                    this.world.characterSwimLeft();
+                } else if (this.x>10&& this.x >2000){
+                    this.x -=this.speed;
+                }
             }
-        }, 1000/60);
-    }
-
-    sharkieSwimUP(){
-        setInterval(() => {
             if(this.world.keyboard.UP){
                 if (this.y>-94){
                     this.y -=this.speed    
                 }
             }
-        }, 1000/60);
+        }, 1000/30);
     }
-
-    sharkieStop(){
-        setInterval(() => {
-            if(!this.world.keyboard.RIGHT ||!this.world.keyboard.LEFT ||!this.world.keyboard.DOWN ||!this.world.keyboard.UP){
-                clearInterval()
-            }
-        },1)
-    }    
 }
