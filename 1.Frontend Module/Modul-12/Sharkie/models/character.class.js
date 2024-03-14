@@ -32,16 +32,16 @@ class Character extends MoveableObject{
     ];
 
     speed = 5;
-
     world;
     currentImage=0;
     currentImageWalking=0;
+    swim_sound = new Audio('audio/underwater-movement-whoosh-1-186898.mp3')
 
     constructor(){
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
         this.loadImages(this.Images_Walking);
         this.loadImages(this.Images_IDLE);
-        this.x = 10;
+        this.x = 100;
         this.y = (440-200)*Math.random();
         this.sharkieAnimate();
         this.sharkieMove();
@@ -58,12 +58,14 @@ class Character extends MoveableObject{
                 let i = this.currentImage % this.Images_Walking.length
                 let path = this.Images_Walking[i];
                 this.img = this.imageCache[path];
+                this.swim_sound.play();
                 this.currentImage++;
             }
             else  {
                 let i = this.currentImage % this.Images_IDLE.length
                 let path = this.Images_IDLE[i];
                 this.img = this.imageCache[path];
+                this.swim_sound.pause();
                 this.currentImage++;
             }
         }, 100)
@@ -85,19 +87,19 @@ class Character extends MoveableObject{
                 this.otherDirection = false;
                 if (this.x<2000){
                     this.x +=this.speed;
-                    this.world.camera_x = -this.x
+                    this.world.camera_x = -this.x+100;
                     this.world.characterSwimRight()
                 }else{
-                    if (this.x<2590){
+                    if (this.x<2490){
                         this.x +=this.speed;
                     }
                 }
             }
             if(this.world.keyboard.LEFT){
                 this.otherDirection = true;
-                if (this.x>10&& this.x <=2000){
+                if (this.x>100&& this.x <=2000){
                     this.x -=this.speed;
-                    this.world.camera_x = -this.x
+                    this.world.camera_x = -this.x+100;
                     this.world.characterSwimLeft();
                 } else if (this.x>10&& this.x >2000){
                     this.x -=this.speed;

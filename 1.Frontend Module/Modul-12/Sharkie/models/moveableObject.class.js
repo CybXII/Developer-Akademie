@@ -7,10 +7,12 @@ class MoveableObject{
     imageCache = {};
     speed = 0.15;
 
-    // constructor(x,y) {
-    //     this.x = x
-    //     this.y = y
-    // }
+    swimRight;
+    swimLeft;
+    swimUp;
+    swimDown;
+
+
 
     loadImage(path){
         this.img = new Image();
@@ -38,13 +40,14 @@ class MoveableObject{
     }
 
     movementLeft(speed){
+        setInterval(() =>{
+            if (this.swimLeft){
+                this.x -= speed;
+            }
+        }, 1000/35)
+    }
+    
+    moveLeft(speed){
         this.x -= speed;
     }
-
-    moveLeft(speed){
-        setInterval(() =>{
-            this.x -= speed;
-        }, 1000/60)
-    }
-
 }

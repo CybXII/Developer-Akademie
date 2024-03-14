@@ -24,14 +24,15 @@ class Enemy extends MoveableObject{
     randomMove(){
         let number = 1*Math.random()*100;
         if (number>=0 && number<=20){
-            moveLeft();
+            movementLeft();
         }else if(number<20 && number>40){
-            moveRight();
+            movementRight();
         }
     }
 
     enemieAnimate(){
-        this.moveLeft(this.speed);
+        this.swimLeft = true;
+        this.movementLeft(this.speed);
         setInterval(() =>{
             let i = this.currentImage % this.Images_Walking.length
             let path = this.Images_Walking[i];

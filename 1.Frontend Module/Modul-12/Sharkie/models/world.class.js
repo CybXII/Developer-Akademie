@@ -4,45 +4,13 @@ class World{
         new Enemy(),
         new Enemy(),
         new Enemy(),
-        new Enemy()
+        new Enemy(),
+        new Endboss()
     ];
     canvas;
     ctx;
     camera_x = 0
-    ground = [
-        new Ground('img/3. Background/Layers/2. Floor/D1.png' , 0,0,480,1001 ),
-        new Ground('img/3. Background/Layers/2. Floor/D2.png', 1000, 0, 480,1001 ),
-        new Ground('img/3. Background/Layers/2. Floor/D.png', 2000, 0, 480,2001 ),
-        new Ground('img/3. Background/Layers/2. Floor/D1.png' ,4000,0,480,1001 ),
-        new Ground('img/3. Background/Layers/2. Floor/D2.png', 5000, 0, 480,1001 ),
-        new Ground('img/3. Background/Layers/2. Floor/D.png', 6000, 0, 480,2001 )
-    ]
-
-    water = [
-        new Water('img/3. Background/Layers/5. Water/D1.png' , 0,0,480,1001 ),
-        new Water('img/3. Background/Layers/5. Water/D2.png' , 1000,0,480,1001 ),
-        new Water('img/3. Background/Layers/5. Water/D1.png' , 2000,0,480,1001 ),
-        new Water('img/3. Background/Layers/5. Water/D2.png' , 3000,0,480,1001 )
-    ]
-
-
-    background = [
-        new Background('img/3. Background/Layers/3.Fondo 1/D1.png', 0, 0, 480,1001 ),
-        new Background('img/3. Background/Layers/3.Fondo 1/D2.png' , 1000,0,480,1001 ),
-        new Background('img/3. Background/Layers/3.Fondo 1/D.png' , 2000,0,480,2001 ),
-        new Background('img/3. Background/Layers/3.Fondo 1/D1.png', 4000, 0, 480,1001 ),
-        new Background('img/3. Background/Layers/3.Fondo 1/D2.png' , 5000,0,480,1001 ),
-        new Background('img/3. Background/Layers/3.Fondo 1/D.png' , 6000,0,480,2001 )
-    ]   
-
-    farBackground = [
-        new FarBackground('img/3. Background/Layers/4.Fondo 2/D1.png', -500, 0, 480,1001 ),
-        new FarBackground('img/3. Background/Layers/4.Fondo 2/D2.png' , 500,0,480,1001 ),
-        new FarBackground('img/3. Background/Layers/4.Fondo 2/D.png' , 2000,0,480,2001 ),
-        new FarBackground('img/3. Background/Layers/4.Fondo 2/D1.png', 4000, 0, 480,1001 ),
-        new FarBackground('img/3. Background/Layers/4.Fondo 2/D2.png' , 5000,0,480,1001 ),
-        new FarBackground('img/3. Background/Layers/4.Fondo 2/D.png' , 6000,0,480,2001 )
-    ]   
+    level = level1;
 
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
@@ -56,14 +24,13 @@ class World{
         this.character.world = this;
     }
 
-
     draw(){
         this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0)
-        this.addObjectsToMap(this.water);
-        this.addObjectsToMap(this.farBackground);
-        this.addObjectsToMap(this.background);
-        this.addObjectsToMap(this.ground);
+        this.addObjectsToMap(this.level.water);
+        this.addObjectsToMap(this.level.farBackground);
+        this.addObjectsToMap(this.level.background);
+        this.addObjectsToMap(this.level.ground);
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x,0)
@@ -92,36 +59,34 @@ class World{
     }
 
     characterSwimRight(){
-        this.ground.forEach(o => {
+        this.level.ground.forEach(o => {
             o.movementLeft(2);
         });
 
-        this.farBackground.forEach(o => {
+        this.level.farBackground.forEach(o => {
             o.movementLeft(1);
         });
 
-
-
-        this.background.forEach(o => {
+        this.level.background.forEach(o => {
             o.movementLeft(1.5);
         });
 
         this.enemies.forEach(o => {
             o.movementLeft(0.02);
         });
-}
+    }
 
     characterSwimLeft(){
         this.otherDirection = true;
-        this.ground.forEach(o => {
+        this.level.ground.forEach(o => {
             o.moveRight(2);
         });
 
-        this.background.forEach(o => {
+        this.level.background.forEach(o => {
             o.moveRight(1.5);
         });
 
-        this.farBackground.forEach(o => {
+        this.level.farBackground.forEach(o => {
             o.moveRight(1);
         });
 
