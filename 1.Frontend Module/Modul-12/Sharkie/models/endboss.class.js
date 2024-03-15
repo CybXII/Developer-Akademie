@@ -20,21 +20,15 @@ class Endboss extends MoveableObject{
     ]
     speed = 3;
 
-    // swimRight;
-    // swimLeft;
-    // swimUp;
-    // swimDown;
-
     currentImage = 0;
 
     constructor(){
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
         this.loadImages(this.Images_Walking);
-        this.x = 250+Math.random()*400;
+        this.x = 2500;
         this.y = 100*Math.random();
         this.enemieAnimate();
         this.randomMove();
-        // this.swimRightBoss()
     }
 
 
@@ -48,33 +42,27 @@ class Endboss extends MoveableObject{
     }
 
     randomMove(){
+        this.movementDown(this.speed);
+        this.movementUp(this.speed);
+        this.movementLeft(this.speed);
+        this.movementRight(this.speed);
         setInterval(() =>{
-            let number = 10*Math.random()*10;
-            console.log(number)
-            if (number>=0 && number<=50){
-                this.swimRight = !this.swimRight;
-                this.swimLeft = !this.swimLeft;
-                this.moveRight(this.speed/2);
-            }else if(number>50 && number<100){
-                this.swimLeft = !this.swimLeft;
-                this.swimRight = !this.swimRight;
-                this.movementLeft(this.speed);
-            }    
+            console.log('Bossmove')
+            let numberX = 10*Math.random()*10;
+            let numberY = 10*Math.random()*10;
+            if (numberX>=0 && numberX<=50){
+                this.swimRight = this.swimRight = true;
+                this.swimLeft = this.swimLeft = false;
+            } if(numberX>50 && numberX<100){
+                this.swimLeft = this.swimLeft = true;
+                this.swimRight = this.swimRight = false;
+            } if (numberY>=0 && numberY<=50){
+                this.swimUp = this.swimUp = true;
+                this.swimDown = this.swimDown = false;
+            } if(numberY>50 && numberY<100){
+                this.swimDown = this.swimDown = true;
+                this.swimUp = this.swimUp = false;
+            }
         }, 1000)
     }
-
-    // swimRightBoss(){
-    //         console.log('check')
-    //         if (this.swimRight){
-
-    //             this.moveRight(this.speed/2);
-    //         }if (this.swimLeft){
-
-    //         // }if (this.swimRight){
-    //         //     this.moveUP(this.speed/2);
-    //         // }
-    //         // if (this.swimRight){
-    //         //     this.moveDown(this.speed/2);
-    //         }
-    // }
 }

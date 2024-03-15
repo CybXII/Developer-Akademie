@@ -12,8 +12,6 @@ class MoveableObject{
     swimUp;
     swimDown;
 
-
-
     loadImage(path){
         this.img = new Image();
         this.img.src = path;
@@ -39,6 +37,10 @@ class MoveableObject{
         this.y = this.y + speed;
     }
 
+    moveLeft(speed){
+        this.x -= speed;
+    }
+
     movementLeft(speed){
         setInterval(() =>{
             if (this.swimLeft){
@@ -46,8 +48,28 @@ class MoveableObject{
             }
         }, 1000/35)
     }
-    
-    moveLeft(speed){
-        this.x -= speed;
+
+    movementRight(speed){
+        setInterval(() =>{
+            if (this.swimRight){
+                this.x += speed;
+            }
+        }, 1000/35)
+    }
+
+    movementUp(speed){
+        setInterval(() =>{
+            if (this.swimUp){
+                this.y -= speed;
+            }
+        }, 1000/35)
+    }
+
+    movementDown(speed){
+        setInterval(() =>{
+            if (this.swimDown){
+                this.y += speed;
+            }
+        }, 1000/35)
     }
 }

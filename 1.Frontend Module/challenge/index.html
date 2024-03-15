@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Challenge</title>
+    <script src="script.js"></script>
+
+</head>
+
+<body onload="init(0,0)">
+    <input id="jump_checker" type="checkbox" onclick="setChecker()" >
+    <div class="slider_container">
+        <div class="category_arrows">
+            <img  id="arrow_up" class="arrow_up arrow" src="img/arrow.svg" alt="arrow up">
+        </div>
+        <div class="slider_items">
+            <div class="item_arrows">
+                <img id="arrow_left" class="arrow_left arrow" src="img/arrow.svg" alt="arrow left">
+            </div>
+            <div id="category_container" class="items"></div>
+            <div class="item_arrows">
+                <img id="arrow_rigth" class="arrow_rigth arrow" src="img/arrow.svg" alt="arrow rigth">
+            </div>
+        </div>
+        <div class="category_arrows">
+            <img id="arrow_down" class="arrow_down arrow" src="img/arrow.svg" alt="arrow down">
+        </div>
+    </div>
+</body>
+
+</html>

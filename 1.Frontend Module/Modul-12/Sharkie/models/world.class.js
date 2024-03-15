@@ -60,19 +60,19 @@ class World{
 
     characterSwimRight(){
         this.level.ground.forEach(o => {
-            o.movementLeft(2);
+            o.moveLeft(2);
         });
 
         this.level.farBackground.forEach(o => {
-            o.movementLeft(1);
+            o.moveLeft(1);
         });
 
         this.level.background.forEach(o => {
-            o.movementLeft(1.5);
+            o.moveLeft(1.5);
         });
 
         this.enemies.forEach(o => {
-            o.movementLeft(0.02);
+            o.moveLeft(0.02);
         });
     }
 
