@@ -6,6 +6,8 @@ class MoveableObject{
     width= 100;
     imageCache = {};
     speed = 0.15;
+    speedY = 0;
+    acceleration = 1
 
     swimRight;
     swimLeft;
@@ -71,5 +73,12 @@ class MoveableObject{
                 this.y += speed;
             }
         }, 1000/35)
+    }
+
+    applyAir(){
+        setInterval(()=> {
+            this.y += this.speedY;
+            this.speedY += this.acceleration;
+        },1000/25);
     }
 }

@@ -44,6 +44,7 @@ class Character extends MoveableObject{
         this.x = 100;
         this.y = (440-200)*Math.random();
         this.sharkieAnimate();
+        // this.applyAir();
         this.sharkieMove();
     }
 
