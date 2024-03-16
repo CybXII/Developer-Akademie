@@ -8,6 +8,7 @@ class MoveableObject{
     speed = 0.15;
     speedY = 0;
     acceleration = 1
+    bossStage = false
 
     swimRight;
     swimLeft;
@@ -43,6 +44,13 @@ class MoveableObject{
         this.x -= speed;
     }
 
+    applyAir(){
+        setInterval(()=> {
+            this.y += this.speedY;
+            this.speedY += this.acceleration;
+        },1000/25);
+    }
+
     movementLeft(speed){
         setInterval(() =>{
             if (this.swimLeft){
@@ -73,12 +81,5 @@ class MoveableObject{
                 this.y += speed;
             }
         }, 1000/35)
-    }
-
-    applyAir(){
-        setInterval(()=> {
-            this.y += this.speedY;
-            this.speedY += this.acceleration;
-        },1000/25);
     }
 }

@@ -12,6 +12,8 @@ window.addEventListener("keydown", (event) => {
         keyboard.UP = true;
     else if (event.key === 's' || event.key === 'ArrowDown')     
         keyboard.DOWN = true;
+    else if (event.key === 'e' || event.key === 'Space')   
+        keyboard.SPACE = true;
 });
 
 window.addEventListener("keyup", (event) => {
@@ -28,6 +30,9 @@ function resetKey(event) {
         keyboard.DOWN = false;
     else if (event.key === 'w' || event.key === 'ArrowUp')     
         keyboard.UP = false;
+    else if (event.key === 'e' || event.key === 'Space')   
+        keyboard.SPACE = false;
+
 }
 
 function init() {
