@@ -156,13 +156,13 @@ class Character extends MoveableObject{
         this.otherDirection = true;
         if (this.bossStage){
             if (this.x >1870 && !this.x<1870 && !this.x <2490)
-                this.x -=this.speed; 
-            else if (this.x>100&& this.x <=2000&& !this.bossStage){
-                    this.x -=this.speed;
-                    this.world.camera_x = -this.x+100;
-                    this.world.characterSwimLeft();
-                } 
-            else if(this.x>10&& this.x >2000)
+                this.x -=this.speed;
+        }else{
+            if (this.x>100&& this.x <=2000){
+                this.x -=this.speed;
+                this.world.camera_x = -this.x+100;
+                this.world.characterSwimLeft();
+            } else if (this.x>10&& this.x >2000)
                 this.x -=this.speed;
         }
     }

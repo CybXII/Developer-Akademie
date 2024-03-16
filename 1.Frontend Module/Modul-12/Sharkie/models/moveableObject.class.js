@@ -20,6 +20,14 @@ class MoveableObject{
         this.img.src = path;
     }
 
+    playAnimation(Images){
+        let i = this.currentImage % Images.length
+        let path = Images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
+
     loadImages(arr){
         arr.forEach((path) => {
             let img = new Image();
