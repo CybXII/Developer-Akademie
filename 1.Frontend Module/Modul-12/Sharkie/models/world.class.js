@@ -1,12 +1,9 @@
 class World{
     character = new Character(2.5);
     enemies = [
-        new Enemy(),
-        new Enemy(),
-        new Enemy(),
-        new Enemy(),
-        new Endboss()
     ];
+    boss = new Endboss();
+
     canvas;
     ctx;
     camera_x = 0
@@ -18,7 +15,10 @@ class World{
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.generateEnemies();
     }
+
+    enemyIntervalID=[];
 
     setWorld(){
         this.character.world = this;
@@ -33,8 +33,7 @@ class World{
         this.addObjectsToMap(this.level.ground);
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
-        this.ctx.translate(-this.camera_x,0)
-        // calls Draw 
+        this.ctx.translate(-this.camera_x,0);
         let self = this;
         requestAnimationFrame(function(){
             self.draw();
@@ -104,6 +103,14 @@ class World{
     flipImageBack(mo){
         mo.x = mo.x * -1
         this.ctx.restore();
+    }
+
+    generateEnemies(){
+        let newEnemies = 1+Math.random()* 5;
+        for (let i = 0; i < newEnemies; i++) {
+            let generateEnemie = new Enemy(i,this.character.x);
+            this.enemies.push(generateEnemie, )      
+        }
     }
 }
 

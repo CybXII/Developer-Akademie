@@ -90,4 +90,10 @@ class MoveableObject{
             }
         }, 1000/35)
     }
+
+    destroyObject(){
+        if (distance>-600){
+
+        }
+    }
 }

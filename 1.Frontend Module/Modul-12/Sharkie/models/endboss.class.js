@@ -51,15 +51,9 @@ class Endboss extends MoveableObject{
     enemieAnimate(){
         setInterval(() =>{
         if (this.bossSequensPlayed&&world.character.bossStage){
-                let i = this.currentImage % this.Images_Walking.length
-                let path = this.Images_Walking[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+            this.playAnimation(this.Images_Walking)
         }else if (!this.bossSequensPlayed&&world.character.bossStage) {
-            let i = this.currentImage % this.Images_BossSequenz.length
-            let path = this.Images_BossSequenz[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            this.playAnimation(this.Images_BossSequenz);
             if (this.currentImage == this.Images_BossSequenz.length){
                 this.bossSequensPlayed = true
                 this.speed = 5;
