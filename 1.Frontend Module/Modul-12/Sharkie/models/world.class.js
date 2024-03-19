@@ -33,6 +33,7 @@ class World{
         this.addObjectsToMap(this.level.ground);
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.character);
+        this.addToMap(this.boss);
         this.ctx.translate(-this.camera_x,0);
         let self = this;
         requestAnimationFrame(function(){
@@ -109,7 +110,7 @@ class World{
         let newEnemies = 1+Math.random()* 5;
         for (let i = 0; i < newEnemies; i++) {
             let generateEnemie = new Enemy(i,this.character.x);
-            this.enemies.push(generateEnemie, )      
+            this.enemies.push(generateEnemie);
         }
     }
 }
