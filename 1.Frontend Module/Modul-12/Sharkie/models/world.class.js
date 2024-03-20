@@ -1,8 +1,8 @@
 class World{
     character = new Character(2.5);
-    enemies = [
-    ];
+    enemies = [];
     boss = new Endboss();
+    bubbels = [];
 
     canvas;
     ctx;
@@ -16,6 +16,7 @@ class World{
         this.draw();
         this.setWorld();
         this.generateEnemies();
+        this.checkCollisions();
     }
 
     enemyIntervalID=[];
@@ -32,8 +33,8 @@ class World{
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.level.ground);
         this.addObjectsToMap(this.enemies);
-        this.addToMap(this.character);
         this.addToMap(this.boss);
+        this.addToMap(this.character);
         this.ctx.translate(-this.camera_x,0);
         let self = this;
         requestAnimationFrame(function(){
@@ -48,11 +49,12 @@ class World{
     }
 
     addToMap(mo){
-        this.ctx.save();
         if(mo.otherDirection){
+            this.ctx.save();
             this.flipImage(mo);        
         }
-        this.ctx.drawImage(mo.img, mo.x,mo.y, mo.width, mo.height);
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx)
         if(mo.otherDirection){
             this.flipImageBack(mo)
         }
@@ -112,6 +114,17 @@ class World{
             let generateEnemie = new Enemy(i,this.character.x);
             this.enemies.push(generateEnemie);
         }
+    }
+
+    checkCollisions(){
+        setInterval(() => {
+            this.enemies.forEach(enemy => {
+                if(this.character.isColliding(enemy)){
+                    console.log('Collision with Character ', )
+                }
+            });
+            
+        }, 200);
     }
 }
 

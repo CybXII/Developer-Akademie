@@ -9,14 +9,10 @@ class Enemy extends MoveableObject{
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png',
     ]
     speed = Math.random()*2;
-    destroyed= false;
-    destroy = false;
     currentImage = 0;
     id;
-    intervalId;
-    distance;
     world;
-    endpoint = 20
+    endpoint = 250
 
     constructor(id,characterX){
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
@@ -26,6 +22,10 @@ class Enemy extends MoveableObject{
         this.speed = 3+Math.random()* 2;
         this.id = id
         this.enemieAnimate();
+        this.offsetX = 5;
+        this.offsetY = 5;
+        this.offsetXMinus = 16;
+        this.offsetYMinus = 20;
     }
 
     randomMove(){
@@ -44,22 +44,5 @@ class Enemy extends MoveableObject{
                 this.playAnimation(this.Images_Walking)
                 this.destroyObject();
             }, 100)    
-    }
-
-    destroyObject(){
-        this.distance = this.x - world.character.x
-            if (!this.destroyed){
-                if(this.distance<= this.endpoint-world.character.x){
-                    this.destroy = true;
-                    world.enemies.splice(`${this.id}`,1)
-                    clearInterval(this.intervalId);
-                    this.intervalId= null;
-
-                }
-                // if(this.destroy== true){
-                //     if(world.enemies.indexOf(this.id)){
-                //     }
-                // }    
-            }
     }
 }

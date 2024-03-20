@@ -58,16 +58,20 @@ class Endboss extends MoveableObject{
     isHurt;
 
     constructor(){
-            super().loadImage('');
-            this.loadImages(this.Images_Walking);
-            this.loadImages(this.Images_BossSequenz);
-            this.loadImages(this.Images_Hurt);
-            this.loadImages(this.Images_Attack);
-            this.x = 2220;
-            this.y = 0;
-            this.enemieAnimate();
-            this.randomMove();
-            this.bosstMovement();    
+        super().loadImage('');
+        this.loadImages(this.Images_Walking);
+        this.loadImages(this.Images_BossSequenz);
+        this.loadImages(this.Images_Hurt);
+        this.loadImages(this.Images_Attack);
+        this.x = 2220;
+        this.y = 0;
+        this.enemieAnimate();
+        this.randomMove();
+        this.bossMovement();   
+        this.offsetX = 20;
+        this.offsetY = 185;
+        this.offsetXMinus = 45;
+        this.offsetYMinus = 260; 
     }
 
     enemieAnimate(){
@@ -78,9 +82,8 @@ class Endboss extends MoveableObject{
             this.attackAnimation();
         if (this.bossSequensPlayed&&world.character.bossStage && !this.isHurt){
             this.playAnimation(this.Images_Walking)
-        }else if (!this.bossSequensPlayed&&world.character.bossStage) {
+        }else if (!this.bossSequensPlayed&&world.character.bossStage)
             this.bossSequenz();
-        }
         }, 200)   
     }
 
@@ -119,7 +122,7 @@ class Endboss extends MoveableObject{
         this.isHurt = false
     }
 
-    bosstMovement(){
+    bossMovement(){
         setInterval(() =>{
             if (this.swimLeft)
                 this.moveLeft();
@@ -157,6 +160,7 @@ class Endboss extends MoveableObject{
             this.swimRight = this.swimRight = false;    
         }
     }
+
     upMovementChecker(){
         if(this.y<-150){
             this.swimUp = this.swimUp = false;

@@ -63,17 +63,19 @@ class Character extends MoveableObject{
         this.x = 100;
         this.y = (440-200)*Math.random();
         this.sharkieAnimate();
-        // this.applyAir();
         this.sharkieMove();
-
+        this.offsetX = 35;
+        this.offsetY = 100;
+        this.offsetXMinus = 65;
+        this.offsetYMinus = 145;
     }
-
+    
     jump(){
         
     }
 
     sharkieAnimate(){
-        setInterval(() =>{
+        setInterval(() =>{    
             if(this.slap()){
                 this.attackAnimation(this.Images_Slap);
             }else{
