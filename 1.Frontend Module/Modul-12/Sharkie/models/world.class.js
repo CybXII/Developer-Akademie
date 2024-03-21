@@ -3,7 +3,7 @@ class World{
     enemies = [];
     boss = new Endboss();
     bubbels = [];
-
+    gameOver
     canvas;
     ctx;
     camera_x = 0
@@ -111,18 +111,29 @@ class World{
     generateEnemies(){
         let newEnemies = 1+Math.random()* 5;
         for (let i = 0; i < newEnemies; i++) {
-            let generateEnemie = new Enemy(i,this.character.x);
+            let generateEnemie = new GreenFish(i,this.character.x);
             this.enemies.push(generateEnemie);
+            generateEnemie = new RedFish(i,this.character.x);
+            this.enemies.push(generateEnemie);
+            generateEnemie = new OrangeFish(i,this.character.x);
+            this.enemies.push(generateEnemie);
+
         }
     }
 
     checkCollisions(){
         setInterval(() => {
-            this.enemies.forEach(enemy => {
-                if(this.character.isColliding(enemy)){
-                    console.log('Collision with Character ', )
-                }
-            });
+            if(this.character.bossStage){
+                    if(this.character.isColliding(this.boss)){
+                        console.log('Collision with Character ', this.boss)
+                    }
+            } else{
+                this.enemies.forEach(enemy => {
+                    if(this.character.isColliding(enemy)){
+                        console.log('Collision with Character ',enemy )
+                    }
+                });    
+            }
             
         }, 200);
     }

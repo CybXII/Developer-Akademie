@@ -24,6 +24,15 @@ class Endboss extends MoveableObject{
         'img/2.Enemy/3 Final Enemy/Hurt/4.png',
     ]
 
+    Images_Dead =[
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png',
+        'img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png',
+    ]
+
+
     Images_BossSequenz =[
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
@@ -50,11 +59,9 @@ class Endboss extends MoveableObject{
         'img/2.Enemy/3 Final Enemy/1.Introduce/10.png',
     ]
 
-
     bossSequensPlayed = false;
     speed = 0;
     currentImage = 0;
-
     isHurt;
 
     constructor(){
@@ -63,6 +70,7 @@ class Endboss extends MoveableObject{
         this.loadImages(this.Images_BossSequenz);
         this.loadImages(this.Images_Hurt);
         this.loadImages(this.Images_Attack);
+        this.loadImages(this.Images_Dead);
         this.x = 2220;
         this.y = 0;
         this.enemieAnimate();
@@ -76,14 +84,18 @@ class Endboss extends MoveableObject{
 
     enemieAnimate(){
         setInterval(() =>{
-        if (this.isHurt)
-            this.hurtAnimation();
-        if (this.isAttacking && !this.isHurt)
-            this.attackAnimation();
-        if (this.bossSequensPlayed&&world.character.bossStage && !this.isHurt){
-            this.playAnimation(this.Images_Walking)
-        }else if (!this.bossSequensPlayed&&world.character.bossStage)
-            this.bossSequenz();
+            if (this.isDead){
+                this.deadAnimation();
+            } else{
+                if (this.isHurt)
+                    this.hurtAnimation();
+                if (this.isAttacking && !this.isHurt)
+                    this.attackAnimation();
+                if (this.bossSequensPlayed&&world.character.bossStage && !this.isHurt)
+                    this.playAnimation(this.Images_Walking);
+                else if (!this.bossSequensPlayed&&world.character.bossStage)
+                    this.bossSequenz();        
+            }
         }, 200)   
     }
 
@@ -110,16 +122,6 @@ class Endboss extends MoveableObject{
             this.bossSequensPlayed = true
             this.speed = 5;
         }
-    }
-
-    hurtAnimation(){
-        this.speed = this.speed + 0.5;
-        if(this.currentImage>this.Images_Hurt.length){
-            this.currentImage = 0;
-        }
-        this.playAnimation(this.Images_Hurt)
-        if (this.currentImage == this.Images_Hurt.length)
-        this.isHurt = false
     }
 
     bossMovement(){
