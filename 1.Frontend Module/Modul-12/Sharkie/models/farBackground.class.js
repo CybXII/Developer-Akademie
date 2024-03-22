@@ -3,6 +3,7 @@ class FarBackground extends MoveableObject{
     y = 0;
     height = 480;
     width = 2000;
+    speed = 2
     
     constructor(imagePath, x, y,height,width){
         super().loadImage(imagePath, x, y)

@@ -2,7 +2,7 @@ class World{
     character = new Character(2.5);
     enemies = [];
     boss = new Endboss();
-    bubbels = [];
+    bubbels =[];
     gameOver
     canvas;
     ctx;
@@ -33,6 +33,7 @@ class World{
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.level.ground);
         this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.bubbels);
         this.addToMap(this.boss);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x,0);
@@ -41,6 +42,12 @@ class World{
             self.draw();
         });
     }
+
+    createBubble(){
+        this.bubbels = new Bubble;
+    }
+
+
 
     addObjectsToMap(objects){
         objects.forEach(o =>{
@@ -117,7 +124,6 @@ class World{
             this.enemies.push(generateEnemie);
             generateEnemie = new OrangeFish(i,this.character.x);
             this.enemies.push(generateEnemie);
-
         }
     }
 
@@ -129,6 +135,15 @@ class World{
                     }
             } else{
                 this.enemies.forEach(enemy => {
+                    if (world.bubbels.length != 0){
+                        this.bubbels.forEach(bubble => {
+                            if (bubble.isColliding(enemy)){
+                                enemy.isDead=true;
+                                bubble.finalyDestroy()
+                                console.log('Collision with bubble ', enemy)
+                            }
+                        }); 
+                    }
                     if(this.character.isColliding(enemy)){
                         console.log('Collision with Character ',enemy )
                     }

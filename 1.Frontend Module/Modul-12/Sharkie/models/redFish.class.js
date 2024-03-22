@@ -1,7 +1,7 @@
 class RedFish extends MoveableObject{
     height = 50;
     width = 100;
-    Images_Walking =[
+    Images_Swim =[
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim2.png',        
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim3.png',
@@ -40,7 +40,7 @@ class RedFish extends MoveableObject{
     
     constructor(id,characterX){
         super().loadImage('img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png');
-        this.loadImages(this.Images_Walking);
+        this.loadImages(this.Images_Swim);
         this.loadImages(this.Images_Dead);
         this.loadImages(this.Images_Blowing);
         this.loadImages(this.Images_Attacking);
@@ -72,10 +72,9 @@ class RedFish extends MoveableObject{
                 this.movementUp(this.speed)
                 this.movementLeft(0);
                 this.swimLeft = false;
-                this.currentImage = 0;
-                this.deadAnimation();
+                this.deadAnimation(this.Images_Dead);
             }
-            else{
+            else if (!this.isDead){
                 if (this.blow&&!this.isAttacking){
                     if (this.currentImage>this.Images_Blowing.length && !this.isAttacking){
                         this.currentImage= 0;
@@ -97,7 +96,7 @@ class RedFish extends MoveableObject{
                         this.blow = true;
                     }         
                     this.swimLeft = true;
-                    this.playAnimation(this.Images_Walking)
+                    this.playAnimation(this.Images_Swim)
                     this.destroyObject();        
                 }
             }

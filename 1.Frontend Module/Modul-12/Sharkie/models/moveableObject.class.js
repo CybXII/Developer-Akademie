@@ -22,9 +22,10 @@ class MoveableObject{
     swimUp;
     swimDown;
     isDead = false;
+    isHurt = false;
     deadPlayed;
     isAttacking = false;
-
+    isBubbeld;
 
     draw(ctx){
         if (this instanceof Endboss && this.isDead){
@@ -36,7 +37,7 @@ class MoveableObject{
     
 
     drawFrame(ctx){
-        if( this instanceof Character || this instanceof Endboss|| this instanceof GreenFish ||this instanceof RedFish|| this instanceof OrangeFish){
+        if( this instanceof Character || this instanceof Bubble|| this instanceof Endboss|| this instanceof GreenFish ||this instanceof RedFish|| this instanceof OrangeFish){
             ctx.beginPath();
             ctx.lineWidth = "5";
             ctx.strokeStyle = "red";
@@ -85,9 +86,9 @@ class MoveableObject{
 
     applyAir(){
         setInterval(()=> {
-            this.y += this.speedY;
+            this.y -= this.speedY;
             this.speedY += this.acceleration;
-        },1000/25);
+        },80);
     }
 
     movementLeft(speed){
@@ -120,26 +121,37 @@ class MoveableObject{
 
     destroyObject(){
         this.distance = this.x - world.character.x
-        if(this.distance<= this.endpoint-world.character.x){
-            if (this instanceof GreenFish || this instanceof RedFish || this instanceof OrangeFish){
+        if(this.distance<= this.endpoint-world.character.x|| this.y <= -500){
+            if (this instanceof GreenFish || this instanceof RedFish || this instanceof OrangeFish || this instanceof Bubble){
                     this.finalyDestroy();
             }
         }
     }
 
     finalyDestroy(){
-        let found = world.enemies.find((element) => element.id == this.id);
-        if (found){
-            let isID = (element) => element.id == this.id;
-            world.enemies.splice(`${world.enemies.findIndex(isID)}`,1)
-            this.destroy = true;
-            clearInterval(this.intervalId);
-            this.intervalId= null;        
-        }    
+        if (this instanceof Bubble){
+            let found = world.bubbels.find((element) => element.id == this.id);
+            if (found){
+                let isID = (element) => element.id == this.id;
+                world.bubbels.splice(`${world.bubbels.findIndex(isID)}`,1)
+                this.destroy = true;
+                clearInterval(this.intervalId);
+                this.intervalId= null;        
+            }        
+        }else {
+            let found = world.enemies.find((element) => element.id == this.id);
+            if (found){
+                let isID = (element) => element.id == this.id;
+                world.enemies.splice(`${world.enemies.findIndex(isID)}`,1)
+                this.destroy = true;
+                clearInterval(this.intervalId);
+                this.intervalId= null;        
+            }        
+        }
     }
 
     isColliding(obj) {
-        if(this instanceof Character||this instanceof GreenFish||this instanceof RedFish||this instanceof Boss||this instanceof OrangeFish){
+        if(this instanceof Character || this instanceof Bubble||this instanceof GreenFish||this instanceof RedFish||this instanceof Boss||this instanceof OrangeFish){
             let x = this.x+this.offsetX;
             let width = this.width-this.offsetXMinus;
             let y = this.y+this.offsetY;
@@ -151,29 +163,37 @@ class MoveableObject{
         
     }
 
-    deadAnimation(){
-        if(this.deadPlayed)
-            this.currentImage > this.Images_Dead.length;
-        else{
+    deadAnimation(deadImages){
             this.speed = 0;
             if (this.checkBossDeath()){
                 this.currentImage = 0;
             }
-            this.playAnimation(this.Images_Dead);
-            if (this.currentImage >= this.Images_Dead.length){
-                this.setDeadObject();
+            if (this instanceof RedFish &&this.deadPlayed||this instanceof GreenFish &&this.deadPlayed ||this instanceof OrangeFish &&this.deadPlayed){
+                if (this.currentImage >= deadImages.length && this.deadPlayed){
+                    this.currentImage = deadImages.length+1;
+                    this.setDeadObject();
+                }    
+                this.playAnimation(deadImages);
             }
-        }
+            if(this instanceof RedFish&& !this.deadPlayed||this instanceof GreenFish&& !this.deadPlayed||this instanceof OrangeFish && !this.deadPlayed){
+                this.currentImage = 0;
+                this.deadPlayed = true;
+                this.playAnimation(deadImages);
+            }else{
+                this.playAnimation(deadImages);
+            }
     }
 
-    hurtAnimation(){
-        this.speed = this.speed + 0.5;
-        if(this.currentImage>this.Images_Hurt.length){
+    hurtAnimation(hurtImages){
+        if (this instanceof Endboss){
+            this.speed = this.speed + 0.5;
+        }
+        if(this.currentImage>hurtImages.length*3){
             this.currentImage = 0;
         }
-        this.playAnimation(this.Images_Hurt)
-        if (this.currentImage == this.Images_Hurt.length)
-            this.isHurt = false    
+        this.playAnimation(hurtImages)
+        if (this.currentImage == hurtImages.length*3)
+            this.isHurt = false
     }
 
     checkBossDeath(){
@@ -182,7 +202,14 @@ class MoveableObject{
 
     setDeadObject(){
         this.deadPlayed = true;
-        if (this instanceof GreenFish)
+        if (this instanceof GreenFish|| this instanceof RedFish|| this instanceof OrangeFishFish )
             setTimeout(() => {this.finalyDestroy();}, 2500);
+    }
+
+    outOfFieldChecker(){
+            if (this.x<-1000||this.y<-1000||this.y>1000 || this.x >20000){
+                console.log(this);
+                this.finalyDestroy();
+            }
     }
 }

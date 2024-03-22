@@ -13,7 +13,9 @@ window.addEventListener("keydown", (event) => {
     else if (event.key === 's' || event.key === 'ArrowDown')     
         keyboard.DOWN = true;
     else if (event.key === 'e' || event.key === 'Space')   
-        keyboard.SPACE = true;
+        keyboard.SLAP = true;
+    else if (event.key === 'f')   
+        keyboard.BUBBLE = true;
 });
 
 window.addEventListener("keyup", (event) => {
@@ -31,8 +33,9 @@ function resetKey(event) {
     else if (event.key === 'w' || event.key === 'ArrowUp')     
         keyboard.UP = false;
     else if (event.key === 'e' || event.key === 'Space')   
-        keyboard.SPACE = false;
-
+        keyboard.SLAP = false;
+    else if (event.key === 'f')   
+        keyboard.BUBBLE = false;
 }
 
 function init() {

@@ -22,7 +22,7 @@ class Character extends MoveableObject{
         'img/1.Sharkie/1.IDLE/18.png'
     ];
 
-    Images_Walking =[
+    Images_Swim =[
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
         'img/1.Sharkie/3.Swim/3.png',
@@ -43,47 +43,65 @@ class Character extends MoveableObject{
     ];
 
     Images_Poison =[
-        'img/1.Sharkie/4.Attack/Fin slap/1.png',
-        'img/1.Sharkie/4.Attack/Fin slap/2.png',
-        'img/1.Sharkie/4.Attack/Fin slap/3.png',
-        'img/1.Sharkie/4.Attack/Fin slap/4.png',
-        'img/1.Sharkie/4.Attack/Fin slap/5.png',
-        'img/1.Sharkie/4.Attack/Fin slap/6.png',
-        'img/1.Sharkie/4.Attack/Fin slap/7.png',
-        'img/1.Sharkie/4.Attack/Fin slap/8.png',
-    ];
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png',
+    ]
 
-    Images_Bubble =[
-        'img/1.Sharkie/4.Attack/Fin slap/1.png',
-        'img/1.Sharkie/4.Attack/Fin slap/2.png',
-        'img/1.Sharkie/4.Attack/Fin slap/3.png',
-        'img/1.Sharkie/4.Attack/Fin slap/4.png',
-        'img/1.Sharkie/4.Attack/Fin slap/5.png',
-        'img/1.Sharkie/4.Attack/Fin slap/6.png',
-        'img/1.Sharkie/4.Attack/Fin slap/7.png',
-        'img/1.Sharkie/4.Attack/Fin slap/8.png',
-    ];
+    Images_Standart_attack =[
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/1.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/2.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/3.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/4.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/5.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/6.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/7.png',
+        'img/1.Sharkie/4.Attack/Bubble trap/op1 (with bubble formation)/8.png',
+    ]
 
+    Images_Poison_Hurt =[
+        'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+    ]
 
-
+    Images_Shocked_Hurt =[
+        'img/1.Sharkie/5.Hurt/2.Electric shock/1.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/2.png',
+        'img/1.Sharkie/5.Hurt/2.Electric shock/3.png',
+    ]
 
     keyChecker = keyboard
 
     attackAnimationEnd = true
     slapActive = false;
-
+    bubbleActive = false;
     speed = 10;
     world;
     currentImage=0;
     currentAttckingImage = 0;
+    currentBubbleImage = 0;
+
+    isPoisoned;
+    isShocked;
     currentImageWalking=0;
     swim_sound = new Audio('audio/underwater-movement-whoosh-1-186898.mp3')
 
     constructor(){
         super().loadImage('img/1.Sharkie/1.IDLE/1.png');
-        this.loadImages(this.Images_Walking);
+        this.loadImages(this.Images_Swim);
         this.loadImages(this.Images_IDLE);
         this.loadImages(this.Images_Slap);
+        this.loadImages(this.Images_Standart_attack);
+        this.loadImages(this.Images_Poison);
+        this.loadImages(this.Images_Shocked_Hurt);
+        this.loadImages(this.Images_Poison_Hurt);
         this.x = 100;
         this.y = (440-200)*Math.random();
         this.sharkieAnimate();
@@ -99,10 +117,25 @@ class Character extends MoveableObject{
     }
 
     sharkieAnimate(){
-        setInterval(() =>{    
-            if(this.slap()){
+        setInterval(() =>{  
+            if(this.isHurt && !this.slap() && !this.bubble()){
+                if (this.isPoisoned){
+                    this.hurtAnimation(this.Images_Poison_Hurt);
+                } else if (this.isShocked){
+                    this.hurtAnimation(this.Images_Shocked_Hurt);
+                }
+            }  
+            if(this.slap()&&!this.isHurt){
                 this.attackAnimation(this.Images_Slap);
-            }else{
+            }
+            if (this.bubble() && !this.isHurt){
+                if (this.bossStage){
+                    this.attackAnimation(this.Images_Poison);
+                }else{
+                    this.attackAnimation(this.Images_Standart_attack);
+                }
+            }
+            else if (!this.isHurt){
                 this.sharkieMoveAnimations();
             }
         }, 100)
@@ -116,6 +149,27 @@ class Character extends MoveableObject{
     }
 
     attackAnimation(Attack_Images){
+        if (this.bubbleActive){
+            this.playBubbleAnimation(Attack_Images);
+        }else {
+            this.playSlapAnimation(Attack_Images);
+        }
+    }
+
+    playBubbleAnimation(Attack_Images){
+        let i = this.currentBubbleImage % Attack_Images.length;
+        let path = Attack_Images[i];
+        this.img = this.imageCache[path];  
+        this.currentBubbleImage++;
+        if(this.currentBubbleImage == Attack_Images.length-1){
+            this.attackAnimationEnd = true
+            this.bubbleActive = false
+            this.currentBubbleImage = 0
+            this.world.bubbels.push(new Bubble())
+        }    
+    }
+
+    playSlapAnimation(Attack_Images){
         let i = this.currentAttckingImage % Attack_Images.length;
         let path = Attack_Images[i];
         this.img = this.imageCache[path];  
@@ -124,17 +178,17 @@ class Character extends MoveableObject{
             this.attackAnimationEnd = true
             this.slapActive = false
             this.currentAttckingImage = 0
-        }
+        }    
     }
 
     sharkieMoveAnimations(){
         if (this.swimAnimation()){
-            this.playAnimation(this.Images_Walking);
+            this.playAnimation(this.Images_Swim);
             this.swim_sound.play();
         }
         else if(this.sharkieIdle())
             this.playAnimation(this.Images_IDLE);
-        }
+    }
 
     sharkieMove(){
         setInterval(() => {
@@ -155,11 +209,18 @@ class Character extends MoveableObject{
             if (this.y>-94)this.y -=this.speed;
         if(this.startSlap())
             this.setAttackTrue();
-        if(!this.keyChecker.SPACE && this.slapActive && this.attackAnimationEnd) this.slapActive = false ;
+        if(this.startBubble())
+            this.setBubbleTrue();
+        if(!this.keyChecker.SLAP && this.slapActive && this.attackAnimationEnd) this.slapActive = false ;
     }
     
     setAttackTrue(){
         this.slapActive = true;
+        this.attackAnimationEnd = false;
+    }
+
+    setBubbleTrue(){
+        this.bubbleActive = true;
         this.attackAnimationEnd = false;
     }
 
@@ -198,7 +259,14 @@ class Character extends MoveableObject{
     }
 
     startSlap(){
-        return this.keyChecker.SPACE && !this.slapActive;
+        return this.keyChecker.SLAP && !this.slapActive;
+    }
+    startBubble(){
+        return this.keyChecker.BUBBLE && !this.bubbleActive;
+    }
+
+    bubble(){
+        return this.bubbleActive && !this.attackAnimationEnd;
     }
 
     slap(){
@@ -210,7 +278,7 @@ class Character extends MoveableObject{
     }
 
     swimAnimation(){
-        return this.keyChecker.RIGHT ||this.keyChecker.LEFT ||this.keyChecker.DOWN ||this.keyChecker.UP&& this.attackAnimationEnd && !this.slapActive;
+        return this.keyChecker.RIGHT ||this.keyChecker.LEFT ||this.keyChecker.DOWN ||this.keyChecker.UP&& this.attackAnimationEnd && !this.slapActive &&!this.bubbleActiveActive;
     }
 
     down(){

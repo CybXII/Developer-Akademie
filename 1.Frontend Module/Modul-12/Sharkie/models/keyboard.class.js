@@ -3,5 +3,6 @@ class Keyboard{
     RIGHT;
     DOWN;
     UP;
-    SPACE;
+    SLAP;
+    BUBBLE
 }

@@ -1,7 +1,7 @@
 class Endboss extends MoveableObject{
     height = 400;
     width = 300;
-    Images_Walking =[
+    Images_Swim =[
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
         'img/2.Enemy/3 Final Enemy/2.floating/2.png',
         'img/2.Enemy/3 Final Enemy/2.floating/3.png',
@@ -66,7 +66,7 @@ class Endboss extends MoveableObject{
 
     constructor(){
         super().loadImage('');
-        this.loadImages(this.Images_Walking);
+        this.loadImages(this.Images_Swim);
         this.loadImages(this.Images_BossSequenz);
         this.loadImages(this.Images_Hurt);
         this.loadImages(this.Images_Attack);
@@ -92,7 +92,7 @@ class Endboss extends MoveableObject{
                 if (this.isAttacking && !this.isHurt)
                     this.attackAnimation();
                 if (this.bossSequensPlayed&&world.character.bossStage && !this.isHurt)
-                    this.playAnimation(this.Images_Walking);
+                    this.playAnimation(this.Images_Swim);
                 else if (!this.bossSequensPlayed&&world.character.bossStage)
                     this.bossSequenz();        
             }

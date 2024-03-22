@@ -14,10 +14,16 @@ let level1= new Level(
     ],
 
 [
-        new Water('img/3. Background/Layers/5. Water/D1.png' , 0,0,480,1001 ),
-        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998, 0, 480,1000 ),
-        new Water('img/3. Background/Layers/5. Water/D1.png' ,  998*2, 0, 480,1000 ),
-        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*3, 0, 480,1000 )
+        new Water('img/3. Background/Layers/5. Water/D1.png' , 0,0,480,1001,1 ),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D1.png' ,  998*2, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*3, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*4, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*5, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*6, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*7, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*8, 0, 480,1000 ,1),
+        new Water('img/3. Background/Layers/5. Water/D2.png' ,  998*9, 0, 480,1000 ,1),
     ],
 
 [
