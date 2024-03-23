@@ -116,15 +116,15 @@ class World{
     }
 
     generateEnemies(){
-        let newEnemies = 1+Math.random()* 5;
-        for (let i = 0; i < newEnemies; i++) {
-            let generateEnemie = new GreenFish(i,this.character.x);
-            this.enemies.push(generateEnemie);
-            generateEnemie = new RedFish(i,this.character.x);
-            this.enemies.push(generateEnemie);
-            generateEnemie = new OrangeFish(i,this.character.x);
-            this.enemies.push(generateEnemie);
-        }
+            let newEnemies = 1+Math.random()* 5;
+            for (let i = 0; i < newEnemies; i++) {
+                let generateEnemie = new GreenFish(i,this.character.x);
+                this.enemies.push(generateEnemie);
+                generateEnemie = new RedFish(i,this.character.x);
+                this.enemies.push(generateEnemie);
+                generateEnemie = new OrangeFish(i,this.character.x);
+                this.enemies.push(generateEnemie);
+            }
     }
 
     checkCollisions(){
@@ -145,12 +145,14 @@ class World{
                         }); 
                     }
                     if(this.character.isColliding(enemy)){
-                        console.log('Collision with Character ',enemy )
+                        if (enemy instanceof GreenFish|| enemy instanceof RedFish|| enemy instanceof OrangeFish){
+                            this.character.isHurt = true;
+                            this.character.isPoisoned = true;
+                        }
                     }
                 });    
             }
-            
-        }, 200);
+        }, 100);
     }
 }
 

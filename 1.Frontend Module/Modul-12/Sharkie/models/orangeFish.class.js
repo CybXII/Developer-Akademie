@@ -35,7 +35,7 @@ class OrangeFish extends MoveableObject{
     currentImage = 0;
     id;
     world;
-    endpoint = -300;
+    endpoint = -400;
     blow = false;
     
     constructor(id,characterX){
@@ -90,9 +90,9 @@ class OrangeFish extends MoveableObject{
                     this.playAnimation(this.Images_Attacking); 
                 }
                 else if (!this.blow){
-                    this.distanceX =this.x - world.character.x;  
-                    // this.distanceY =this.y - world.character.y;  
-                    if (this.distanceX<400){
+                    this.distanceX =(this.x + this.width/2)- (world.character.x+world.character.width/2);  
+                    this.distanceY =(this.y + this.height/2)- (world.character.y+world.character.height/2);  
+                    if (this.distanceX<400 &&this.distanceY>-50&& this.distanceY<50){
                         this.blow = true;
                     }         
                     this.swimLeft = true;

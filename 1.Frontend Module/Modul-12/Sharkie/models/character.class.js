@@ -165,7 +165,11 @@ class Character extends MoveableObject{
             this.attackAnimationEnd = true
             this.bubbleActive = false
             this.currentBubbleImage = 0
-            this.world.bubbels.push(new Bubble())
+            if (this.otherDirection){
+                this.world.bubbels.push(new Bubble(-20,-25))
+            } else{
+                this.world.bubbels.push(new Bubble(130,25))
+            }
         }    
     }
 

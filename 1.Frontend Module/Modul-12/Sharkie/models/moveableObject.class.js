@@ -121,7 +121,7 @@ class MoveableObject{
 
     destroyObject(){
         this.distance = this.x - world.character.x
-        if(this.distance<= this.endpoint-world.character.x|| this.y <= -500){
+        if(this.x <=this.endpoint|| this.y <= -500){
             if (this instanceof GreenFish || this instanceof RedFish || this instanceof OrangeFish || this instanceof Bubble){
                     this.finalyDestroy();
             }
@@ -202,7 +202,7 @@ class MoveableObject{
 
     setDeadObject(){
         this.deadPlayed = true;
-        if (this instanceof GreenFish|| this instanceof RedFish|| this instanceof OrangeFishFish )
+        if (this instanceof GreenFish|| this instanceof RedFish|| this instanceof OrangeFish)
             setTimeout(() => {this.finalyDestroy();}, 2500);
     }
 

@@ -35,7 +35,7 @@ class RedFish extends MoveableObject{
     currentImage = 0;
     id;
     world;
-    endpoint = -300;
+    endpoint = -400;
     blow = false;
     
     constructor(id,characterX){
@@ -45,7 +45,7 @@ class RedFish extends MoveableObject{
         this.loadImages(this.Images_Blowing);
         this.loadImages(this.Images_Attacking);
         this.x = characterX+700+Math.random()*10;
-        this.y = 350*Math.random();
+        this.y = 420*Math.random();
         this.speed = 3+Math.random()* 2;
         this.id = id
         this.enemieAnimate();
@@ -90,9 +90,9 @@ class RedFish extends MoveableObject{
                     this.playAnimation(this.Images_Attacking); 
                 }
                 else if (!this.blow){
-                    this.distanceX =this.x - world.character.x;  
-                    // this.distanceY =this.y - world.character.y;  
-                    if (this.distanceX<400){
+                    this.distanceX =(this.x + this.width/2)- (world.character.x+world.character.width/2);  
+                    this.distanceY =(this.y + this.height/2)- (world.character.y+world.character.height/2);  
+                    if (this.distanceX<350 &&this.distanceY>-100&& this.distanceY<100){
                         this.blow = true;
                     }         
                     this.swimLeft = true;
