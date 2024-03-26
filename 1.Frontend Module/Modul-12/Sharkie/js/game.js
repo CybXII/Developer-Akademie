@@ -2,6 +2,9 @@ let canvas;
 let ctx;
 let keyboard = new Keyboard();
 let world;
+let firstTimer;
+let secondTimer;
+
 
 window.addEventListener("keydown", (event) => {
     if (event.key === 'd' || event.key === 'ArrowRight')   
@@ -12,8 +15,9 @@ window.addEventListener("keydown", (event) => {
         keyboard.UP = true;
     else if (event.key === 's' || event.key === 'ArrowDown')     
         keyboard.DOWN = true;
-    else if (event.key === 'e' || event.key === 'Space')   
+    else if (event.key === 'e' || event.key === 'Space'){
         keyboard.SLAP = true;
+    }
     else if (event.key === 'f')   
         keyboard.BUBBLE = true;
 });
@@ -42,3 +46,9 @@ function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas,keyboard)
 }
+
+
+// timeChecker(){
+//     secondTimer = Date.now();
+//     return firtTimer 
+// }

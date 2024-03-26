@@ -79,6 +79,8 @@ class Character extends MoveableObject{
 
     keyChecker = keyboard
 
+    attackDelayActive = false;
+
     attackAnimationEnd = true
     slapActive = false;
     bubbleActive = false;
@@ -111,14 +113,24 @@ class Character extends MoveableObject{
         this.offsetXMinus = 65;
         this.offsetYMinus = 145;
     }
-    
-    jump(){
-        
+
+    attackDelayChecker(){
+        if (this.attackDelayActive){
+            setTimeout(() => {
+                
+            }, 1000);
+        }
+    }
+
+    sharkieMove(){
+        setInterval(() => {
+            this.checkAction()
+        }, 1000/30);
     }
 
     sharkieAnimate(){
         setInterval(() =>{  
-            if(this.isHurt && !this.slap() && !this.bubble()){
+            if(this.isHurt){          
                 if (this.isPoisoned){
                     this.hurtAnimation(this.Images_Poison_Hurt);
                 } else if (this.isShocked){
@@ -135,10 +147,34 @@ class Character extends MoveableObject{
                     this.attackAnimation(this.Images_Standart_attack);
                 }
             }
-            else if (!this.isHurt){
+            if (!this.isHurt && this.attackAnimationEnd){
+                this.attackAnimationEnd = true;
+                this.slapActive = false;
+                this.bubbleActive = false;            
                 this.sharkieMoveAnimations();
             }
         }, 100)
+    }
+
+    checkAction(){
+        if(this.sink())
+            if (this.y<329 &&this.attackAnimationEnd) this.y +=this.speed/6;
+        if(this.down())
+            if (this.y<329) this.y +=this.speed/2;    
+        if(this.right())
+            this.sharkieSwimRight();
+        if(this.left())
+            this.sharkieSwimLeft();
+        if(this.up())
+            if (this.y>-94)this.y -=this.speed;
+        if(this.startSlap()&& !this.isHurt)
+            this.setAttackTrue();
+        if(this.startBubble() && !this.isHurt)
+            this.setBubbleTrue();
+        if(!this.keyChecker.SLAP && this.slapActive&&!this.keyChecker.BUBBLE && this.bubbleActive&& this.attackAnimationEnd) 
+        this.slapActive = false ;
+        if(!this.keyChecker.BUBBLE && this.bubbleActive&& this.attackAnimationEnd)
+        this.bubbleActive = false ;
     }
 
     playAnimation(Images){
@@ -180,8 +216,8 @@ class Character extends MoveableObject{
         this.currentAttckingImage++; 
         if(this.currentAttckingImage == Attack_Images.length-1){
             this.attackAnimationEnd = true
-            this.slapActive = false
             this.currentAttckingImage = 0
+            this.slapActive = false
         }    
     }
 
@@ -194,29 +230,6 @@ class Character extends MoveableObject{
             this.playAnimation(this.Images_IDLE);
     }
 
-    sharkieMove(){
-        setInterval(() => {
-            this.checkAction()
-        }, 1000/30);
-    }
-
-    checkAction(){
-        if(this.sink())
-            if (this.y<329 &&this.attackAnimationEnd) this.y +=this.speed/6;
-        if(this.down())
-            if (this.y<329) this.y +=this.speed/2;    
-        if(this.right())
-            this.sharkieSwimRight();
-        if(this.left())
-            this.sharkieSwimLeft();
-        if(this.up())
-            if (this.y>-94)this.y -=this.speed;
-        if(this.startSlap())
-            this.setAttackTrue();
-        if(this.startBubble())
-            this.setBubbleTrue();
-        if(!this.keyChecker.SLAP && this.slapActive && this.attackAnimationEnd) this.slapActive = false ;
-    }
     
     setAttackTrue(){
         this.slapActive = true;

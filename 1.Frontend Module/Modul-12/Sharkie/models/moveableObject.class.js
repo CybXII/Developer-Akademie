@@ -122,8 +122,8 @@ class MoveableObject{
     destroyObject(){
         this.distance = this.x - world.character.x
         if(this.x <=this.endpoint|| this.y <= -500){
-            if (this instanceof GreenFish || this instanceof RedFish || this instanceof OrangeFish || this instanceof Bubble){
-                    this.finalyDestroy();
+            if ( this instanceof JellyFish || this instanceof GreenFish || this instanceof RedFish || this instanceof OrangeFish || this instanceof Bubble){
+                    this.finalyDestroy(this.intervalId);
             }
         }
     }
@@ -132,16 +132,17 @@ class MoveableObject{
         if (this instanceof Bubble){
             let found = world.bubbels.find((element) => element.id == this.id);
             if (found){
-                let isID = (element) => element.id == this.id;
+                
+                let isID = (element) => element.intervalId == this.intervalId;
                 world.bubbels.splice(`${world.bubbels.findIndex(isID)}`,1)
                 this.destroy = true;
                 clearInterval(this.intervalId);
                 this.intervalId= null;        
-            }        
+            }   
         }else {
-            let found = world.enemies.find((element) => element.id == this.id);
+            let found = world.enemies.find((element) => element.intervalId == this.intervalId);
             if (found){
-                let isID = (element) => element.id == this.id;
+                let isID = (element) => element.intervalId == this.intervalId;
                 world.enemies.splice(`${world.enemies.findIndex(isID)}`,1)
                 this.destroy = true;
                 clearInterval(this.intervalId);
@@ -151,7 +152,7 @@ class MoveableObject{
     }
 
     isColliding(obj) {
-        if(this instanceof Character || this instanceof Bubble||this instanceof GreenFish||this instanceof RedFish||this instanceof Boss||this instanceof OrangeFish){
+        if(this.collisionObjects()){
             let x = this.x+this.offsetX;
             let width = this.width-this.offsetXMinus;
             let y = this.y+this.offsetY;
@@ -168,14 +169,14 @@ class MoveableObject{
             if (this.checkBossDeath()){
                 this.currentImage = 0;
             }
-            if (this instanceof RedFish &&this.deadPlayed||this instanceof GreenFish &&this.deadPlayed ||this instanceof OrangeFish &&this.deadPlayed){
+            if (this instanceof JellyFish && this.deadPlayed ||this instanceof RedFish && this.deadPlayed || this instanceof GreenFish && this.deadPlayed || this instanceof OrangeFish && this.deadPlayed){
                 if (this.currentImage >= deadImages.length && this.deadPlayed){
                     this.currentImage = deadImages.length+1;
                     this.setDeadObject();
                 }    
                 this.playAnimation(deadImages);
             }
-            if(this instanceof RedFish&& !this.deadPlayed||this instanceof GreenFish&& !this.deadPlayed||this instanceof OrangeFish && !this.deadPlayed){
+            if(this.enemyLastDeadImg()){
                 this.currentImage = 0;
                 this.deadPlayed = true;
                 this.playAnimation(deadImages);
@@ -185,6 +186,9 @@ class MoveableObject{
     }
 
     hurtAnimation(hurtImages){
+        if (this instanceof Character){
+            this.resetAttack();
+        }
         if (this instanceof Endboss){
             this.speed = this.speed + 0.5;
         }
@@ -192,17 +196,46 @@ class MoveableObject{
             this.currentImage = 0;
         }
         this.playAnimation(hurtImages)
-        if (this.currentImage == hurtImages.length*3)
-            this.isHurt = false
+        this.checkCharHurt(hurtImages);
+    }
+
+    checkCharHurt(hurtImages){
+        if (this instanceof Character){
+            if (this.isPoisoned){
+                if (this.currentImage == hurtImages.length){
+                    this.stopHurtChecker();
+                }   
+            } else {
+                if (this.currentImage == hurtImages.length*3){
+                    this.stopHurtChecker();
+                }
+            }
+        }
+    }
+
+    resetAttack(){
+        this.bubbleActive = false ;
+        this.isAttacking = false;
+        this.attackAnimationEnd = true
+        this.slapActive = false ;
+    }
+
+    stopHurtChecker(){
+        this.isHurt = false
+        world.enemies.forEach(element => {
+            if (this.isColliding(element)){
+                this.isHurt = true;
+            }
+        });
     }
 
     checkBossDeath(){
-        return this instanceof Endboss&& !this.deadPlayed&&this.currentImage>= this.Images_Dead.length;
+        return this instanceof Endboss && !this.deadPlayed && this.currentImage >= this.Images_Dead.length;
     }
 
     setDeadObject(){
         this.deadPlayed = true;
-        if (this instanceof GreenFish|| this instanceof RedFish|| this instanceof OrangeFish)
+        if (this instanceof JellyFish||this instanceof GreenFish || this instanceof RedFish || this instanceof OrangeFish)
             setTimeout(() => {this.finalyDestroy();}, 2500);
     }
 
@@ -211,5 +244,14 @@ class MoveableObject{
                 console.log(this);
                 this.finalyDestroy();
             }
+    }
+
+
+    collisionObjects(){
+        return this instanceof JellyFish|| this instanceof Character || this instanceof Bubble || this instanceof GreenFish || this instanceof RedFish || this instanceof Boss || this instanceof OrangeFish;
+    }
+
+    enemyLastDeadImg(){
+        return this instanceof JellyFish && !this.deadPlayed || this instanceof RedFish && !this.deadPlayed || this instanceof GreenFish&& !this.deadPlayed || this instanceof OrangeFish && !this.deadPlayed;
     }
 }

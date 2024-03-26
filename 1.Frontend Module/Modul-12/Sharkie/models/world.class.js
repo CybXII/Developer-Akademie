@@ -116,13 +116,15 @@ class World{
     }
 
     generateEnemies(){
-            let newEnemies = 1+Math.random()* 5;
+            let newEnemies = 5+Math.random()* 2;
             for (let i = 0; i < newEnemies; i++) {
                 let generateEnemie = new GreenFish(i,this.character.x);
                 this.enemies.push(generateEnemie);
                 generateEnemie = new RedFish(i,this.character.x);
                 this.enemies.push(generateEnemie);
                 generateEnemie = new OrangeFish(i,this.character.x);
+                this.enemies.push(generateEnemie);
+                generateEnemie = new JellyFish(i,this.character.x);
                 this.enemies.push(generateEnemie);
             }
     }
@@ -145,7 +147,7 @@ class World{
                         }); 
                     }
                     if(this.character.isColliding(enemy)){
-                        if (enemy instanceof GreenFish|| enemy instanceof RedFish|| enemy instanceof OrangeFish){
+                        if (enemy instanceof GreenFish|| enemy instanceof RedFish|| enemy instanceof OrangeFish || enemy instanceof JellyFish){
                             this.character.isHurt = true;
                             this.character.isPoisoned = true;
                         }
